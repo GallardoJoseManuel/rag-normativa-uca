@@ -8,7 +8,7 @@ y los problemas que encuentro.
 ## 2026-11-24 · Sesión 1: configuración del proyecto
 
 ### Qué he hecho
-- Creo el repositorio `rag-normativa-uca` en GitHub y lo clono en `C:\Developer`.
+- Creo el repositorio `rag-normativa-uca` en GitHub y lo clono en mi carpeta de desarrollo.
 - Creo un entorno virtual (`.venv`) para el proyecto.
 - Instalo PyMuPDF y creo el `requirements.txt`.
 - Configuro el `.gitignore` para no subir los documentos originales.
