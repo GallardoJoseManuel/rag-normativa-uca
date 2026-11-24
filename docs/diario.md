@@ -178,3 +178,97 @@ concretas.
   - Calendario: transcribir a mano las fechas clave a un archivo de texto.
   - Rúbrica: convertir la tabla en frases con sentido (a mano o a partir de `find_tables()`).
   - Preámbulos: experimento de "¿mejora o empeora el RAG al incluirlos?".
+
+---
+
+## 2026-11-24/25 · Sesión 3: extracción y limpieza del texto (paso 2)
+
+### Qué he hecho
+- Analizo al detalle qué cambia cada modificación:
+  - **2014 (TFG), 4 cambios**: añade un Capítulo II con los artículos 9-13 (dobles
+    títulos), agrupa los artículos 1-8 en un "Capítulo primero", renumera los antiguos
+    9 y 10 como 14 y 15 (Capítulo III) y añade una frase a los artículos 2 y 6.
+  - **2015 (prácticas), 16 cambios**: 4 artículos completos (37, 38, 51 y 54) y el resto
+    son apartados sueltos ("el apartado 2 del artículo 13", "la letra b del apartado 3
+    del artículo 14"...). El texto nuevo va entre `<<` y `>>`.
+- Añado a `data/sources.csv` las columnas `pagina_inicio` y `pagina_fin` con el rango
+  útil de cada documento (vacías en el calendario y la rúbrica, que quedan fuera).
+- Creo `src/ingest.py`, que extrae el texto del rango útil de cada PDF, lo limpia y lo
+  guarda en `data/processed/<id>.txt` (ignorado en Git: es texto de los PDFs y se
+  regenera con el script).
+
+### Decisiones
+- **Consolidación con un archivo de parches** (`data/parches.json`, todavía por hacer).
+  Como casi todos los cambios afectan a trozos de artículo, no basta con sustituir
+  artículos enteros. Cada cambio será una operación (`reemplazar_texto`,
+  `reemplazar_articulo`, `añadir_articulo`, `renumerar`) que un script aplica sobre los
+  artículos originales. Es reproducible, verificable (si el texto antiguo no aparece, el
+  script falla) y trazable (cada artículo sabe qué modificación lo cambió).
+- **Reglas de limpieza generales, no por documento.** Ninguna regla menciona un archivo
+  concreto, para que funcionen con documentos nuevos sin añadir casos especiales.
+- **Los tamaños de letra se comparan con el cuerpo de cada documento**, no con un valor
+  fijo: el cuerpo mide 12, 12, 11, 10 y 12 pt según el PDF. Con un umbral fijo de 9 pt,
+  un documento futuro con cuerpo de 9 pt se borraría entero.
+
+### Cómo funciona `src/ingest.py`
+1. `tamano_cuerpo()`: el tamaño de letra con más caracteres en el rango útil.
+2. `lineas_pagina()`: lee cada página con `get_text("dict")` (bloques → líneas → spans,
+   cada span con su tamaño y cada línea con su posición) y quita:
+   - el texto más de 2 pt menor que el cuerpo, esté donde esté (llamadas de nota,
+     membretes y notas en letra muy pequeña);
+   - las líneas algo menores que el cuerpo que están **debajo** de la última línea del
+     cuerpo de la página (notas al pie).
+3. `detectar_encabezados()`: líneas que aparecen en al menos la mitad de las páginas
+   (membretes), salvo marcas de apartado como `a)` o `1.`.
+4. `limpiar_linea()`: quita caracteres de control (`\x03`), cambia `\xa0` por espacio y
+   deja un solo espacio entre palabras.
+5. `extraer_texto()`: aplica todo lo anterior, quita las líneas `pág. N` y une las
+   páginas sin crear párrafos falsos en los saltos de página.
+
+### Problemas y soluciones
+- **`a)` y `b)` detectados como membretes.** En el reglamento de prácticas aparecen en 11
+  de 22 páginas, así que la regla de líneas repetidas los habría borrado todos. Solución:
+  excluir de esa regla las líneas que son solo una marca de apartado.
+- **Membrete en mitad de una frase.** En la modificación de 2014, el membrete del
+  Vicerrectorado aparece justo en un salto de página que parte la cláusula SEGUNDO. Al
+  quitarlo y no dejar líneas en blanco en los bordes de página, la frase queda seguida.
+- **La nota al pie 2 de la ESI no se eliminaba.** Está a 10 pt con un cuerpo de 11 pt, y
+  la regla de "más de 2 pt menor" no la cogía. Bajar el margen a 1 pt era arriesgado: en
+  la p. 1 del reglamento marco hay contenido real a 11 pt con cuerpo de 12 pt. Solución:
+  combinar **tamaño y posición**: el texto algo menor solo se quita si está debajo del
+  cuerpo de la página, que es donde van las notas al pie.
+- **`NameError: name 'umbral' is not defined`.** Al cambiar la comprensión de conjunto
+  por un bucle `for` borré la línea que calculaba `umbral`. Lección: un traceback se lee
+  de abajo arriba (qué pasó, dónde y por qué camino se llegó ahí).
+- **Aviso de Git "LF will be replaced by CRLF".** No es un error: Git para Windows
+  convierte los finales de línea. En GitHub los archivos quedan con LF.
+
+### Validación
+Comparo palabra por palabra el texto de los PDFs (mismo rango) con `data/processed/`:
+
+| Documento | Palabras PDF → procesado | Eliminado | Añadido |
+|---|---|---|---|
+| tfg_uca_2012 | 3.748 → 3.748 | nada (solo `\x03`) | nada |
+| tfg_uca_2014 | 1.130 → 1.052 | 3 membretes | nada |
+| tfgm_esi | 4.353 → 3.955 | 11 membretes, 2 notas al pie y sus 2 llamadas | nada |
+| practicas_uca_2012 | 9.855 → 9.855 | nada | nada |
+| practicas_uca_2015 | 1.678 → 1.678 | nada | nada |
+
+También compruebo que están todos los artículos en orden y sin repetir (10, 25 y 56),
+las cláusulas PRIMERO-QUINTO y los artículos 9-13 de 2014, y los 16 cambios de 2015 con
+sus `<<` `>>` emparejados.
+
+**Limitación:** las reglas están probadas con estos 5 documentos. Se basan en supuestos
+(el cuerpo es el tamaño más frecuente, lo que hay debajo del cuerpo son notas al pie, el
+PDF tiene texto real a una columna...) que un documento nuevo podría no cumplir. Cada vez
+que añada uno hay que explorarlo, fijar su rango, extraerlo y **validar** que solo se
+elimina ruido.
+
+### Pendiente
+- Añadir el script de validación al repositorio (`scripts/validar_extraccion.py`).
+- Dividir el texto de cada reglamento en artículos.
+- Escribir `data/parches.json` y aplicar las modificaciones para obtener el texto
+  consolidado.
+- Unir las líneas de cada párrafo (ahora cada línea del PDF es una línea del texto).
+- Descartar los restos de preámbulo o justificación al principio de tfg_uca_2012,
+  tfg_uca_2014 y practicas_uca_2015.
