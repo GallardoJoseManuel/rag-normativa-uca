@@ -128,7 +128,8 @@ y los problemas que encuentro.
 - **Contenido ajeno**: la p. 7 es otro acuerdo del mismo boletín. Hay que descartarla.
 
 ### Cómo lo he comprobado
-Script de exploración (`explorar_pdfs.py`) que, para cada PDF, recorre las páginas con
+Script de exploración ([`scripts/explorar_pdfs.py`](../scripts/explorar_pdfs.py), se
+ejecuta con `python scripts/explorar_pdfs.py`) que, para cada PDF, recorre las páginas con
 PyMuPDF y muestra: caracteres por página, tablas detectadas (`find_tables()`), líneas que
 parecen títulos de artículo, capítulo o disposición (expresiones regulares), líneas que se
 repiten en muchas páginas (posibles encabezados) y caracteres de control. Los casos raros
