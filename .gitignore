@@ -221,3 +221,7 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+
+# Documentos originales (no se suben por derechos de autor)
+data/raw/*
+!data/raw/.gitkeep
