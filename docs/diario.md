@@ -164,3 +164,17 @@ concretas.
   la dejo para más adelante?
 - **Preámbulos**: no responden dudas prácticas, pero sí preguntas tipo "¿por qué existe
   esta norma?". ¿Los incluyo o no?
+
+### Decisiones
+- **Modificaciones → texto consolidado propio.** Aplicaré los cambios de 2014 y 2015 sobre
+  los reglamentos de 2012 para obtener la redacción vigente de cada artículo, en lugar de
+  indexar originales y modificaciones por separado. **Motivo:** quiero asegurar respuestas
+  de calidad aunque cueste más trabajo. Si indexo por separado, el RAG puede recuperar la
+  redacción antigua de un artículo ya modificado y responder mal, y habría dos "artículo 9"
+  con contenido distinto por la renumeración de 2014.
+- **Calendario, rúbrica y preámbulos → fuera de la primera versión.** Los añadiré más
+  adelante, cuando tenga una base del RAG funcionando y pueda medir si mejoran o empeoran
+  las respuestas con el conjunto de evaluación. Quedan como mejoras futuras:
+  - Calendario: transcribir a mano las fechas clave a un archivo de texto.
+  - Rúbrica: convertir la tabla en frases con sentido (a mano o a partir de `find_tables()`).
+  - Preámbulos: experimento de "¿mejora o empeora el RAG al incluirlos?".
