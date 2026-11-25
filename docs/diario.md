@@ -181,7 +181,7 @@ concretas.
 
 ---
 
-## 2026-11-24/25 · Sesión 3: extracción y limpieza del texto (paso 2)
+## 2026-11-24 · Sesión 3: extracción y limpieza del texto (paso 2)
 
 ### Qué he hecho
 - Analizo al detalle qué cambia cada modificación:
@@ -237,9 +237,6 @@ concretas.
   la p. 1 del reglamento marco hay contenido real a 11 pt con cuerpo de 12 pt. Solución:
   combinar **tamaño y posición**: el texto algo menor solo se quita si está debajo del
   cuerpo de la página, que es donde van las notas al pie.
-- **`NameError: name 'umbral' is not defined`.** Al cambiar la comprensión de conjunto
-  por un bucle `for` borré la línea que calculaba `umbral`. Lección: un traceback se lee
-  de abajo arriba (qué pasó, dónde y por qué camino se llegó ahí).
 - **Aviso de Git "LF will be replaced by CRLF".** No es un error: Git para Windows
   convierte los finales de línea. En GitHub los archivos quedan con LF.
 
@@ -264,8 +261,51 @@ PDF tiene texto real a una columna...) que un documento nuevo podría no cumplir
 que añada uno hay que explorarlo, fijar su rango, extraerlo y **validar** que solo se
 elimina ruido.
 
+### Script de validación: `scripts/validar_extraccion.py`
+Convierto esa comprobación en un script del proyecto, para repetirla cada vez que cambie
+las reglas de limpieza o añada un documento. Se ejecuta después de `ingest.py`:
+
+```
+python src/ingest.py
+python scripts/validar_extraccion.py
+```
+
+Para cada documento compara palabra por palabra el texto del PDF con su `.txt` procesado
+(con `difflib.SequenceMatcher`, que describe las diferencias como operaciones `equal`,
+`delete`, `insert` y `replace`) y comprueba:
+
+| # | Comprobación | Cómo |
+|---|---|---|
+| 1 | No se ha **añadido** texto | Automática: falla si hay algo. Única excepción: una llamada de nota pegada ("momento.2" → "momento.") |
+| 2 | Qué se ha **quitado** | Revisión manual: lo muestra agrupado (ignorando números, para que el membrete de cada página cuente como uno) |
+| 3 | No quedan caracteres de control ni `\xa0` | Automática |
+| 4 | Los artículos son **consecutivos** y no se repiten | Automática (no exige empezar en 1: la modificación de 2014 tiene los artículos 9-13) |
+
+Si falla alguna comprobación automática, termina con **código de salida 1** (convención
+para que otras herramientas, como GitHub Actions en el futuro, sepan que algo ha ido mal).
+
+**Prueba de que detecta errores:** estropeé a propósito una copia del reglamento marco
+(una frase inventada con un `\x03` y el "Art. 5.º" cambiado por "Art. 7.º"). El script
+detectó las tres cosas: texto añadido, carácter de control y artículos no consecutivos
+`[1, 2, 3, 4, 7, 6, ...]`, y terminó con código 1. Un validador que siempre dice ✓ no
+sirve de nada, así que hay que probar también que falla cuando debe.
+
+**Principio importante: la referencia tiene que ser independiente.** El validador usa
+`get_text()` en bruto como "original", y no `extraer_texto()` de `ingest.py`. Si usara mi
+propia función, un error en ella (por ejemplo, que se coma el artículo 5) estaría en los
+dos lados de la comparación, los dos textos coincidirían y el validador diría ✓. Sería como
+corregir mi propio examen con mis propias respuestas. Con el texto en bruto, ningún error
+de mis reglas puede colarse en la referencia.
+- Lo único que comparten es la normalización de `palabras()` (quitar caracteres de control
+  y `\xa0`), para no llenar el informe de avisos por cosas que se quitan a propósito. Por
+  eso esa parte se comprueba aparte (comprobación 3).
+- La misma idea se aplicará en el paso 4: las preguntas de evaluación las escribiré a mano
+  leyendo la normativa, no generadas por el propio RAG, porque si no se evaluaría a sí mismo.
+
+Resultado actual: **5/5 documentos superan las comprobaciones automáticas**, y lo quitado
+es solo membretes, notas al pie y sus llamadas.
+
 ### Pendiente
-- Añadir el script de validación al repositorio (`scripts/validar_extraccion.py`).
 - Dividir el texto de cada reglamento en artículos.
 - Escribir `data/parches.json` y aplicar las modificaciones para obtener el texto
   consolidado.

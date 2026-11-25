@@ -54,7 +54,9 @@ Con el entorno virtual activado:
 
 ```bash
 pip install -r requirements.txt
-python scripts/explorar_pdfs.py   # análisis exploratorio de los PDFs
+python scripts/explorar_pdfs.py        # análisis exploratorio de los PDFs
+python src/ingest.py                   # extrae y limpia el texto -> data/processed/
+python scripts/validar_extraccion.py   # comprueba que no se pierde ni se inventa texto
 ```
 
 ## Licencia
