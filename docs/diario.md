@@ -474,7 +474,45 @@ frases en los saltos de página. El efecto secundario es que, si un párrafo ter
 final de una página y el siguiente empieza en la página nueva, **los dos quedan unidos**.
 No se pierde texto, pero contar párrafos ("párrafo cuarto") puede no coincidir con el PDF.
 
+### Revisión del borrador
+Reviso los 9 avisos mirando el texto real y las diferencias palabra a palabra entre el
+texto antiguo y el nuevo:
+
+| # | Aviso | Decisión |
+|---|---|---|
+| 1 | 2014, art. 13 sin título | **Sin título.** Inventarlo sería añadir texto que no está en la norma; el RAG lo encontrará por su contenido |
+| 2 | 2014 TERCERO, "párrafo cuarto" del art. 6 | **Correcto.** Comprobado en el PDF: la p. 7 empieza con el 4.º párrafo ("Además, los alumnos podrán proponer..."), que termina en "tutor del trabajo" |
+| 3 | 2014 TERCERO, errata "las comisión" | **Se copia tal cual.** Es el texto oficial: un sistema que cita normativa no debe corregirla por su cuenta |
+| 4 | 2014 CUARTO, dónde va la frase | **Antes del punto final.** Empieza por coma, igual que la del TERCERO |
+| 5 | 2015 Uno, apartado en 2 párrafos | **Correcto.** Solo cambia el Real Decreto (1707/2011 → 592/2014); la 2.ª frase es igual |
+| 6 | 2015 Tres, marca `3.b)` | **Correcto.** Encuentra la letra b del apartado 3 (no la del 2) |
+| 7 | 2015 Cuatro, epígrafe iii igual al antiguo | **Se elimina el parche.** No cambia nada; el art. 15 queda igualmente modificado por el parche del último párrafo |
+| 8 | 2015 Cuatro, último párrafo sin marca | **Correcto.** Mismo párrafo; solo cambia "Director General" → "Vicerrector" |
+| 9 | 2015 Trece, enunciado "apartados 3" con bloques 3 y 4 | **Se aplican los dos.** Hacen el mismo cambio y el plural "Los apartados" indica una errata del enunciado |
+
+Resultado: **`data/parches.json` con 35 parches** (36 del borrador menos el del punto 7),
+todos con `"revisado": true`. Quito los campos auxiliares del borrador (`revisar`,
+`palabras_que_cambian`) y añado un campo `nota` en los parches con una decisión
+(puntos 1, 2-3, 4 y 9), para que el motivo quede junto al dato. Todos los
+`texto_antiguo` siguen apareciendo exactamente una vez en su artículo.
+
+| Modificación | Operación | Parches |
+|---|---|---|
+| 2014 | `renumerar` | 2 |
+| 2014 | `añadir_articulo` | 5 |
+| 2014 | `asignar_seccion` | 3 |
+| 2014 | `reemplazar_texto` | 2 |
+| 2015 | `reemplazar_texto` | 19 |
+| 2015 | `reemplazar_articulo` | 4 |
+
+**Patrón observado:** casi todos los cambios de 2015 sustituyen al "Director General de
+Universidad y Empresa" por el "Vicerrector competente en la materia" y actualizan el Real
+Decreto 1707/2011 por el 592/2014. La modificación adaptó el reglamento a un cambio de
+organigrama y a la nueva ley. Sin consolidar, el RAG mandaría al estudiante a un cargo
+que ya no existe.
+
+**`data/parches.json` es ahora la fuente de verdad.** El borrador solo sirvió para
+prepararlo; si se vuelve a generar, no toca `data/parches.json`.
+
 ### Pendiente
-- Revisar el borrador parche a parche, resolver los avisos, poner `"revisado": true` y
-  guardarlo como `data/parches.json`.
 - Crear `src/consolidar.py`, que aplique los parches y genere `data/processed/consolidado/`.

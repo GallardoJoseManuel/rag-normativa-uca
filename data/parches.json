@@ -1,0 +1,393 @@
+[
+  {
+    "fuente": "tfg_uca_2014",
+    "reglamento": "tfg_uca_2012",
+    "cambio": "SEGUNDO",
+    "operacion": "renumerar",
+    "articulo": 9,
+    "nuevo_numero": 14,
+    "revisado": true
+  },
+  {
+    "fuente": "tfg_uca_2014",
+    "reglamento": "tfg_uca_2012",
+    "cambio": "SEGUNDO",
+    "operacion": "renumerar",
+    "articulo": 10,
+    "nuevo_numero": 15,
+    "revisado": true
+  },
+  {
+    "fuente": "tfg_uca_2014",
+    "reglamento": "tfg_uca_2012",
+    "cambio": "PRIMERO",
+    "operacion": "añadir_articulo",
+    "articulo": 9,
+    "titulo": "Régimen de los trabajos y coordinación de las comisiones",
+    "texto_nuevo": "La elaboración de trabajos de fin de grado y de fin de máster en el supuesto de alumnos que se encuentren cursando dobles títulos o dobles itinerarios en la Universidad de Cádiz, podrá realizarse de forma conjunta, presentando un solo trabajo siempre y cuando, a juicio de las comisiones competentes de los centros, se garantice la adquisición por parte de los alumnos de las competencias requeridas en las correspondientes memorias de los títulos y la coherencia del contenido del trabajo a presentar.\nLa coordinación entre las comisiones de trabajo de fin de grado y de fin de máster de los títulos y centros corresponde a sus presidentes, en su caso, con atención a las instrucciones que determine el Centro.\nLa presentación de los trabajos de fin de grado o de fin de máster de títulos conjuntos no altera el régimen de los requisitos previstos en la normativa propia de la Universidad de Cádiz y la aprobada por sus centros, en su caso. El alumno sólo podrá presentar el trabajo conjunto cuando cumpla simultáneamente los requisitos exigidos por cada una de las memorias de los títulos que curse y, en su caso, cumpla con las indicaciones y el procedimiento que establezcan las comisiones de trabajo de fin de grado o de fin de máster de cada uno de los centros para sus propios títulos.",
+    "revisado": true
+  },
+  {
+    "fuente": "tfg_uca_2014",
+    "reglamento": "tfg_uca_2012",
+    "cambio": "PRIMERO",
+    "operacion": "añadir_articulo",
+    "articulo": 10,
+    "titulo": "Propuestas de los trabajos",
+    "texto_nuevo": "Las comisiones de trabajo de fin de grado o de fin de máster de los centros y/o titulaciones implicadas en la impartición de dobles títulos o dobles itinerarios, al tiempo de recabar de los departamentos y, en su caso, de los colaboradores externos, la relación de temas que puedan ser objeto de un trabajo de fin de grado o de fin de máster, solicitarán expresión acerca de la oportunidad de que el trabajo se realice bajo la modalidad de trabajo conjunto, integrando competencias y conocimientos de los títulos que el alumno se encuentre cursando y, con ello, asumiendo la necesidad de coordinación que la elaboración y la presentación del trabajo requiere.\nLos alumnos podrán proponer a las comisiones de los centros temas para la realización de los trabajos conjuntos. En estos casos, la propuesta, que se presentará simultáneamente ante las dos comisiones con la advertencia de que contiene una propuesta de trabajo conjunto, deberá venir acompañada de sendos informes favorables de los profesores que impartan docencia en cada titulación o, en su caso, de un mismo profesor que imparta docencia en las dos titulaciones, pronunciándose sobre la viabilidad de la iniciativa presentada. Los citados profesores podrán ejercer como tutores del trabajo, en los términos en que lo aprueben las respectivas comisiones.",
+    "revisado": true
+  },
+  {
+    "fuente": "tfg_uca_2014",
+    "reglamento": "tfg_uca_2012",
+    "cambio": "PRIMERO",
+    "operacion": "añadir_articulo",
+    "articulo": 11,
+    "titulo": "Tutela de los trabajos",
+    "texto_nuevo": "El desarrollo del trabajo se realizará bajo la tutela de, al menos, dos tutores académicos, uno por cada titulación, en los términos previstos en el artículo 4.º del Reglamento marco UCA/CG07/2012. Cada uno de ellos actuará, en el marco de sus competencias, sobre la parte del trabajo que corresponda a las competencias de su propia titulación, sin perjuicio de la necesaria coordinación que deba existir en los tutores.",
+    "revisado": true
+  },
+  {
+    "fuente": "tfg_uca_2014",
+    "reglamento": "tfg_uca_2012",
+    "cambio": "PRIMERO",
+    "operacion": "añadir_articulo",
+    "articulo": 12,
+    "titulo": "Entrega y depósito de los trabajos",
+    "texto_nuevo": "Una vez finalizado el trabajo, el alumno deberá cumplir con la normativa de cada centro en orden a la entrega y al depósito de los ejemplares.",
+    "revisado": true
+  },
+  {
+    "fuente": "tfg_uca_2014",
+    "reglamento": "tfg_uca_2012",
+    "cambio": "PRIMERO",
+    "operacion": "añadir_articulo",
+    "articulo": 13,
+    "titulo": "",
+    "texto_nuevo": "La defensa del trabajo de fin de grado o de fin de máster se realizará ante una comisión evaluadora única, integrada por cuatro miembros, dos en representación de cada titulación, designados al efecto por las correspondientes comisiones de los centros.\nPor cada titulación se emitirá el correspondiente acta, conteniendo en ambos casos la misma calificación, resultado del modo de calificación previsto en el artículo 8.º del Reglamento marco UCA/CG07/2012.\nPara la concesión de las matrículas de honor se atenderá al número y a los requisitos de cada titulación por separado.",
+    "nota": "Sin título: en la modificación el artículo empieza directamente con el texto. No se inventa uno.",
+    "revisado": true
+  },
+  {
+    "fuente": "tfg_uca_2014",
+    "reglamento": "tfg_uca_2012",
+    "cambio": "SEGUNDO",
+    "operacion": "asignar_seccion",
+    "articulos": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8
+    ],
+    "seccion": "Capítulo primero. Régimen de los trabajos de fin de grado y de fin de máster de los títulos oficiales de la Universidad de Cádiz",
+    "revisado": true
+  },
+  {
+    "fuente": "tfg_uca_2014",
+    "reglamento": "tfg_uca_2012",
+    "cambio": "PRIMERO",
+    "operacion": "asignar_seccion",
+    "articulos": [
+      9,
+      10,
+      11,
+      12,
+      13
+    ],
+    "seccion": "Capítulo II. Régimen de los trabajos de fin de grado o de fin de máster en el caso de impartición de doble títulos o de dobles itinerarios en la Universidad de Cádiz",
+    "revisado": true
+  },
+  {
+    "fuente": "tfg_uca_2014",
+    "reglamento": "tfg_uca_2012",
+    "cambio": "SEGUNDO",
+    "operacion": "asignar_seccion",
+    "articulos": [
+      14,
+      15
+    ],
+    "seccion": "Capítulo III. Desarrollo del Reglamento marco",
+    "revisado": true
+  },
+  {
+    "fuente": "tfg_uca_2014",
+    "reglamento": "tfg_uca_2012",
+    "cambio": "TERCERO",
+    "operacion": "reemplazar_texto",
+    "articulo": 6,
+    "texto_antiguo": "que ejercerá como tutor del trabajo.",
+    "texto_nuevo": "que ejercerá como tutor del trabajo, en los términos en que lo apruebe las comisión competente.",
+    "nota": "El párrafo cuarto del art. 6.º es \"Además, los alumnos podrán proponer...\" (comprobado en la p. 7 del PDF). La errata \"las comisión\" se copia tal cual del texto oficial.",
+    "revisado": true
+  },
+  {
+    "fuente": "tfg_uca_2014",
+    "reglamento": "tfg_uca_2012",
+    "cambio": "CUARTO",
+    "operacion": "reemplazar_texto",
+    "articulo": 2,
+    "texto_antiguo": "5. Los alumnos podrán presentar y defender sus trabajos de fin de Grado y de Máster una vez acrediten haber superado la totalidad de las materias básicas y obligatorias del plan de estudios, excluidas las del propio trabajo.",
+    "texto_nuevo": "5. Los alumnos podrán presentar y defender sus trabajos de fin de Grado y de Máster una vez acrediten haber superado la totalidad de las materias básicas y obligatorias del plan de estudios, excluidas las del propio trabajo, sin perjuicio de aquellos requisitos adicionales establecidos en las memorias de los títulos.",
+    "nota": "La frase empieza por coma: se añade antes del punto final, como en el cambio TERCERO.",
+    "revisado": true
+  },
+  {
+    "fuente": "practicas_uca_2015",
+    "cambio": "Uno",
+    "enunciado": "Uno.- Se modifica el apartado 1 del artículo 6, que queda redactado como sigue:",
+    "reglamento": "practicas_uca_2012",
+    "operacion": "reemplazar_texto",
+    "articulo": 6,
+    "texto_antiguo": "1. Las prácticas académicas externas de los alumnos universitarios se rigen por el Real Decreto 1707/2011, de 18 de noviembre, por el que se regulan las prácticas académicas externas de los alumnos universitarios (BOE núm. 297, de 10 de diciembre de 2011), así como por las disposiciones contenidas en este Reglamento.\nEn el caso de prácticas curriculares se regirán, además, por lo dispuesto en el Real Decreto 1393/2007, de 29 de octubre, por el que se establece la ordenación de las enseñanzas universitarias oficiales (BOE núm. 260, de 30 de octubre) y en el plan de estudio de cada titulación.",
+    "texto_nuevo": "1. Las prácticas académicas externas de los alumnos universitarios se rigen por el Real Decreto 592/2014, de 11 de julio, por el que se regulan las prácticas académicas externas de los alumnos universitarios (BOE núm. 184, de 30 de julio de 2014), así como por las disposiciones contenidas en este Reglamento. En el caso de prácticas curriculares se regirán, además, por lo dispuesto en el Real Decreto 1393/2007, de 29 de octubre, por el que se establece la ordenación de las enseñanzas universitarias oficiales (BOE núm. 260, de 30 de octubre) y en el plan de estudio de cada titulación.",
+    "revisado": true
+  },
+  {
+    "fuente": "practicas_uca_2015",
+    "cambio": "Dos",
+    "enunciado": "Dos.- El apartado 2 del artículo 13 queda redactado como sigue:",
+    "reglamento": "practicas_uca_2012",
+    "operacion": "reemplazar_texto",
+    "articulo": 13,
+    "texto_antiguo": "2. Las prácticas extracurriculares, con independencia de la eventual realización anterior o posterior de prácticas curriculares, tendrán una duración, preferentemente, no superior al cincuenta por ciento del curso académico o a 6 meses, pudiendo en caso justificado ampliarse, por una sola vez, por un periodo de 3 meses más, previa autorización expresa del Director General de Universidad y Empresa o del responsable de la Universidad de Cádiz competente en materia de prácticas en empresas.",
+    "texto_nuevo": "2. Las prácticas extracurriculares, con independencia de la eventual realización anterior o posterior de prácticas curriculares, tendrán una duración, preferentemente, no superior al cincuenta por ciento del curso académico o a 6 meses, pudiendo en caso justificado ampliarse, por una sola vez, por un periodo de 3 meses más, previa autorización expresa del Vicerrector o del responsable de la Universidad de Cádiz competente en materia de prácticas en empresas.",
+    "revisado": true
+  },
+  {
+    "fuente": "practicas_uca_2015",
+    "cambio": "Tres",
+    "enunciado": "Tres.- La letra b del apartado 3 del artículo 14 queda redactado como sigue:",
+    "reglamento": "practicas_uca_2012",
+    "operacion": "reemplazar_texto",
+    "articulo": 14,
+    "texto_antiguo": "b) el horario de entrada y el de salida vendrá señalado en la oferta de la entidad colaboradora y podrá ser modificado de común acuerdo entre dicha entidad y el alumno en prácticas, previo conocimiento y aprobación por la Dirección General de Universidad y Empresa o el responsable de la Universidad de Cádiz en materia de prácticas en empresas.",
+    "texto_nuevo": "b) el horario de entrada y el de salida vendrá señalado en la oferta de la entidad colaboradora y podrá ser modificado de común acuerdo entre dicha entidad y el alumno en prácticas, previo conocimiento y aprobación por el Vicerrector o el responsable de la Universidad de Cádiz competente en materia de prácticas en empresas.",
+    "revisado": true
+  },
+  {
+    "fuente": "practicas_uca_2015",
+    "cambio": "Cuatro",
+    "enunciado": "Cuatro.- El epígrafe iii de la letra d del artículo 15 y el último párrafo del artículo 15 quedan redactados como sigue:",
+    "reglamento": "practicas_uca_2012",
+    "operacion": "reemplazar_texto",
+    "articulo": 15,
+    "texto_antiguo": "Para los supuestos contemplados en las letras b), c) y d) es preceptiva en todo caso la comunicación y la participación del Director General Universidad y Empresa o de la persona responsable de las prácticas externas de la Universidad de Cádiz, que en su caso requerirá la participación de quienes estimen convenientes. En todo caso, cuando proceda, informará a la Comisión de Prácticas de Empresa sobre las circunstancias producidas.",
+    "texto_nuevo": "Para los supuestos contemplados en las letras b), c) y d) es preceptiva en todo caso la comunicación y la participación del Vicerrector o de la persona responsable de las prácticas externas de la Universidad de Cádiz, que en su caso requerirá la participación de quienes estimen convenientes. En todo caso, cuando proceda, informará a la Comisión de Prácticas de Empresa sobre las circunstancias producidas.",
+    "revisado": true
+  },
+  {
+    "fuente": "practicas_uca_2015",
+    "cambio": "Cinco",
+    "enunciado": "Cinco.- El apartado 2 del artículo 17 queda redactado como sigue:",
+    "reglamento": "practicas_uca_2012",
+    "operacion": "reemplazar_texto",
+    "articulo": 17,
+    "texto_antiguo": "2. Para el caso de prácticas extracurriculares, el Director General de Universidad y Empresa o, en su caso, el responsable académico de esta modalidad de prácticas, podrá acordar la interrupción temporal del disfrute de la práctica a petición razonada del interesado o de la entidad colaboradora, siempre que ambas partes estén de acuerdo. El período máximo de interrupción será de dos meses, debiendo incorporarse los alumnos a la entidad colaboradora una vez transcurrido dicho período y, en consecuencia, prolongando el período de prácticas hasta completar el establecido inicialmente.",
+    "texto_nuevo": "2. Para el caso de prácticas extracurriculares, el Vicerrector competente en la materia o, en su caso, el responsable académico de esta modalidad de prácticas, podrá acordar la interrupción temporal del disfrute de la práctica a petición razonada del interesado o de la entidad colaboradora, siempre que ambas partes estén de acuerdo. El período máximo de interrupción será de dos meses, debiendo incorporarse los alumnos a la entidad colaboradora una vez transcurrido dicho período y, en consecuencia, prolongando el período de prácticas hasta completar el establecido inicialmente.",
+    "revisado": true
+  },
+  {
+    "fuente": "practicas_uca_2015",
+    "cambio": "Seis",
+    "enunciado": "Seis.- Los apartados 1, 6 y 12 del artículo 22 quedan redactados como sigue:",
+    "reglamento": "practicas_uca_2012",
+    "operacion": "reemplazar_texto",
+    "articulo": 22,
+    "texto_antiguo": "1. Formalizar un convenio de cooperación educativa con la universidad, bajo la fórmula de un convenio de colaboración educativa. El procedimiento de la Universidad de Cádiz para la firma de estos convenios será el previsto por la Dirección General de Universidad y Empresa o, en su caso, la unidad a la que se le confíe la responsabilidad.",
+    "texto_nuevo": "1. Formalizar un convenio de cooperación educativa con la universidad, bajo la fórmula de un convenio de colaboración educativa. El procedimiento de la Universidad de Cádiz para la firma de estos convenios será el previsto por el Vicerrector competente en la materia o, en su caso, la unidad a la que se le confíe la responsabilidad.",
+    "revisado": true
+  },
+  {
+    "fuente": "practicas_uca_2015",
+    "cambio": "Seis",
+    "enunciado": "Seis.- Los apartados 1, 6 y 12 del artículo 22 quedan redactados como sigue:",
+    "reglamento": "practicas_uca_2012",
+    "operacion": "reemplazar_texto",
+    "articulo": 22,
+    "texto_antiguo": "6. Garantizar que el tutor de prácticas cumple con los deberes relacionados en el artículo 11.2 del Real Decreto 1707/2011, de 18 de noviembre, por el que se regulan las prácticas académicas externas de los alumnos universitarios.",
+    "texto_nuevo": "6. Garantizar que el tutor de prácticas cumple con los deberes relacionados en el artículo 11.2 del Real Decreto 592/2014, de 11 de julio, por el que se regulan las prácticas académicas externas de los alumnos universitarios.",
+    "revisado": true
+  },
+  {
+    "fuente": "practicas_uca_2015",
+    "cambio": "Seis",
+    "enunciado": "Seis.- Los apartados 1, 6 y 12 del artículo 22 quedan redactados como sigue:",
+    "reglamento": "practicas_uca_2012",
+    "operacion": "reemplazar_texto",
+    "articulo": 22,
+    "texto_antiguo": "12. Emitir los informes a que se refiere el artículo 13 del Real Decreto 1707/2011, según modelo facilitado por la Universidad de Cádiz.",
+    "texto_nuevo": "12. Emitir los informes a que se refiere el artículo 13 del Real Decreto 592/2014, de 11 de julio, según modelo facilitado por la Universidad de Cádiz.",
+    "revisado": true
+  },
+  {
+    "fuente": "practicas_uca_2015",
+    "cambio": "Siete",
+    "enunciado": "Siete.- Los apartados 3 y 7 del artículo 23 quedan redactados como sigue:",
+    "reglamento": "practicas_uca_2012",
+    "operacion": "reemplazar_texto",
+    "articulo": 23,
+    "texto_antiguo": "3. Informar suficientemente a los alumnos sobre el régimen de las prácticas externas, advirtiéndoles en especial de los deberes que le imponen los artículos 9.º.2 y 14 del Real Decreto 1707/2011, de 18 de noviembre, por el que se regulan las prácticas académicas externas de los alumnos universitarios.",
+    "texto_nuevo": "3. Informar suficientemente a los alumnos sobre el régimen de las prácticas externas, advirtiéndoles en especial de los deberes que le imponen los artículos 9.º.2 y 14 del Real Decreto, por el que se regulan las prácticas académicas externas de los alumnos universitarios.",
+    "revisado": true
+  },
+  {
+    "fuente": "practicas_uca_2015",
+    "cambio": "Siete",
+    "enunciado": "Siete.- Los apartados 3 y 7 del artículo 23 quedan redactados como sigue:",
+    "reglamento": "practicas_uca_2012",
+    "operacion": "reemplazar_texto",
+    "articulo": 23,
+    "texto_antiguo": "7. Facilitar al alumno formación sobre orientación laboral en aras de incrementar su aprovechamiento de la práctica externa, ya sea propuesta por los centros, ya lo sea por la Dirección General Universidad y Empresa.",
+    "texto_nuevo": "7. Facilitar al alumno formación sobre orientación laboral en aras de incrementar su aprovechamiento de la práctica externa, ya sea propuesta por los centros, ya lo sea por el Vicerrectorado competente en la materia.",
+    "revisado": true
+  },
+  {
+    "fuente": "practicas_uca_2015",
+    "cambio": "Ocho",
+    "enunciado": "Ocho.- El apartado 5 del artículo 24 queda redactado como sigue:",
+    "reglamento": "practicas_uca_2012",
+    "operacion": "reemplazar_texto",
+    "articulo": 24,
+    "texto_antiguo": "5. Garantizar que el tutor académico cumple con los deberes relacionados en el artículo 12.2 del Real Decreto 1707/2011, de 18 de noviembre, por el que se regulan las prácticas académicas externas de los alumnos universitarios.",
+    "texto_nuevo": "5. Garantizar que el tutor académico cumple con los deberes relacionados en el artículo 12.2 del Real Decreto 592/2014, de 11 de julio, por el que se regulan las prácticas académicas externas de los alumnos universitarios.",
+    "revisado": true
+  },
+  {
+    "fuente": "practicas_uca_2015",
+    "cambio": "Nueve",
+    "enunciado": "Nueve.- El apartado i del artículo 26 queda redactado como sigue:",
+    "reglamento": "practicas_uca_2012",
+    "operacion": "reemplazar_texto",
+    "articulo": 26,
+    "texto_antiguo": "i) Realizar aquellas actividades formativas que se determinen por parte del centro o de la Dirección General Universidad y Empresa en cuanto a Prevención de Riesgos Laborales u orientación laboral.",
+    "texto_nuevo": "i) Realizar aquellas actividades formativas que se determinen por parte del centro o del Vicerrectorado competente en la materia en cuanto a Prevención de Riesgos Laborales u orientación laboral.",
+    "revisado": true
+  },
+  {
+    "fuente": "practicas_uca_2015",
+    "cambio": "Diez",
+    "enunciado": "Diez.- Los apartados 1, 4 y 5 del artículo 31 quedan redactados como siguen:",
+    "reglamento": "practicas_uca_2012",
+    "operacion": "reemplazar_texto",
+    "articulo": 31,
+    "texto_antiguo": "1. La responsabilidad en la dirección de la gestión de las prácticas curriculares corresponde al Director General de Universidad y Empresa o, en su caso, al responsable académico designado por el Vicerrector competente. Sin perjuicio de las actuaciones que pueda realizar cada centro de la Universidad de Cádiz, la captación de entidades colaboradoras para las prácticas curriculares se formalizará a través del Director General de Universidad y Empresa que ejercerá, además, la coordinación entre los centros de la Universidad de Cádiz, en el ámbito de su competencia.",
+    "texto_nuevo": "1. La responsabilidad en la dirección de la gestión de las prácticas curriculares corresponde al Vicerrector competente en la materia o, en su caso, al responsable académico designado por el mismo. Sin perjuicio de las actuaciones que pueda realizar cada centro de la Universidad de Cádiz, la captación de entidades colaboradoras para las prácticas curriculares se formalizará a través del Vicerrector competente en la materia que ejercerá, además, la coordinación entre los centros de la Universidad de Cádiz, en el ámbito de su competencia.",
+    "revisado": true
+  },
+  {
+    "fuente": "practicas_uca_2015",
+    "cambio": "Diez",
+    "enunciado": "Diez.- Los apartados 1, 4 y 5 del artículo 31 quedan redactados como siguen:",
+    "reglamento": "practicas_uca_2012",
+    "operacion": "reemplazar_texto",
+    "articulo": 31,
+    "texto_antiguo": "4. La gestión de las prácticas curriculares se hará a través de una aplicación informática diseñada y destinada a tal fin, cuya administración general corresponde al Director General de Universidad y Empresa o, en su caso, responsable académico que en su momento sea competente en el ámbito de las prácticas en empresas.",
+    "texto_nuevo": "4. La gestión de las prácticas curriculares se hará a través de una aplicación informática diseñada y destinada a tal fin, cuya administración general corresponde al Vicerrector competente en la materia o, en su caso, responsable académico que en su momento sea competente en el ámbito de las prácticas en empresas.",
+    "revisado": true
+  },
+  {
+    "fuente": "practicas_uca_2015",
+    "cambio": "Diez",
+    "enunciado": "Diez.- Los apartados 1, 4 y 5 del artículo 31 quedan redactados como siguen:",
+    "reglamento": "practicas_uca_2012",
+    "operacion": "reemplazar_texto",
+    "articulo": 31,
+    "texto_antiguo": "5. Todas las entidades colaboradoras deberán formular su oferta de prácticas curriculares en empresas a través de dicha aplicación informática y estarán obligadas a remitir firmado el convenio de cooperación educativa a la Dirección General de Universidad y Empresa o, en su caso, autoridad académica responsable en cada momento de la gestión de prácticas en empresas.",
+    "texto_nuevo": "5. Todas las entidades colaboradoras deberán formular su oferta de prácticas curriculares en empresas a través de dicha aplicación informática y estarán obligadas a remitir firmado el convenio de cooperación educativa al Vicerrectorado competente en la materia o, en su caso, autoridad académica responsable en cada momento de la gestión de prácticas en empresas.",
+    "revisado": true
+  },
+  {
+    "fuente": "practicas_uca_2015",
+    "cambio": "Once",
+    "enunciado": "Once.- El artículo 37 queda redactado como sigue:",
+    "reglamento": "practicas_uca_2012",
+    "operacion": "reemplazar_articulo",
+    "articulo": 37,
+    "titulo": "Responsabilidad de las prácticas extracurriculares",
+    "texto_nuevo": "El responsable de la organización, coordinación y gestión de las prácticas extracurriculares es el Vicerrector competente en la materia o, en su caso, el responsable académico designado por el mismo. La responsabilidad de la gestión será ejercida a través de la Unidad de Prácticas en Empresas de la Universidad de Cádiz.",
+    "revisado": true
+  },
+  {
+    "fuente": "practicas_uca_2015",
+    "cambio": "Doce",
+    "enunciado": "Doce.- El artículo 38 queda redactado como sigue:",
+    "reglamento": "practicas_uca_2012",
+    "operacion": "reemplazar_articulo",
+    "articulo": 38,
+    "titulo": "Captación de entidades colaboradoras",
+    "texto_nuevo": "Sin perjuicio de las actuaciones que pueda realizar cada centro de la Universidad de Cádiz, la captación de entidades colaboradoras para las prácticas extracurriculares se formalizará a través de la Unidad de Prácticas en Empresas, siendo responsable de la dirección de esas actuaciones el Vicerrector competente en la materia o, en su caso, el responsable académico designado por el mismo.",
+    "revisado": true
+  },
+  {
+    "fuente": "practicas_uca_2015",
+    "cambio": "Trece",
+    "enunciado": "Trece.- Los apartados 3 del artículo 39 quedan redactados como sigue:",
+    "reglamento": "practicas_uca_2012",
+    "operacion": "reemplazar_texto",
+    "articulo": 39,
+    "texto_antiguo": "3. Los alumnos podrán solicitar la realización de las prácticas externas extracurriculares en una determinada entidad, con el consentimiento de ésta, necesitando la aprobación del Director General de Universidad y Empresa o, en su caso, del responsable académico designado por Vicerrector competente, resolviendo aquél la autorización de la asignación y el desarrollo de las prácticas.",
+    "texto_nuevo": "3. Los alumnos podrán solicitar la realización de las prácticas externas extracurriculares en una determinada entidad, con el consentimiento de ésta, necesitando la aprobación del Vicerrector competente en la materia o, en su caso, el responsable académico designado por el mismo, resolviendo aquél la autorización de la asignación y el desarrollo de las prácticas.",
+    "nota": "El enunciado dice \"Los apartados 3\", pero trae los bloques 3 y 4 con el mismo cambio: se interpreta como \"3 y 4\" y se aplican los dos.",
+    "revisado": true
+  },
+  {
+    "fuente": "practicas_uca_2015",
+    "cambio": "Trece",
+    "enunciado": "Trece.- Los apartados 3 del artículo 39 quedan redactados como sigue:",
+    "reglamento": "practicas_uca_2012",
+    "operacion": "reemplazar_texto",
+    "articulo": 39,
+    "texto_antiguo": "4. Una entidad podrá solicitar la incorporación a la práctica de un alumno concreto, requiriendo en este caso la aprobación del Director General de Universidad y Empresa o, en su caso, del responsable académico designado por Vicerrector competente, resolviendo aquél la autorización de la asignación y el desarrollo de las prácticas.",
+    "texto_nuevo": "4. Una entidad podrá solicitar la incorporación a la práctica de un alumno concreto, requiriendo en este caso la aprobación del Vicerrector competente en la materia o, en su caso, el responsable académico designado por el mismo, resolviendo aquél la autorización de la asignación y el desarrollo de las prácticas.",
+    "nota": "El enunciado dice \"Los apartados 3\", pero trae los bloques 3 y 4 con el mismo cambio: se interpreta como \"3 y 4\" y se aplican los dos.",
+    "revisado": true
+  },
+  {
+    "fuente": "practicas_uca_2015",
+    "cambio": "Catorce",
+    "enunciado": "Catorce.- El artículo 51 queda redactado como sigue:",
+    "reglamento": "practicas_uca_2012",
+    "operacion": "reemplazar_articulo",
+    "articulo": 51,
+    "titulo": "Órgano convocante",
+    "texto_nuevo": "Para la realización de prácticas en la Universidad de Cádiz será necesaria su convocatoria pública por parte Vicerrector competente en la materia o, en su caso, el responsable académico competente, a propuesta de las distintas unidades de docencia, investigación y gestión de la universidad.",
+    "revisado": true
+  },
+  {
+    "fuente": "practicas_uca_2015",
+    "cambio": "Quince",
+    "enunciado": "Quince.- Los apartados 1 y 3 del artículo 52 quedan redactados como sigue:",
+    "reglamento": "practicas_uca_2012",
+    "operacion": "reemplazar_texto",
+    "articulo": 52,
+    "texto_antiguo": "1. Con suficiente antelación, antes del comienzo del curso académico, el Director General de Universidad y Empresa o, en su caso, el responsable académico competente, de acuerdo a las previsiones de necesidades de prácticas curriculares comunicadas por los centros, solicitará a las distintas unidades de la universidad que pudieran contribuir la oferta de prácticas curriculares asumibles.",
+    "texto_nuevo": "1. Con suficiente antelación, antes del comienzo del curso académico, el Vicerrector competente en la materia o, en su caso, el responsable académico competente, de acuerdo a las previsiones de necesidades de prácticas curriculares comunicadas por los centros, solicitará a las distintas unidades de la universidad que pudieran contribuir la oferta de prácticas curriculares asumibles.",
+    "revisado": true
+  },
+  {
+    "fuente": "practicas_uca_2015",
+    "cambio": "Quince",
+    "enunciado": "Quince.- Los apartados 1 y 3 del artículo 52 quedan redactados como sigue:",
+    "reglamento": "practicas_uca_2012",
+    "operacion": "reemplazar_texto",
+    "articulo": 52,
+    "texto_antiguo": "3. Las propuestas de prácticas, tanto curriculares como extracurriculares, ofertadas serán seleccionadas por el Director General de Universidad y Empresa o, en su caso, el responsable académico competente, en razón de la oportunidad de las mismas y su adecuación a la función formativa que las prácticas tienen encomendadas.",
+    "texto_nuevo": "3. Las propuestas de prácticas, tanto curriculares como extracurriculares, ofertadas serán seleccionadas por el Vicerrector competente en la materia o, en su caso, el responsable académico competente, en razón de la oportunidad de las mismas y su adecuación a la función formativa que las prácticas tienen encomendadas.",
+    "revisado": true
+  },
+  {
+    "fuente": "practicas_uca_2015",
+    "cambio": "Dieciséis",
+    "enunciado": "Dieciséis.- El artículo 54 queda redactado como sigue:",
+    "reglamento": "practicas_uca_2012",
+    "operacion": "reemplazar_articulo",
+    "articulo": 54,
+    "titulo": "Composición y régimen",
+    "texto_nuevo": "Se creará una Comisión de Prácticas en Empresas, presidida por el Vicerrector competente en la materia e integrada además por dos representantes del Equipo de Gobierno designados por el Rector, un representante de decanos y directores de centros, un representante de directores de departamentos, un representante de alumnos y un representante del Personal de Administración y Servicios, todos ellos de la Universidad de Cádiz. Además, por designación del Vicerrector competente, un responsable académico de dicho Vicerrectorado será miembro nato de esta Comisión y realizará las funciones de Secretario de la misma, asistiéndole en funciones de secretaría técnica una persona de la Unidad administrativa de Prácticas en Empresas.\nLa Comisión de Prácticas en Empresas se reunirá al menos una vez al año, para articular el seguimiento de los programas de prácticas externas de la Universidad de Cádiz. Su régimen será el establecido con carácter general para los órganos colegiados de la Universidad de Cádiz, con las especialidades que pudieran derivar lo previsto en este Reglamento.",
+    "revisado": true
+  }
+]
