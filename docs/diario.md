@@ -387,6 +387,39 @@ Revisión manual: comprobé que cada artículo cae en su sección (por ejemplo, 
 ningún "CAPÍTULO" ni encabezado en mayúsculas dentro de los textos, y leí completos los
 artículos 9 del marco, 12 de la ESI y 5 y 14 de prácticas.
 
+### Decisiones sobre las modificaciones y las versiones
+- **Solo se dividen en artículos los 3 reglamentos.** Las modificaciones no son normas
+  completas sino instrucciones de cambio; se convertirán en parches. El calendario y la
+  rúbrica siguen fuera de la primera versión.
+- **Las modificaciones se guardan en `data/parches.json`**, una entrada por cambio, con:
+  `fuente` (qué modificación), `cambio` ("Dos", "PRIMERO"...), `reglamento`, `articulo`,
+  `operacion` (`reemplazar_texto`, `reemplazar_articulo`, `añadir_articulo`, `renumerar`),
+  `texto_antiguo` y `texto_nuevo`. Si un `texto_antiguo` no aparece exactamente en el
+  artículo, el script falla: no se puede aplicar un cambio en el sitio equivocado sin
+  enterarse.
+- **Al RAG solo va la versión vigente** (consolidada). Si indexara también la antigua, el
+  buscador podría recuperar la redacción de 2012 de un artículo ya modificado y el LLM
+  respondería con una norma que ya no se aplica. El usuario es un estudiante que quiere
+  saber qué tiene que hacer hoy.
+- **No duplico los textos originales en el consolidado.** Al principio pensé en guardar un
+  campo `texto_original` en cada artículo modificado, pero los originales ya están en
+  `data/processed/articulos/*.json` y se pueden regenerar desde los PDFs. Copiarlos sería
+  duplicar información, y si un día cambiara una copia y no la otra dejarían de
+  coincidir. Cada versión se obtiene de las demás:
+
+  ```
+  data/processed/articulos/*.json     → versión original (2012), tal como sale del PDF
+  data/parches.json                   → los cambios (2014 y 2015)
+  data/processed/consolidado/*.json   → versión vigente = original + parches  → al RAG
+  ```
+
+- **Cada artículo consolidado guarda `modificado_por`** (lista de modificaciones que lo han
+  cambiado). Sí aporta información nueva: la respuesta puede citar "art. 13, en la
+  redacción de la modificación de 2015", y indica dónde mirar la versión original.
+- **Mejora futura:** responder preguntas sobre normas antiguas indexando también las
+  versiones anteriores con un metadato `vigente: false` y filtrando por defecto solo las
+  vigentes.
+
 ### Pendiente
 - Escribir `data/parches.json` con los cambios de 2014 y 2015 y aplicarlos para obtener
-  el texto consolidado.
+  el texto consolidado en `data/processed/consolidado/`.
