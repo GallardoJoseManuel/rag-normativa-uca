@@ -312,3 +312,81 @@ es solo membretes, notas al pie y sus llamadas.
 - Unir las líneas de cada párrafo (ahora cada línea del PDF es una línea del texto).
 - Descartar los restos de preámbulo o justificación al principio de tfg_uca_2012,
   tfg_uca_2014 y practicas_uca_2015.
+
+---
+
+## 2026-11-25 · Sesión 4: división de los reglamentos en artículos (paso 2)
+
+### Qué he hecho
+- Añado a `data/sources.csv` la columna `tipo` (`reglamento`, `modificacion`, `otro`). Solo
+  los 3 reglamentos se dividen en artículos; las modificaciones se pasarán a parches.
+- Creo `src/articulos.py`, que divide el texto de cada reglamento en **unidades**
+  (artículos y disposiciones) y las guarda en `data/processed/articulos/<id>.json`:
+
+```json
+{
+  "id": "tfgm_esi_art_12",
+  "documento": "tfgm_esi",
+  "tipo": "articulo",
+  "numero": 12,
+  "titulo": "Validez de la asignación de los TFG/M",
+  "seccion": "LA PROPUESTA Y ASIGNACIÓN DE LOS TFG/M",
+  "encabezado": "Artículo 12. Validez de la asignación de los TFG/M.",
+  "texto": "a) La asignación tendrá una validez de 2 años naturales...\nb) El estudiante que haya suspendido..."
+}
+```
+
+### Decisiones
+- **Opción A (expresiones regulares) como base**, con la opción B (negrita del PDF) como
+  plan de reserva si algún documento falla. No ha hecho falta.
+- **Las disposiciones también son unidades** (`tipo: "disposicion"`, `numero: null`):
+  tienen contenido útil (entrada en vigor, igualdad de género, régimen transitorio).
+- **`seccion`** guarda el nivel superior: el bloque en la ESI ("EL EXAMEN DE TFG/M") o
+  `TÍTULO > CAPÍTULO` en prácticas. Vacía en el reglamento marco (no tiene) y en las
+  disposiciones (van fuera de los capítulos).
+- **Se descarta lo anterior al primer artículo** (restos del preámbulo).
+- **Se unen las líneas de cada párrafo**, pero cada apartado (`1.`, `a)`, `iii.`) empieza
+  en su propia línea. Así el texto se lee bien y los parches podrán localizar apartados.
+- **No se guarda la página**: al unir páginas se perdió y para citar basta el artículo.
+
+### Cómo distingue un título de una mención
+Un título de artículo tiene que:
+1. empezar por `Artículo` o `Art.` con **mayúscula**;
+2. tener detrás del número un título que **empiece por mayúscula** (`artículo 12.2 del
+   Real Decreto` no vale);
+3. llevar **el número que toca** (el siguiente al último). Si no, se trata como texto y
+   se muestra un aviso.
+
+### Problemas y soluciones
+- **"DISPOSICIONES GENERALES" tomado por una disposición.** Es el nombre del Título Primero
+  del reglamento de prácticas. Solución: una disposición tiene que decir de qué tipo es
+  (adicional, transitoria, derogatoria o final).
+- **Encabezados de sección no detectados** ("CAPÍTULO II." y "LA TUTELA DE LOS TFG/M.") y
+  metidos en el texto del artículo anterior, porque no iban después de una línea vacía.
+  Solución: `TÍTULO`/`CAPÍTULO` siempre son sección, y una línea en mayúsculas de al menos
+  dos palabras también si está pegada a una línea vacía. Así "TFG/M." (final de un
+  párrafo partido) sigue sin contar como sección.
+- **Las disposiciones heredaban el último capítulo** ("CAPÍTULO VI. PREMIOS"). Solución:
+  al empezar una disposición se vacía la sección.
+- **Título partido en dos líneas** (Art. 9.º del reglamento marco). Solución: si el título
+  no termina en `.`, `.-` o `:`, sigue en la línea siguiente.
+
+### Validación
+El propio script comprueba, para cada reglamento, que **cada palabra del texto acaba en
+un único sitio** (encabezado, texto, sección o descartado), que los artículos son
+consecutivos desde 1 y que ninguna unidad queda vacía. Si algo falla, termina con código 1.
+
+| Reglamento | Artículos | Disposiciones | Secciones | Descartado |
+|---|---|---|---|---|
+| tfg_uca_2012 | 10 | 2 | — | 477 palabras (preámbulo) |
+| tfgm_esi | 25 | 2 | 8 bloques | 110 palabras (preámbulo) |
+| practicas_uca_2012 | 56 | 8 | 4 títulos, 17 capítulos | 0 |
+
+Revisión manual: comprobé que cada artículo cae en su sección (por ejemplo, ESI 13-15 en
+"LA TUTELA DE LOS TFG/M"; prácticas 5-6 en "CAPÍTULO II. MODALIDADES"), que no queda
+ningún "CAPÍTULO" ni encabezado en mayúsculas dentro de los textos, y leí completos los
+artículos 9 del marco, 12 de la ESI y 5 y 14 de prácticas.
+
+### Pendiente
+- Escribir `data/parches.json` con los cambios de 2014 y 2015 y aplicarlos para obtener
+  el texto consolidado.
