@@ -423,3 +423,58 @@ artículos 9 del marco, 12 de la ESI y 5 y 14 de prácticas.
 ### Pendiente
 - Escribir `data/parches.json` con los cambios de 2014 y 2015 y aplicarlos para obtener
   el texto consolidado en `data/processed/consolidado/`.
+
+---
+
+## 2026-11-25 · Sesión 5: borrador de los parches (paso 2)
+
+### Qué he hecho
+- Creo `scripts/borrador_parches.py`, que genera un **borrador** de los parches en
+  `data/processed/parches_borrador.json` (ignorado en Git). No es el archivo definitivo:
+  hay que revisarlo a mano y guardar el resultado como `data/parches.json`.
+- **Modificación de 2015 (automático):** todos sus cambios siguen el esquema "el apartado
+  X del artículo N queda redactado como sigue: <<texto nuevo>>". El script extrae el
+  artículo y cada bloque `<<...>>`, busca en el artículo original el apartado con la misma
+  marca (`2.`, `b)`, `iii.`) y propone ese texto como `texto_antiguo`.
+- **Modificación de 2014 (a mano, en `borrador_2014()`):** sus cambios son de tipos
+  distintos, así que están escritos uno a uno. Los textos largos (artículos 9-13 nuevos)
+  sí se extraen del documento.
+
+Operaciones, que se aplicarán en el orden de la lista:
+
+| Operación | Qué hace | Usada en |
+|---|---|---|
+| `reemplazar_texto` | Cambia `texto_antiguo` por `texto_nuevo` dentro de un artículo | 2015 (apartados), 2014 TERCERO y CUARTO |
+| `reemplazar_articulo` | Sustituye título y texto de un artículo entero | 2015: arts. 37, 38, 51 y 54 |
+| `renumerar` | Cambia el número de un artículo | 2014: 9 → 14 y 10 → 15 (antes de añadir los nuevos) |
+| `añadir_articulo` | Inserta un artículo nuevo | 2014: arts. 9-13 (dobles títulos) |
+| `asignar_seccion` | Pone el capítulo de una lista de artículos | 2014: capítulos primero, II y III |
+
+### Resultado del borrador
+36 parches (12 de 2014 y 24 de 2015). Todos los `texto_antiguo` aparecen **exactamente
+una vez** en su artículo. 9 parches tienen avisos para revisar:
+- **2014, art. 13 sin título:** en la modificación empieza directamente con el texto.
+- **2014, TERCERO ("párrafo cuarto del artículo 6.º"):** en el PDF el 4.º párrafo es
+  "Además, los alumnos podrán proponer...", pero en nuestro texto aparece unido al 3.º
+  porque empezaba en una página nueva (ver limitación abajo). Además, la frase añadida
+  tiene una errata del original ("las comisión").
+- **2014, CUARTO:** no dice dónde se añade la frase; se ha puesto antes del punto final.
+- **2015, Uno:** el apartado 1 del art. 6 ocupa 2 párrafos en el original.
+- **2015, Tres y Cuatro:** marcas compuestas (`3.b)`, `d). iii`) reescritas al formato del
+  original (`b)`, `iii.`).
+- **2015, Cuatro (iii):** el texto nuevo es igual al antiguo.
+- **2015, Cuatro (último párrafo):** el bloque no tiene marca; se supone que es el último
+  párrafo del art. 15, como dice el enunciado.
+- **2015, Trece:** el enunciado dice "los apartados 3" pero trae los bloques 3 y 4, y el 4
+  sí cambia (9 palabras).
+
+### Limitación descubierta
+`ingest.py` quita las líneas vacías del principio y el final de cada página para no partir
+frases en los saltos de página. El efecto secundario es que, si un párrafo termina justo al
+final de una página y el siguiente empieza en la página nueva, **los dos quedan unidos**.
+No se pierde texto, pero contar párrafos ("párrafo cuarto") puede no coincidir con el PDF.
+
+### Pendiente
+- Revisar el borrador parche a parche, resolver los avisos, poner `"revisado": true` y
+  guardarlo como `data/parches.json`.
+- Crear `src/consolidar.py`, que aplique los parches y genere `data/processed/consolidado/`.

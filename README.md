@@ -58,6 +58,7 @@ python scripts/explorar_pdfs.py        # análisis exploratorio de los PDFs
 python src/ingest.py                   # extrae y limpia el texto -> data/processed/
 python scripts/validar_extraccion.py   # comprueba que no se pierde ni se inventa texto
 python src/articulos.py                # divide cada reglamento en artículos -> data/processed/articulos/
+python scripts/borrador_parches.py     # borrador de los cambios de 2014 y 2015 (para revisar a mano)
 ```
 
 ## Licencia
