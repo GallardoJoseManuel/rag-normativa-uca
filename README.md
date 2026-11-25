@@ -32,8 +32,8 @@ pregunta → embedding → buscar los chunks más cercanos → prompt con los ch
 |---|---|---|---|---|
 | 0 | Preparación | Repositorio, entorno, corpus, `sources.csv` | — | ✅ |
 | 1 | Análisis exploratorio | Entender los documentos y sus problemas | `scripts/explorar_pdfs.py` | ✅ |
-| 2 | Extracción y limpieza | PDF → texto limpio: quitar membretes, caracteres raros y páginas inútiles; aplicar las modificaciones | `src/ingest.py` | ⏳ |
-| 3 | Troceado (*chunking*) | Dividir el texto en fragmentos (por artículo) con metadatos: documento, artículo, página | `src/ingest.py` | |
+| 2 | Extracción y limpieza | PDF → texto limpio, división en artículos y consolidación de las modificaciones de 2014 y 2015 | `src/ingest.py`, `src/articulos.py`, `src/consolidar.py` | ✅ |
+| 3 | Troceado (*chunking*) | Dividir el texto en fragmentos (por artículo) con metadatos: documento, artículo, sección | `src/articulos.py` | ⏳ |
 | 4 | Conjunto de evaluación | 40-60 preguntas escritas a mano con su respuesta y el artículo correcto | `eval/questions.json` | |
 | 5 | Indexación | Calcular el embedding de cada chunk y guardarlo en Chroma | `src/index.py` | |
 | 6 | Recuperación | Devolver los k chunks más relevantes para una pregunta y medir si aciertan (Recall@k) | `src/retrieve.py`, `src/evaluate.py` | |
@@ -58,7 +58,10 @@ python scripts/explorar_pdfs.py        # análisis exploratorio de los PDFs
 python src/ingest.py                   # extrae y limpia el texto -> data/processed/
 python scripts/validar_extraccion.py   # comprueba que no se pierde ni se inventa texto
 python src/articulos.py                # divide cada reglamento en artículos -> data/processed/articulos/
-python scripts/borrador_parches.py     # borrador de los cambios de 2014 y 2015 (para revisar a mano)
+python src/consolidar.py               # aplica data/parches.json -> data/processed/consolidado/ (versión vigente)
+
+# Solo si se añade una modificación nueva de la normativa:
+python scripts/borrador_parches.py     # borrador de los parches (revisarlo y pasarlo a data/parches.json)
 ```
 
 ## Licencia

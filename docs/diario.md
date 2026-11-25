@@ -516,3 +516,57 @@ prepararlo; si se vuelve a generar, no toca `data/parches.json`.
 
 ### Pendiente
 - Crear `src/consolidar.py`, que aplique los parches y genere `data/processed/consolidado/`.
+
+---
+
+## 2026-11-25 · Sesión 6: consolidación de las modificaciones (cierre del paso 2)
+
+### Qué he hecho
+Creo `src/consolidar.py`, que lee los artículos originales (`data/processed/articulos/`) y
+los parches revisados (`data/parches.json`), los aplica en orden y guarda la **versión
+vigente** en `data/processed/consolidado/<id>.json`. Esta es la versión que irá al RAG.
+
+Cada unidad consolidada tiene: `id`, `documento`, `tipo`, `numero`, `titulo`, `seccion`,
+`texto` y `modificado_por`. Quito el campo `encabezado` (el texto del título tal como sale
+del PDF): dejaría de cuadrar al renumerar ("Art. 9.º" en un artículo que ahora es el 14).
+
+### Decisiones
+- **El script es estricto y se detiene ante cualquier problema** (código de salida 1): un
+  parche sin revisar, un texto antiguo que no aparece exactamente una vez, un artículo que
+  no existe, añadir un artículo con un número ya ocupado o artículos que al final no van
+  del 1 al N sin huecos. Prefiero que falle a que aplique un cambio mal sin avisar.
+- **`asignar_seccion` no marca el artículo como modificado**: cambiar el capítulo no cambia
+  el contenido. Renumerar sí lo marca (el artículo 14 de hoy era el 9 en 2012).
+- **El reglamento de la ESI pasa sin cambios** (no tiene parches), para que todo el corpus
+  salga en el mismo formato y desde la misma carpeta.
+
+### Resultado
+
+| Reglamento | Parches | Resultado | Artículos modificados |
+|---|---|---|---|
+| tfg_uca_2012 | 12 | 15 artículos (antes 10), 2 disposiciones, en 3 capítulos | 2, 6, 9-15 |
+| tfgm_esi | 0 | 25 artículos, 2 disposiciones | — |
+| practicas_uca_2012 | 23 | 56 artículos, 8 disposiciones | 6, 13, 14, 15, 17, 22, 23, 24, 26, 31, 37, 38, 39, 51, 52, 54 |
+
+### Validación
+- Los 83 artículos y disposiciones **sin parches son idénticos** a los originales.
+- **Todos los textos nuevos de 2015** están en el consolidado.
+- **No queda ninguna mención** a "Director General" ni al Real Decreto 1707/2011 en el
+  reglamento de prácticas: la consolidación ha llegado a todos los sitios donde debía.
+- **Prueba de que rechaza errores:** le pasé parches estropeados a propósito y falló en
+  los 5 casos con un mensaje claro: parche sin revisar, texto antiguo inexistente, añadir
+  el artículo 9 sin renumerar antes, artículo inexistente y el mismo parche aplicado dos
+  veces (la segunda vez el texto antiguo ya no aparece).
+
+### Pipeline completo del paso 2
+
+```
+python src/ingest.py                  # PDF -> texto limpio
+python scripts/validar_extraccion.py  # comprobar que no se pierde ni se inventa texto
+python src/articulos.py               # texto -> artículos (versión original)
+python src/consolidar.py              # artículos + parches -> versión vigente
+```
+
+### Pendiente
+- Paso 3 (troceado): decidir si cada artículo es un chunk o si los artículos largos se
+  subdividen, y qué metadatos lleva cada chunk.
