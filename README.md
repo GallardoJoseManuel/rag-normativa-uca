@@ -36,11 +36,28 @@ pregunta → embedding → buscar los chunks más cercanos → prompt con los ch
 | 3 | Troceado (*chunking*) | Un chunk por artículo; los de más de 300 palabras se dividen por apartados. Cada chunk lleva un encabezado de contexto y metadatos para citar | `src/chunks.py` | ✅ |
 | 4 | Conjunto de evaluación | 62 preguntas de 6 tipos (directas, parafraseadas, cifras, varios artículos, ambiguas y sin respuesta) con su respuesta y sus artículos | `eval/questions.json`, `scripts/validar_preguntas.py`, `scripts/revisar_preguntas.py` | ✅ |
 | 5 | Indexación | Embedding de cada chunk con `BAAI/bge-m3` (1024 dimensiones), guardado en Chroma con sus metadatos | `src/index.py` | ✅ |
-| 6 | Recuperación | Devolver los k chunks más relevantes para una pregunta y medir si aciertan (Recall@k) | `src/retrieve.py`, `src/evaluate.py` | |
+| 6 | Recuperación | Buscar los k chunks más parecidos a una pregunta y medir si aciertan (Acierto@k, Recall@k, MRR) | `src/retrieve.py`, `src/evaluate.py` | ✅ |
 | 7 | Generación | Prompt + LLM → respuesta con citas, o "no lo sé" si no está en los documentos | `src/generate.py` | |
 | 8 | Mejoras y experimentos | Búsqueda híbrida, *reranker*, comparar troceados y modelos de embeddings | — | |
 | 9 | Interfaz y despliegue | App en Streamlit publicada en Hugging Face Spaces | `app.py` | |
 | 10 | Documentación final | Resultados, gráficas y lecciones aprendidas | `README.md` | |
+
+## Resultados
+
+Recuperación con `BAAI/bge-m3` sobre las 57 preguntas de evaluación con respuesta
+(línea base, sin mejoras; detalle en [`eval/resultados/`](eval/resultados/)):
+
+| Acierto@1 | Acierto@3 | Acierto@5 | Recall@5 | MRR |
+|---|---|---|---|---|
+| 72 % | 86 % | 91 % | 72 % | 0,79 |
+
+*Acierto@k*: hay al menos un artículo correcto entre los k primeros resultados.
+*Recall@k*: fracción de los artículos correctos que aparecen entre los k primeros.
+*MRR*: media de 1 / posición del primer artículo correcto.
+
+Punto débil: en las preguntas que responden a la vez el reglamento marco de la UCA y el
+de la Escuela, casi nunca llegan los dos (Recall@5 del 37 %), porque el marco no usa la
+sigla "TFG" y los alumnos sí. El análisis está en el [diario](docs/diario.md).
 
 ## Datos
 
@@ -63,6 +80,8 @@ python src/chunks.py                   # trocea la versión vigente -> data/proc
 python scripts/validar_preguntas.py    # comprueba el conjunto de evaluación (eval/questions.json)
 python scripts/revisar_preguntas.py    # muestra cada pregunta con el texto de sus fuentes, para revisarla
 python src/index.py                    # embeddings de los chunks -> base vectorial en data/index/ (descarga el modelo la primera vez)
+python src/retrieve.py "¿Las prácticas se cobran?"   # busca los chunks más parecidos a una pregunta
+python src/evaluate.py                 # mide el buscador con eval/questions.json -> eval/resultados/
 
 # Solo si se añade una modificación nueva de la normativa:
 python scripts/borrador_parches.py     # borrador de los parches (revisarlo y pasarlo a data/parches.json)

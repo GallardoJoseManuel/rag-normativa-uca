@@ -1020,3 +1020,153 @@ exacto que podía guardar el `float32`.
 ### Pendiente
 - Paso 6: `src/retrieve.py` (buscar los k chunks de una pregunta) y `src/evaluate.py`
   (Recall@k y MRR sobre todo el conjunto de evaluación).
+
+## 2026-11-26 · Sesión 10: recuperación y evaluación (paso 6)
+
+### Apuntes: qué se hace en este paso
+Dos scripts:
+- **`src/retrieve.py`**, el buscador: recibe una pregunta y devuelve los k chunks más
+  parecidos con su texto, metadatos y similitud. Calcula el embedding de la pregunta con
+  **el mismo modelo** que indexó la colección (lo lee de sus metadatos) y le pone el
+  prefijo de pregunta si el modelo lo necesita. Lo reutilizarán el paso 7 (generación) y
+  la app.
+- **`src/evaluate.py`**, la medición: pasa todas las preguntas del conjunto de evaluación
+  por el buscador, compara lo recuperado con sus fuentes y calcula las métricas, en total y
+  por tipo de pregunta. También lista los fallos para analizarlos y guarda los resultados
+  para poder comparar experimentos.
+
+Un chunk cuenta como acierto si pertenece a una de las fuentes de la pregunta: se le quita
+el sufijo `_p1`/`_p2` al id y se compara con la lista de fuentes.
+
+### Apuntes: las métricas
+Ejemplo: pregunta con fuentes {art. 20, art. 25}; el buscador devuelve, en orden,
+[art. 14, art. 20, art. 3, art. 25, art. 22].
+
+- **Acierto@k** (*hit rate*): ¿hay al menos una fuente correcta entre los k primeros?
+  Acierto@1 = 0 (el primero es el 14), Acierto@3 = 1 (el 20 está 2.º).
+- **Recall@k**: qué fracción de las fuentes aparece entre los k primeros.
+  Recall@3 = 1/2 (solo el 20), Recall@5 = 2/2. Importa en las preguntas `multi` y
+  `ambigua`: si solo llega uno de los dos reglamentos, la respuesta será incompleta.
+- **MRR** (*Mean Reciprocal Rank*): 1 / posición de la primera fuente correcta (1.º → 1,
+  2.º → 0,5, 3.º → 0,33...; 0 si no aparece), promediado sobre todas las preguntas. Mide
+  si lo correcto sale **arriba**: el LLM presta más atención a lo primero y, si se usa un k
+  pequeño, lo que va abajo se pierde. En el ejemplo, 1/2 = 0,5.
+
+Se calculan para varios k (1, 3, 5, 10). La curva dice cuántos chunks hay que pasarle al
+LLM en el paso 7: un k más alto recupera más, pero mete más ruido y cuesta más tokens.
+
+Las preguntas `sin_respuesta` no entran en estas métricas (no tienen fuentes). Se guarda
+su similitud máxima para comprobar si se distinguen de las demás (en el paso 5 ya se vio
+que un umbral fijo es frágil).
+
+### Apuntes: línea base y análisis de fallos
+Los primeros números son la **línea base**: cada mejora del paso 8 (búsqueda híbrida,
+*reranker*, otro modelo, otro troceado) se compara contra ellos. Por eso se guardan con
+su configuración (modelo, k, fecha).
+
+Cada fallo tiene una de estas causas, y cada una tiene un arreglo distinto:
+1. **La fuente faltaba en la pregunta**: el buscador trajo un artículo que también
+   respondía. Se corrige `questions.json`, no el sistema.
+2. **Diferencia de vocabulario**: la pregunta y el artículo dicen lo mismo con palabras
+   distintas ("¿pierdo el tema y el tutor?" frente a "validez de la asignación").
+   Posibles arreglos: búsqueda híbrida, reformular la pregunta, otro modelo.
+3. **Confusión entre documentos**: trae el artículo equivalente del otro reglamento
+   (marco UCA frente a ESI). Posibles arreglos: filtros por metadatos, un k mayor.
+4. **Ranking**: el correcto está, pero abajo. Posible arreglo: un *reranker* (un segundo
+   modelo que reordena los candidatos leyendo la pregunta y el chunk juntos).
+
+Riesgo: ajustar el sistema hasta acertar estas preguntas concretas (*sobreajuste*). Las
+mejoras deben tener sentido general, y las 10 preguntas nuevas del final lo comprobarán.
+
+### Apuntes: qué hace exactamente el buscador y en qué se diferencia de la evaluación
+**La pregunta no se trocea.** Es corta, así que entera se convierte en **un solo vector**
+con el mismo modelo que los chunks. Los vectores de los 122 chunks ya están calculados y
+guardados desde el paso 5; en cada pregunta no se recalculan.
+
+```
+"¿Las prácticas se cobran?"
+  1. modelo.encode → 1 vector de 1024 números (≈150 ms)
+  2. Chroma compara ese vector con los 122 guardados (similitud coseno)
+       art_20 → 0,549   art_14_p1 → 0,553   art_3 → 0,546   tfgm_esi_art_7 → 0,31 ...
+  3. Ordena de mayor a menor similitud y se queda con los k primeros
+  4. Devuelve, de cada uno: id, texto, metadatos y similitud
+```
+
+| | `retrieve.py` (buscador) | `evaluate.py` (examen) |
+|---|---|---|
+| Qué recibe | Una pregunta cualquiera | Las preguntas de `questions.json` con sus fuentes |
+| Qué sabe | Nada de la respuesta correcta | La respuesta correcta (las fuentes) |
+| Qué hace | Busca y devuelve los k chunks | Llama al buscador con cada pregunta, compara con las fuentes y calcula métricas |
+| Quién lo usa | El paso 7 y la app (preguntas reales) | Solo el desarrollador, para medir |
+
+Es la diferencia entre el **alumno** que responde y el **profesor** que corrige con la
+plantilla: `evaluate.py` no busca por su cuenta, usa `retrieve.py` tal cual. Así se mide
+exactamente el mismo buscador que usarán los usuarios.
+
+### Qué he hecho
+- **`src/retrieve.py`**: clase `Buscador`, que abre la colección, lee de sus metadatos qué
+  modelo la creó y lo carga una sola vez (tarda unos segundos); `buscar(pregunta, k,
+  filtro)` calcula el embedding de la pregunta y devuelve los k chunks con id, unidad
+  (artículo sin `_pN`), similitud, texto y metadatos. Desde la consola:
+  `python src/retrieve.py "¿Las prácticas se cobran?" -k 3 --documento practicas_uca_2012`.
+- **`src/evaluate.py`**: pasa las 62 preguntas por el buscador (top 10), calcula Acierto@k,
+  Recall@k y MRR en total y por tipo, compara la similitud máxima de las preguntas con y sin
+  respuesta, lista los fallos y guarda todo en `eval/resultados/normativa_bge-m3.json`.
+
+### Resultado: línea base (bge-m3, troceado B, sin mejoras)
+
+| | n | Acierto@1 | Acierto@3 | Acierto@5 | Acierto@10 | Recall@5 | MRR |
+|---|---|---|---|---|---|---|---|
+| **TOTAL** | 57 | 72 % | 86 % | **91 %** | 91 % | 72 % | 0,79 |
+| ambigua | 11 | 73 % | 82 % | 82 % | 82 % | **37 %** | 0,76 |
+| cifra | 11 | 73 % | 91 % | 91 % | 91 % | 77 % | 0,80 |
+| directa | 15 | 87 % | 93 % | 93 % | 93 % | 90 % | 0,90 |
+| multi | 7 | 57 % | 71 % | 100 % | 100 % | 73 % | 0,69 |
+| parafrase | 13 | 62 % | 85 % | 92 % | 92 % | 77 % | 0,75 |
+
+~240 ms por pregunta en CPU.
+
+- En 9 de cada 10 preguntas llega al menos un artículo correcto entre los 5 primeros, y en
+  7 de cada 10 sale el primero.
+- Pasar de k=5 a k=10 no recupera nada más: lo que no está en el top 5 no está tampoco en el
+  top 10. Ampliar k no es la solución; para el paso 7, k=5 es suficiente.
+- Las `cifra` funcionan mejor de lo que esperaba (91 %): las preguntas mencionan el tema
+  ("horas a la semana", "duración") y eso basta para encontrar el artículo.
+- **El punto débil son las `ambigua`: Recall@5 del 37 %.** Casi nunca llegan los dos
+  reglamentos a la vez.
+- **"No lo sé"**: la similitud del primer resultado tiene una mediana de 0,645 en las
+  preguntas con respuesta y 0,545 en las que no la tienen, pero se solapan (mínimo 0,512
+  con respuesta, máximo 0,604 sin ella). Confirmado: un umbral fijo no sirve; lo decidirá el
+  LLM.
+
+### Análisis de los fallos
+5 preguntas sin ninguna fuente en el top 5:
+
+| Pregunta | Causa |
+|---|---|
+| q010 ¿Qué aspectos se tienen en cuenta en la calificación del TFG según el reglamento marco? | Confusión entre documentos: trae artículos de la ESI |
+| q035 ¿Qué nota necesita un TFG para que lo suban al repositorio? | Confusión entre documentos: trae artículos de la ESI |
+| q048 Si no presento el TFG, ¿pierdo el tema y el tutor? | Vocabulario ("tema y tutor" frente a "asignación") y documentos |
+| q049 ¿Puedo hacer el TFG junto a un compañero? | Vocabulario ("compañero" frente a "grupo de alumnos") y documentos |
+| q025 ¿Quién me va a supervisar dentro de la empresa? | Vocabulario ("empresa" frente a "entidad colaboradora", "supervisar" frente a "tutor") |
+
+Ninguno es un error del conjunto de evaluación (los artículos recuperados no responden).
+
+**Hallazgo principal: el reglamento marco nunca usa la sigla "TFG"** (0 apariciones; dice
+"trabajos de fin de grado"), mientras que el de la ESI la usa 159 veces. Como los alumnos
+preguntan diciendo "TFG", los chunks de la ESI ganan casi siempre: en los top 5 de las
+preguntas sobre TFG hay 141 chunks de la ESI y solo 12 del marco. En las 11 preguntas
+`ambigua`, los 5 primeros resultados son **siempre** de la ESI. Las preguntas del marco que
+sí aciertan son las que dicen "trabajo fin de grado" o "reglamento marco".
+
+Es un caso de libro de cómo el vocabulario de un documento condiciona la recuperación, y
+el primer objetivo del paso 8. Hipótesis a probar:
+1. Añadir la sigla al nombre del marco en el encabezado de contexto
+   ("... de trabajos fin de grado y fin de máster (TFG/TFM)").
+2. Recuperar por separado de cada reglamento de TFG (filtro por documento) y juntar los
+   resultados, para garantizar que llegan los dos.
+3. Búsqueda híbrida o un *reranker*.
+
+### Pendiente
+- Paso 7: generación de la respuesta con el LLM a partir de los 5 primeros chunks.
+- Paso 8: atacar la confusión entre el marco y la ESI (hipótesis de arriba).
