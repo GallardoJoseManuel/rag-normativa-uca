@@ -35,7 +35,7 @@ pregunta → embedding → buscar los chunks más cercanos → prompt con los ch
 | 2 | Extracción y limpieza | PDF → texto limpio, división en artículos y consolidación de las modificaciones de 2014 y 2015 | `src/ingest.py`, `src/articulos.py`, `src/consolidar.py` | ✅ |
 | 3 | Troceado (*chunking*) | Un chunk por artículo; los de más de 300 palabras se dividen por apartados. Cada chunk lleva un encabezado de contexto y metadatos para citar | `src/chunks.py` | ✅ |
 | 4 | Conjunto de evaluación | 62 preguntas de 6 tipos (directas, parafraseadas, cifras, varios artículos, ambiguas y sin respuesta) con su respuesta y sus artículos | `eval/questions.json`, `scripts/validar_preguntas.py`, `scripts/revisar_preguntas.py` | ✅ |
-| 5 | Indexación | Calcular el embedding de cada chunk y guardarlo en Chroma | `src/index.py` | |
+| 5 | Indexación | Embedding de cada chunk con `BAAI/bge-m3` (1024 dimensiones), guardado en Chroma con sus metadatos | `src/index.py` | ✅ |
 | 6 | Recuperación | Devolver los k chunks más relevantes para una pregunta y medir si aciertan (Recall@k) | `src/retrieve.py`, `src/evaluate.py` | |
 | 7 | Generación | Prompt + LLM → respuesta con citas, o "no lo sé" si no está en los documentos | `src/generate.py` | |
 | 8 | Mejoras y experimentos | Búsqueda híbrida, *reranker*, comparar troceados y modelos de embeddings | — | |
@@ -62,6 +62,7 @@ python src/consolidar.py               # aplica data/parches.json -> data/proces
 python src/chunks.py                   # trocea la versión vigente -> data/processed/chunks.json
 python scripts/validar_preguntas.py    # comprueba el conjunto de evaluación (eval/questions.json)
 python scripts/revisar_preguntas.py    # muestra cada pregunta con el texto de sus fuentes, para revisarla
+python src/index.py                    # embeddings de los chunks -> base vectorial en data/index/ (descarga el modelo la primera vez)
 
 # Solo si se añade una modificación nueva de la normativa:
 python scripts/borrador_parches.py     # borrador de los parches (revisarlo y pasarlo a data/parches.json)

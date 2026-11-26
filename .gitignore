@@ -227,3 +227,5 @@ data/raw/*
 !data/raw/.gitkeep
 # Texto extraído de los PDFs (se regenera con src/ingest.py; mismos derechos que los originales)
 data/processed/
+# Base vectorial (se regenera con src/index.py)
+data/index/

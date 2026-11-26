@@ -636,6 +636,22 @@ subapartados; el script avisa, pero no los parte.
   pequeño: el art. 22 de la ESI sale en 222 + 293 + 54 palabras. Como los apartados
   pequeños tratan un tema propio, no lo considero un problema.
 
+### Apuntes: para qué sirven los metadatos de cada chunk
+El embedding sirve para **encontrar** el chunk; los metadatos, para todo lo que pasa
+después:
+1. **Citar sin que el LLM se lo invente.** Cada chunk llega al prompt etiquetado con su
+   documento, artículo y apartados, y la interfaz puede enlazar al PDF oficial (`url`).
+2. **Evaluar automáticamente.** El Recall@k compara el `documento` y el `numero` de los
+   chunks recuperados con las fuentes de cada pregunta; cualquier trozo de un artículo
+   dividido cuenta como acierto.
+3. **Filtrar la búsqueda** (por ejemplo, solo el reglamento de prácticas), para que no se
+   cuele un artículo del reglamento equivocado.
+4. **Reconstruir el artículo completo** con `parte`/`partes`: si se recupera el trozo 2,
+   se le puede pasar también el 1 al LLM (*parent document retrieval*) o agrupar los dos
+   como una sola fuente.
+5. **Transparencia** con `modificado_por`: "redacción dada por la modificación de 2015".
+6. **Depurar**: cuando una pregunta falle, se ve al instante qué artículo trajo en su lugar.
+
 ### Pendiente
 - Paso 4: escribir el conjunto de evaluación (40-60 preguntas con su artículo correcto)
   antes de indexar, para poder medir cada decisión.
@@ -651,6 +667,16 @@ indexar para no escribir, sin querer, preguntas "fáciles" para el sistema.
 
 Métricas que permitirá calcular: Recall@k y MRR (paso 6), corrección de la respuesta y
 abstención ante preguntas sin respuesta (paso 7).
+
+### Apuntes: las preguntas no tienen que coincidir con las de los usuarios
+El RAG nunca consulta `questions.json`: compara la pregunta del usuario con los chunks y
+por significado, no palabra por palabra. Un sistema que buscase la pregunta más parecida
+en una lista fija sería un chatbot de preguntas frecuentes (FAQ), no un RAG. Las preguntas
+de evaluación son una **muestra**, como un examen: lo que importa es que su variedad
+(temas, formas de preguntar, dificultad) se parezca a la de los usuarios reales. Riesgo:
+"aprenderse el examen" si se ajusta el sistema hasta acertar estas preguntas concretas;
+por eso habrá 10 preguntas nuevas al final. Cuando la demo esté publicada, las preguntas
+reales de los usuarios servirán para ampliar el conjunto.
 
 ### Decisiones
 - **Formato** (`eval/questions.json`): id, pregunta, respuesta, fuentes (ids de las
@@ -721,3 +747,142 @@ seis casos se detectan.
 
 ### Pendiente
 - Paso 5: indexación (embeddings + Chroma).
+
+## 2026-11-26 · Sesión 9: indexación (paso 5)
+
+### Apuntes: qué es la indexación
+Convertir los 122 chunks en vectores **una sola vez** y guardarlos en una base de datos
+preparada para buscar vectores parecidos:
+
+```
+chunks.json (texto_embedding) → modelo de embeddings → 122 vectores → Chroma (en disco)
+```
+
+En cada pregunta solo hay que calcular un embedding (el de la pregunta) y pedirle a
+Chroma los k vectores más cercanos (paso 6). Es el paso en el que el proyecto deja de
+preparar texto y se convierte en un buscador semántico.
+
+### Apuntes: qué es un embedding y qué hace el modelo
+*To embed* es "incrustar": un embedding es un texto incrustado como punto en un espacio de
+números. En la práctica, una lista de tamaño fijo (1024 números con bge-m3) para
+cualquier texto, sea una pregunta de 6 palabras o un artículo de 300. Los números no se
+interpretan uno a uno (no hay una dimensión de "plazos"); lo que tiene significado es la
+posición relativa: textos que hablan de lo mismo quedan cerca.
+
+El modelo de embeddings solo convierte texto en ese vector: no genera texto, no responde
+y no busca. Por dentro:
+
+```
+"¿Me pagan por las prácticas?"
+ 1. Tokenizador: trocea en subpalabras y las convierte en números
+    ["▁¿", "Me", "▁paga", "n", "▁por", "▁las", "▁práctica", "s", "?"] → [6, 2167, ...]
+ 2. Transformer (24 capas en bge-m3): cada token "mira" a los demás y obtiene un vector
+    que depende del contexto ("práctica" no es igual que en "en la práctica")
+ 3. Pooling: resume los vectores de los tokens en uno solo (bge-m3 usa el del primer
+    token, [CLS]; los e5 hacen la media)
+ 4. Normalización: el vector pasa a medir 1, y la similitud coseno es un producto escalar
+→ [0.021, -0.113, ..., 0.045]   (1024 números)
+```
+
+La "inteligencia" está en el paso 2: el transformer se entrenó con millones de pares
+pregunta-pasaje (aprendizaje contrastivo) para que la pregunta y su respuesta acaben
+cerca. **Los chunks y las preguntas tienen que pasar por el mismo modelo**: cada modelo
+construye su propio "mapa", y comparar vectores de dos modelos es como comparar
+coordenadas de dos mapas distintos. Por eso habrá una colección por modelo.
+
+### Apuntes: las piezas del paso
+1. **Modelo de embeddings** (la decisión más importante):
+
+| Modelo | Tamaño | Dimensiones | Límite de entrada | Notas |
+|---|---|---|---|---|
+| `intfloat/multilingual-e5-small` | ~470 MB | 384 | 512 tokens | Rápido; exige los prefijos `query:` y `passage:` |
+| `intfloat/multilingual-e5-base` | ~1,1 GB | 768 | 512 tokens | Más preciso, mismos prefijos |
+| `BAAI/bge-m3` | ~2,3 GB | 1024 | 8192 tokens | De los mejores multilingües abiertos; sin prefijos |
+| APIs (OpenAI, Voyage...) | — | — | Largo | Clave de API y coste; la demo depende de un servicio externo |
+
+   Anthropic no ofrece modelos de embeddings: Claude solo entra en el paso 7, para
+   generar la respuesta.
+2. **Base vectorial: Chroma.** Guarda id, vector, texto y metadatos de cada chunk y
+   responde a "dame los k más parecidos", con filtros por metadatos. Con 122 vectores,
+   una matriz de numpy iría igual de rápido; se usa Chroma por ser una herramienta
+   estándar, persistente en disco y que escala si el corpus crece.
+3. **Script `src/index.py`:** lee `chunks.json`, calcula los embeddings normalizados,
+   recrea la colección desde cero (para que no queden restos de ejecuciones anteriores) y
+   la guarda en `data/index/`.
+
+### Decisiones
+- **Modelo: `BAAI/bge-m3`.** Motivos:
+  1. Calidad: en pruebas públicas de recuperación multilingüe (MIRACL, MTEB) está entre
+     los mejores modelos abiertos.
+  2. Límite de 8192 tokens: los chunks más largos (315 palabras + encabezado) rozan el
+     límite de 512 de los e5, que cortarían el final sin avisar. **Medido después:** el
+     chunk más largo tiene 486 tokens (los e5 usan el mismo tokenizador, XLM-RoBERTa), así
+     que con e5 cabrían, pero con muy poco margen: cualquier encabezado más largo o un
+     artículo nuevo los haría cortar.
+  3. Sin prefijos: con e5, olvidar `query:`/`passage:` empeora el resultado sin dar error.
+  4. "M3" = multifuncional: además del vector denso, genera pesos por palabra (parecido a
+     BM25), útiles para la búsqueda híbrida del paso 8 sin añadir otro modelo.
+  5. Licencia MIT.
+- **Desventajas asumidas:** 568 M de parámetros frente a 118 M de e5-small; ~2,3 GB de
+  descarga y 2-3 GB de memoria; varias veces más lento en CPU (indexar 122 chunks tarda
+  un par de minutos y cada pregunta unas décimas de segundo; donde más se nota es en el
+  arranque de la demo). Puede ser excesivo para un corpus tan pequeño: **no se sabe hasta
+  medirlo**, y por eso e5 será el rival en el paso 8. Que admita 8192 tokens no significa
+  que los chunks largos sean buenos: la dilución sigue existiendo.
+- **Los embeddings se calculan con `sentence-transformers`** y se le pasan a Chroma, en
+  lugar de usar su función de embeddings integrada: así se controla exactamente qué modelo
+  se usa.
+- **Distancia coseno** (Chroma usa la euclídea por defecto).
+- **Metadatos simples:** Chroma solo admite texto, números o booleanos, así que
+  `modificado_por` (lista) pasa a texto y `numero` se omite en las disposiciones (`None`).
+- **Una colección por modelo** (`normativa_bge-m3`), para comparar modelos sin reindexar.
+
+### Instalación
+- `sentence-transformers` 6.3.0 y `chromadb` 1.5.9 desde PyPI. Unos 7 minutos: no por la
+  descarga, sino por la instalación (PyTorch son miles de archivos que el antivirus revisa
+  uno a uno, y Chroma arrastra ~100 dependencias porque también puede funcionar como
+  servidor; aquí solo se usa en local).
+- El modelo se descarga de Hugging Face la primera vez y queda en la caché del usuario
+  (`~/.cache/huggingface`). En Windows sale un aviso de que no puede usar enlaces
+  simbólicos en la caché: es inofensivo, solo ocupa algo más de disco.
+
+### Resultado
+`python src/index.py`: 122 chunks en la colección `normativa_bge-m3`, vectores de 1024
+dimensiones, el chunk más largo con 486 tokens (límite 8192). Cargar el modelo tarda unos
+3,5 s y calcular el embedding de una pregunta, unos 150 ms en CPU.
+
+### Validación
+El script comprueba que la colección tiene exactamente los ids de `chunks.json` y que
+ningún chunk supera el límite de tokens del modelo (si no, se detiene con código 1).
+
+### Primeras búsquedas (adelanto del paso 6)
+Top 3 de 7 preguntas del conjunto de evaluación (✓ = artículo correcto):
+
+| Pregunta | Resultado |
+|---|---|
+| ¿Cuántas horas a la semana se hacen de prácticas? | ✓ 1.º (art. 14) |
+| Si la empresa me contrata al terminar, ¿me cuenta como antigüedad? | ✓ 1.º (art. 3) |
+| Me puse malo y falté tres días, ¿tengo que recuperarlos? | ✓ 1.º (art. 14, parte 2: justo el trozo de las faltas) |
+| ¿Cuánto tiempo tengo para presentar el TFG delante del tribunal? | ✓ 1.º (art. 22 ESI), pero el 2.º está a 0,002 |
+| ¿Las prácticas en empresa se cobran? | ✓ 2.º (art. 20); 1.º el art. 14 (horario) |
+| Si este curso no presento el TFG, ¿pierdo el tema y el tutor? | ✗ ninguno de los artículos correctos en el top 3 |
+| ¿Cuánto cuesta matricularse del TFG? (sin respuesta) | Similitud máxima 0,495; el 1.º es "matrículas de honor" |
+
+Lo que enseñan:
+- **Las paráfrasis funcionan**: "me puse malo y falté" encuentra "faltas de asistencia
+  derivadas de enfermedad común" sin compartir palabras.
+- **El troceado ayuda**: en las faltas, el buscador trae justo la parte 2 del art. 14.
+- **Las similitudes están muy apretadas** (0,55-0,68) y a veces separadas por milésimas.
+  Su valor absoluto no significa mucho; lo que importa es el orden.
+- **Primer fallo claro**: "¿pierdo el tema y el tutor?" no encuentra "Validez de la
+  asignación". La pregunta habla de "tema y tutor" y el artículo de "asignación": es el
+  tipo de caso que habrá que analizar en los pasos 6 y 8.
+- **Falso amigo**: "matricularse" atrae "matrículas de honor". Un aviso de que los
+  embeddings también se dejan llevar por las palabras.
+- **Umbral de "no lo sé"**: la pregunta sin respuesta tiene una similitud máxima más baja
+  (0,495), pero la respuesta correcta de "¿se cobran?" estaba en 0,549. Un umbral fijo
+  sería frágil: la decisión de abstenerse tendrá que tomarla el LLM (paso 7).
+
+### Pendiente
+- Paso 6: `src/retrieve.py` (buscar los k chunks de una pregunta) y `src/evaluate.py`
+  (Recall@k y MRR sobre todo el conjunto de evaluación).
