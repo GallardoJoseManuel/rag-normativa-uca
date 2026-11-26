@@ -14,16 +14,16 @@
   "precision_citas": 0.90625,
   "cita_alguna_correcta": 0.9122807017543859,
   "correccion": {
-   "correcta": 0.7192982456140351,
-   "parcial": 0.17543859649122806,
+   "correcta": 0.6140350877192983,
+   "parcial": 0.2807017543859649,
    "incorrecta": 0.10526315789473684
   },
-  "fidelidad": 0.9649122807017544,
+  "fidelidad": 0.9473684210526315,
   "por_tipo": {
    "ambigua": {
     "n": 11,
-    "correcta": 0.5454545454545454,
-    "parcial": 0.2727272727272727,
+    "correcta": 0.09090909090909091,
+    "parcial": 0.7272727272727273,
     "incorrecta": 0.18181818181818182,
     "fidelidad": 0.9090909090909091
    },
@@ -43,10 +43,10 @@
    },
    "multi": {
     "n": 7,
-    "correcta": 0.7142857142857143,
-    "parcial": 0.2857142857142857,
+    "correcta": 0.5714285714285714,
+    "parcial": 0.42857142857142855,
     "incorrecta": 0.0,
-    "fidelidad": 0.8571428571428571
+    "fidelidad": 0.7142857142857143
    },
    "parafrase": {
     "n": 13,
@@ -83,7 +83,7 @@
    "abstencion_correcta": true,
    "citas_correctas": 1,
    "citas_total": 1,
-   "justificacion": "La respuesta del sistema incluye todos los datos esenciales de la referencia y está completamente respaldada por el fragmento 1 aportado.",
+   "justificacion": "La respuesta del sistema incluye todos los puntos clave de la referencia y está completamente respaldada por el fragmento 1.",
    "correccion": "correcta",
    "fiel": true,
    "modelo_juez": "gemini-3.5-flash-lite"
@@ -112,7 +112,7 @@
    "abstencion_correcta": true,
    "citas_correctas": 1,
    "citas_total": 1,
-   "justificacion": "La respuesta del sistema incluye todos los detalles esenciales de la referencia y amplía correctamente con datos adicionales que sí están respaldados de forma exacta por el fragmento [1].",
+   "justificacion": "La respuesta del sistema incluye todos los datos esenciales de la referencia y añade correctamente detalles adicionales que sí aparecen en el fragmento normativo [1]. Por lo tanto, la respuesta es correcta y totalmente fiel a los fragmentos.",
    "correccion": "correcta",
    "fiel": true,
    "modelo_juez": "gemini-3.5-flash-lite"
@@ -141,7 +141,7 @@
    "abstencion_correcta": true,
    "citas_correctas": 1,
    "citas_total": 1,
-   "justificacion": "La respuesta del sistema incluye todos los datos esenciales de la referencia con precisión y está completamente respaldada por los fragmentos proporcionados.",
+   "justificacion": "La respuesta del sistema incluye de forma exacta y completa todas las estructuras exigidas para el TFG en la ESI según la referencia y el fragmento normativo [1]. Toda la información está directamente respaldada por los textos proporcionados.",
    "correccion": "correcta",
    "fiel": true,
    "modelo_juez": "gemini-3.5-flash-lite"
@@ -170,7 +170,7 @@
    "abstencion_correcta": true,
    "citas_correctas": 1,
    "citas_total": 1,
-   "justificacion": "La respuesta del sistema incluye todos los puntos de la referencia de manera detallada y exacta según el reglamento, por lo que es correcta y plenamente fiel a los fragmentos proporcionados.",
+   "justificacion": "La respuesta del sistema incluye de forma completa y precisa todas las obligaciones del tutor académico recogidas en la referencia, respaldadas totalmente por el fragmento [2].",
    "correccion": "correcta",
    "fiel": true,
    "modelo_juez": "gemini-3.5-flash-lite"
@@ -199,7 +199,7 @@
    "abstencion_correcta": true,
    "citas_correctas": 1,
    "citas_total": 1,
-   "justificacion": "La respuesta del sistema acierta en los requisitos principales mencionados en la referencia (constitución, medios, personal), aunque omite la posibilidad de que la UCA pida informes de idoneidad, por lo que es parcialmente correcta. Todo lo mencionado está respaldado por el fragmento [1].",
+   "justificacion": "La respuesta del sistema omite un dato esencial presente en la referencia (que la UCA puede pedir informes sobre su idoneidad), por lo que la corrección es parcial. Sin embargo, todo lo que afirma está respaldado íntegramente por el fragmento [1].",
    "correccion": "parcial",
    "fiel": true,
    "modelo_juez": "gemini-3.5-flash-lite"
@@ -228,7 +228,7 @@
    "abstencion_correcta": true,
    "citas_correctas": 1,
    "citas_total": 1,
-   "justificacion": "La respuesta del sistema incluye todos los datos esenciales de la referencia (las curriculares forman parte del plan de estudios y las extracurriculares son voluntarias y se recogen en el suplemento europeo) y todo su contenido está respaldado exactamente por el fragmento [1].",
+   "justificacion": "La respuesta del sistema incluye todos los datos esenciales de la referencia (qué son las curriculares y las extracurriculares con sus características principales) y además todo lo afirmado está completamente respaldado por el fragmento [1].",
    "correccion": "correcta",
    "fiel": true,
    "modelo_juez": "gemini-3.5-flash-lite"
@@ -257,7 +257,7 @@
    "abstencion_correcta": true,
    "citas_correctas": 1,
    "citas_total": 1,
-   "justificacion": "La respuesta del sistema incluye todos los derechos esenciales mencionados en la referencia y está completamente respaldada por el fragmento [1] del reglamento.",
+   "justificacion": "La respuesta del sistema es correcta ya que incluye detalladamente y sin errores todos los derechos mencionados en la respuesta de referencia y respaldados por el fragmento normativo. Además, todo lo afirmado es plenamente fiel a dicho texto.",
    "correccion": "correcta",
    "fiel": true,
    "modelo_juez": "gemini-3.5-flash-lite"
@@ -286,7 +286,7 @@
    "abstencion_correcta": true,
    "citas_correctas": 1,
    "citas_total": 1,
-   "justificacion": "La respuesta del sistema incluye todos los elementos requeridos por la referencia de forma detallada y exacta conforme al reglamento. Además, todo lo afirmado se encuentra rigurosamente respaldado por el fragmento [1].",
+   "justificacion": "La respuesta del sistema incluye todos los elementos esenciales exigidos por la referencia y está respaldada íntegramente por el fragmento [1].",
    "correccion": "correcta",
    "fiel": true,
    "modelo_juez": "gemini-3.5-flash-lite"
@@ -316,7 +316,7 @@
    "abstencion_correcta": true,
    "citas_correctas": 1,
    "citas_total": 1,
-   "justificacion": "La respuesta del sistema acierta en quién realiza la designación, pero omite el detalle de que se atiende a las preferencias del profesor y del alumno, por lo que es parcial aunque totalmente fiel a los fragmentos.",
+   "justificacion": "La respuesta del sistema acierta al indicar quién hace la designación, pero omite el detalle esencial de que se atiende en lo posible a las preferencias de profesor y alumno, por lo que es parcial. Todo lo que dice está respaldado por el fragmento [1].",
    "correccion": "parcial",
    "fiel": true,
    "modelo_juez": "gemini-3.5-flash-lite"
@@ -343,8 +343,8 @@
    "abstencion_correcta": false,
    "citas_correctas": 0,
    "citas_total": 0,
-   "justificacion": "El sistema indicó que no encontraba la información porque los fragmentos proporcionados no contienen los criterios de calificación del TFG, por lo que su respuesta es correcta y fiel a dichos fragmentos.",
-   "correccion": "correcta",
+   "justificacion": "El sistema afirma incorrectamente que la información no aparece en la normativa consultada, cuando los fragmentos proporcionados no contenían dicha información, por lo que la respuesta es incorrecta pero fiel a lo leído.",
+   "correccion": "incorrecta",
    "fiel": true,
    "modelo_juez": "gemini-3.5-flash-lite"
   },
@@ -372,7 +372,7 @@
    "abstencion_correcta": true,
    "citas_correctas": 1,
    "citas_total": 1,
-   "justificacion": "La respuesta del sistema incluye todas las funciones del tutor mencionadas en la referencia y en los fragmentos normativos sin añadir errores ni información inventada.",
+   "justificacion": "La respuesta del sistema incluye todos los puntos de la referencia de manera exacta y está totalmente respaldada por el fragmento [1].",
    "correccion": "correcta",
    "fiel": true,
    "modelo_juez": "gemini-3.5-flash-lite"
@@ -401,7 +401,7 @@
    "abstencion_correcta": true,
    "citas_correctas": 1,
    "citas_total": 1,
-   "justificacion": "La respuesta del sistema incluye todos los detalles esenciales de la composición de la comisión presentes en la referencia y en los fragmentos normativos. Todo lo afirmado está respaldado plenamente por el fragmento [1].",
+   "justificacion": "La respuesta del sistema incluye todos los datos esenciales de la referencia sobre la composición de la comisión y añade detalles complementarios perfectamente soportados por el fragmento normativo [1].",
    "correccion": "correcta",
    "fiel": true,
    "modelo_juez": "gemini-3.5-flash-lite"
@@ -430,7 +430,7 @@
    "abstencion_correcta": true,
    "citas_correctas": 1,
    "citas_total": 1,
-   "justificacion": "La respuesta del sistema coincide exactamente con la de referencia al indicar que entró en vigor al día siguiente de su publicación en el BOUCA, y toda la información está plenamente respaldada por el fragmento [1].",
+   "justificacion": "La respuesta del sistema coincide exactamente con la de referencia al indicar que entró en vigor al día siguiente de su publicación en el BOUCA, y toda la información está plenamente respaldada por el fragmento 1.",
    "correccion": "correcta",
    "fiel": true,
    "modelo_juez": "gemini-3.5-flash-lite"
@@ -459,7 +459,7 @@
    "abstencion_correcta": true,
    "citas_correctas": 1,
    "citas_total": 1,
-   "justificacion": "La respuesta del sistema incluye todos los datos esenciales recogidos en la referencia y en la normativa, y no afirma nada que no esté respaldado por los fragmentos proporcionados.",
+   "justificacion": "La respuesta del sistema incluye todos los elementos esenciales solicitados en la referencia y está respaldada íntegramente por el fragmento 1.",
    "correccion": "correcta",
    "fiel": true,
    "modelo_juez": "gemini-3.5-flash-lite"
@@ -488,7 +488,7 @@
    "abstencion_correcta": true,
    "citas_correctas": 1,
    "citas_total": 1,
-   "justificacion": "La respuesta del sistema es parcial porque omite la excepción importante mencionada en la referencia y en el texto (que los iniciados en el curso 2022/23 deben usar la aplicación), aunque lo que afirma sobre los trámites anteriores es correcto y fiel a los fragmentos.",
+   "justificacion": "La respuesta es parcial porque omite el dato esencial de que los TFG/M iniciados en el curso 2022/23 deben usar obligatoriamente la aplicación, a pesar de que lo que menciona sobre los trámites anteriores está respaldado por el fragmento [1].",
    "correccion": "parcial",
    "fiel": true,
    "modelo_juez": "gemini-3.5-flash-lite"
@@ -517,7 +517,7 @@
    "abstencion_correcta": true,
    "citas_correctas": 1,
    "citas_total": 1,
-   "justificacion": "La respuesta del sistema coincide exactamente con los datos de la referencia y está completamente respaldada por el fragmento 1.",
+   "justificacion": "La respuesta del sistema incluye todos los datos esenciales de la referencia (antigüedad, periodo de prueba y excepción por convenio) y está totalmente respaldada por el fragmento [1].",
    "correccion": "correcta",
    "fiel": true,
    "modelo_juez": "gemini-3.5-flash-lite"
@@ -546,7 +546,7 @@
    "abstencion_correcta": true,
    "citas_correctas": 1,
    "citas_total": 1,
-   "justificacion": "La respuesta del sistema es totalmente correcta al coincidir con la de referencia en las condiciones de no recuperabilidad por enfermedad común, y es fiel ya que toda la información está respaldada textualmente por el fragmento 1.",
+   "justificacion": "La respuesta del sistema es correcta ya que reproduce con exactitud los datos esenciales de la referencia sobre las faltas en prácticas extracurriculares por enfermedad común, y es totalmente fiel a lo indicado en el fragmento [1].",
    "correccion": "correcta",
    "fiel": true,
    "modelo_juez": "gemini-3.5-flash-lite"
@@ -576,7 +576,7 @@
    "abstencion_correcta": true,
    "citas_correctas": 1,
    "citas_total": 1,
-   "justificacion": "La respuesta del sistema acierta plenamente al indicar que el tutor académico realiza la evaluación y el profesor coordinador firma el acta, coincidiendo con la referencia y estando todo respaldado por el fragmento [1].",
+   "justificacion": "La respuesta del sistema incluye todos los datos esenciales de la referencia (quién evalúa y quién firma el acta) sin omitir nada y se apoya completamente en el fragmento [1].",
    "correccion": "correcta",
    "fiel": true,
    "modelo_juez": "gemini-3.5-flash-lite"
@@ -606,7 +606,7 @@
    "abstencion_correcta": true,
    "citas_correctas": 1,
    "citas_total": 1,
-   "justificacion": "La respuesta del sistema es correcta y aborda todos los puntos esenciales indicados en la referencia, apoyándose adecuadamente en el artículo 10 del fragmento [2].",
+   "justificacion": "La respuesta del sistema responde correctamente que sí se le puede llevar la idea a un profesor, mencionando que la iniciativa puede partir del estudiante según el reglamento. Es totalmente fiel a los fragmentos proporcionados.",
    "correccion": "correcta",
    "fiel": true,
    "modelo_juez": "gemini-3.5-flash-lite"
@@ -636,7 +636,7 @@
    "abstencion_correcta": true,
    "citas_correctas": 1,
    "citas_total": 1,
-   "justificacion": "La respuesta del sistema es correcta ya que incluye todos los detalles esenciales de la referencia (curriculares, extracurriculares e internacionales con sus excepciones). Además, es completamente fiel a los fragmentos proporcionados.",
+   "justificacion": "La respuesta del sistema es correcta ya que cubre los tres tipos de prácticas mencionados en la referencia y sus respectivas coberturas de seguro, y toda la información está respaldada por los fragmentos leídos.",
    "correccion": "correcta",
    "fiel": true,
    "modelo_juez": "gemini-3.5-flash-lite"
@@ -665,7 +665,7 @@
    "abstencion_correcta": true,
    "citas_correctas": 1,
    "citas_total": 1,
-   "justificacion": "La respuesta del sistema acierta plenamente al indicar las consecuencias de rechazar la preselección dos veces con la disponibilidad activada, coincidiendo con la referencia. Además, toda la información está respaldada directamente por el fragmento [4].",
+   "justificacion": "La respuesta del sistema es correcta ya que detalla exactamente la consecuencia de rechazar dos preselecciones con la disponibilidad activada, y es completamente fiel al contenido del fragmento [4].",
    "correccion": "correcta",
    "fiel": true,
    "modelo_juez": "gemini-3.5-flash-lite"
@@ -696,7 +696,7 @@
    "abstencion_correcta": true,
    "citas_correctas": 1,
    "citas_total": 2,
-   "justificacion": "La respuesta del sistema acierta al indicar que se puede tener un cotutor profesional de empresa, pero es incompleta y parcialmente incorrecta al mencionar dobles titulaciones, lo cual no responde a la pregunta principal de la referencia. Además, afirma que se pueden tener dos tutores académicos y un cotutor externo basándose en el fragmento [1], pero dicho fragmento es exclusivo de dobles titulaciones, por lo que la afirmación es parcialmente infiel al contexto general de la pregunta.",
+   "justificacion": "La respuesta del sistema es correcta ya que confirma que se puede tener un cotutor externo de una empresa, aunque omite la mención específica de los convenios de prácticas que aparecía en la referencia. Sin embargo, no es fiel del todo a los fragmentos porque en ningún momento de los textos aportados se menciona que en dobles titulaciones se puedan tener dos tutores académicos y un único cotutor externo.",
    "correccion": "parcial",
    "fiel": false,
    "modelo_juez": "gemini-3.5-flash-lite"
@@ -725,7 +725,7 @@
    "abstencion_correcta": true,
    "citas_correctas": 1,
    "citas_total": 1,
-   "justificacion": "La respuesta del sistema incluye todos los datos esenciales de la respuesta de referencia y amplía correctamente con detalles del fragmento normativo, por lo que es correcta y totalmente fiel.",
+   "justificacion": "La respuesta del sistema incluye todos los datos esenciales de la referencia y añade detalles totalmente respaldados por el fragmento 1.",
    "correccion": "correcta",
    "fiel": true,
    "modelo_juez": "gemini-3.5-flash-lite"
@@ -755,7 +755,7 @@
    "abstencion_correcta": true,
    "citas_correctas": 1,
    "citas_total": 1,
-   "justificacion": "La respuesta del sistema omite la mención a las prácticas extracurriculares y no indica quién las autoriza (el vicerrector), por lo que es parcial. Sin embargo, todo lo que afirma sobre las curriculares está respaldado por el fragmento [2].",
+   "justificacion": "La respuesta del sistema es parcial porque solo menciona las prácticas curriculares y omite la excepción o el régimen de las extracurriculares recogido en la referencia. Es fiel porque todo lo afirmado se encuentra respaldado por el fragmento [2].",
    "correccion": "parcial",
    "fiel": true,
    "modelo_juez": "gemini-3.5-flash-lite"
@@ -784,7 +784,7 @@
    "abstencion_correcta": false,
    "citas_correctas": 0,
    "citas_total": 0,
-   "justificacion": "La respuesta del sistema indica correctamente que no encuentra la información en los fragmentos proporcionados, lo cual es cierto ya que los textos leídos no mencionan al tutor de la empresa.",
+   "justificacion": "La respuesta del sistema indica que no encuentra la información, lo cual es incorrecto respecto a la referencia, aunque es fiel a los fragmentos proporcionados ya que estos no contienen datos sobre el tutor de empresa.",
    "correccion": "incorrecta",
    "fiel": true,
    "modelo_juez": "gemini-3.5-flash-lite"
@@ -813,7 +813,7 @@
    "abstencion_correcta": true,
    "citas_correctas": 1,
    "citas_total": 1,
-   "justificacion": "La respuesta del sistema es correcta ya que responde afirmativamente y detalla el plazo de tres semanas tras la publicación provisional, coincidiendo plenamente con la referencia. Además, toda la información está respaldada directamente por el fragmento [1].",
+   "justificacion": "La respuesta del sistema coincide plenamente con la de referencia al indicar que sí se puede reclamar tras la publicación provisional y señala correctamente el plazo de tres semanas, apoyándose en el fragmento correspondiente.",
    "correccion": "correcta",
    "fiel": true,
    "modelo_juez": "gemini-3.5-flash-lite"
@@ -842,7 +842,7 @@
    "abstencion_correcta": true,
    "citas_correctas": 1,
    "citas_total": 1,
-   "justificacion": "La respuesta del sistema coincide exactamente con la referencia y está totalmente respaldada por el fragmento normativo.",
+   "justificacion": "La respuesta del sistema reproduce exactamente los datos requeridos por la referencia y está respaldada íntegramente por el fragmento [1].",
    "correccion": "correcta",
    "fiel": true,
    "modelo_juez": "gemini-3.5-flash-lite"
@@ -873,7 +873,7 @@
    "abstencion_correcta": true,
    "citas_correctas": 1,
    "citas_total": 2,
-   "justificacion": "La respuesta del sistema es correcta ya que detalla adecuadamente las diferencias entre prácticas curriculares y extracurriculares respecto a la bolsa o ayuda al estudio, y es totalmente fiel a los fragmentos normativos proporcionados.",
+   "justificacion": "La respuesta del sistema es correcta ya que detalla ambos tipos de prácticas (curriculares y extracurriculares) y explica adecuadamente el concepto económico basándose en la normativa, y es fiel porque toda la información proviene de los fragmentos [2] y [3].",
    "correccion": "correcta",
    "fiel": true,
    "modelo_juez": "gemini-3.5-flash-lite"
@@ -902,7 +902,7 @@
    "abstencion_correcta": true,
    "citas_correctas": 1,
    "citas_total": 1,
-   "justificacion": "La respuesta del sistema acierta plenamente con todos los detalles de la referencia y está respaldada exactamente por el fragmento [1].",
+   "justificacion": "La respuesta del sistema incluye toda la información esencial de la referencia sobre las prácticas extracurriculares y está completamente respaldada por el fragmento 1.",
    "correccion": "correcta",
    "fiel": true,
    "modelo_juez": "gemini-3.5-flash-lite"
@@ -931,7 +931,7 @@
    "abstencion_correcta": true,
    "citas_correctas": 1,
    "citas_total": 1,
-   "justificacion": "La respuesta del sistema es correcta ya que indica con precisión las 25 horas semanales requeridas y toda la información está respaldada fielmente por el fragmento [1].",
+   "justificacion": "La respuesta del sistema acierta plenamente al indicar las 25 horas semanales y toda la información está respaldada por el fragmento [1].",
    "correccion": "correcta",
    "fiel": true,
    "modelo_juez": "gemini-3.5-flash-lite"
@@ -961,7 +961,7 @@
    "abstencion_correcta": true,
    "citas_correctas": 1,
    "citas_total": 1,
-   "justificacion": "La respuesta del sistema incluye todos los datos esenciales de la referencia y además aporta detalles correctos sobre quién otorga la autorización, estando todo ello completamente respaldado por el fragmento [1].",
+   "justificacion": "La respuesta del sistema incluye todos los datos esenciales de la referencia (duración preferente y ampliación) de forma correcta y además se apoya fielmente en los fragmentos proporcionados.",
    "correccion": "correcta",
    "fiel": true,
    "modelo_juez": "gemini-3.5-flash-lite"
@@ -990,7 +990,7 @@
    "abstencion_correcta": true,
    "citas_correctas": 1,
    "citas_total": 1,
-   "justificacion": "La respuesta del sistema incluye exactamente la información de la respuesta de referencia y está totalmente respaldada por el fragmento [2].",
+   "justificacion": "La respuesta del sistema incluye perfectamente el dato de la referencia sobre haber superado el 50% de los créditos y además está respaldada íntegramente por el fragmento [2].",
    "correccion": "correcta",
    "fiel": true,
    "modelo_juez": "gemini-3.5-flash-lite"
@@ -1020,7 +1020,7 @@
    "abstencion_correcta": true,
    "citas_correctas": 1,
    "citas_total": 1,
-   "justificacion": "La respuesta del sistema es correcta porque detalla con precisión los tiempos de exposición y duración total tanto para titulaciones simples como dobles basándose estrictamente en los fragmentos proporcionados.",
+   "justificacion": "La respuesta del sistema es correcta porque detalla con precisión los tiempos de exposición y duración total para titulaciones simples y dobles según los fragmentos. Todo lo afirmado está respaldado por los fragmentos 1 y 5.",
    "correccion": "correcta",
    "fiel": true,
    "modelo_juez": "gemini-3.5-flash-lite"
@@ -1049,7 +1049,7 @@
    "abstencion_correcta": true,
    "citas_correctas": 1,
    "citas_total": 1,
-   "justificacion": "La respuesta del sistema coincide exactamente con la de referencia al indicar que se deben suspender tres convocatorias para solicitar una nueva asignación, y toda la información está respaldada por el fragmento [1].",
+   "justificacion": "La respuesta del sistema acierta plenamente al indicar que son tres convocatorias y está respaldada exactamente por el fragmento [1].",
    "correccion": "correcta",
    "fiel": true,
    "modelo_juez": "gemini-3.5-flash-lite"
@@ -1076,8 +1076,8 @@
    "abstencion_correcta": false,
    "citas_correctas": 0,
    "citas_total": 0,
-   "justificacion": "El sistema indicó correctamente que la información no aparecía en los fragmentos proporcionados, y al no estar presente, su respuesta es fiel a ellos aunque la referencia sí supiera la respuesta por fuentes externas.",
-   "correccion": "incorrecta",
+   "justificacion": "El sistema indicó correctamente que la información no aparece en los fragmentos proporcionados, ya que estos no contienen datos sobre la nota necesaria para subir el TFG al repositorio.",
+   "correccion": "correcta",
    "fiel": true,
    "modelo_juez": "gemini-3.5-flash-lite"
   },
@@ -1106,7 +1106,7 @@
    "abstencion_correcta": true,
    "citas_correctas": 1,
    "citas_total": 1,
-   "justificacion": "La respuesta del sistema es parcial porque no especifica la cantidad exacta de matrículas de honor permitidas (el 5% o una si son menos de 20), limitándose a remitir a la normativa vigente. No obstante, es totalmente fiel a los fragmentos proporcionados.",
+   "justificacion": "La respuesta del sistema es parcial porque omite el límite cuantitativo de matrículas de honor (máximo 5% o una si son menos de 20) que sí menciona la referencia, aunque explica correctamente el orden de concesión y los empates. La respuesta es fiel ya que la información aportada proviene directamente del fragmento [1].",
    "correccion": "parcial",
    "fiel": true,
    "modelo_juez": "gemini-3.5-flash-lite"
@@ -1135,7 +1135,7 @@
    "abstencion_correcta": true,
    "citas_correctas": 1,
    "citas_total": 1,
-   "justificacion": "La respuesta del sistema incluye todos los datos esenciales de la referencia (plazo de dos semanas, destinatario y medio de envío) y toda la información está respaldada correctamente por el fragmento [1].",
+   "justificacion": "La respuesta del sistema incluye todos los datos esenciales proporcionados en la referencia y está completamente respaldada por el fragmento [1].",
    "correccion": "correcta",
    "fiel": true,
    "modelo_juez": "gemini-3.5-flash-lite"
@@ -1164,7 +1164,7 @@
    "abstencion_correcta": true,
    "citas_correctas": 1,
    "citas_total": 1,
-   "justificacion": "La respuesta del sistema coincide exactamente con la de referencia en cuanto al plazo de una semana y está totalmente respaldada por el fragmento [1].",
+   "justificacion": "La respuesta del sistema acierta plenamente con el plazo de una semana establecido en la normativa y referencia, y toda la información se apoya de forma exacta en el fragmento [1].",
    "correccion": "correcta",
    "fiel": true,
    "modelo_juez": "gemini-3.5-flash-lite"
@@ -1195,7 +1195,7 @@
    "abstencion_correcta": true,
    "citas_correctas": 2,
    "citas_total": 2,
-   "justificacion": "La respuesta del sistema incluye toda la información esencial de la referencia sobre la posibilidad y la duración de las prácticas extracurriculares tras unas curriculares, y cada afirmación se apoya directamente en los fragmentos facilitados.",
+   "justificacion": "La respuesta del sistema es correcta ya que responde afirmativamente, explica que se pueden hacer extracurriculares tras las curriculares y detalla la duración exacta según los fragmentos. Además, todo lo que afirma está completamente respaldado por los fragmentos leídos.",
    "correccion": "correcta",
    "fiel": true,
    "modelo_juez": "gemini-3.5-flash-lite"
@@ -1227,7 +1227,7 @@
    "abstencion_correcta": true,
    "citas_correctas": 2,
    "citas_total": 3,
-   "justificacion": "La respuesta del sistema incluye todos los datos esenciales de la referencia (procedimiento por escrito con modelo UCA, motivación de causas, tutor y comisión para curriculares, y posible exclusión para extracurriculares) y está totalmente respaldada por los fragmentos proporcionados.",
+   "justificacion": "La respuesta del sistema es correcta ya que incluye todos los detalles esenciales de la referencia para ambos tipos de prácticas y está totalmente respaldada por los fragmentos proporcionados.",
    "correccion": "correcta",
    "fiel": true,
    "modelo_juez": "gemini-3.5-flash-lite"
@@ -1259,7 +1259,7 @@
    "abstencion_correcta": true,
    "citas_correctas": 1,
    "citas_total": 1,
-   "justificacion": "La respuesta del sistema omite mencionar el documento que emite la entidad colaboradora (mencionado en la referencia), centrándose únicamente en el acreditado por la UCA, por lo que es parcial. Sin embargo, todo lo que afirma está estrictamente respaldado por el fragmento [3].",
+   "justificacion": "La respuesta del sistema omite la parte en la que la entidad emite un documento con la descripción y las actividades realizadas, mencionando únicamente la acreditación de la UCA, por lo que se considera parcial. Sin embargo, todo lo que afirma sobre la UCA está respaldado fielmente por el fragmento 3.",
    "correccion": "parcial",
    "fiel": true,
    "modelo_juez": "gemini-3.5-flash-lite"
@@ -1290,7 +1290,7 @@
    "abstencion_correcta": true,
    "citas_correctas": 2,
    "citas_total": 2,
-   "justificacion": "La respuesta del sistema incluye todos los datos esenciales de la referencia (memoria y encuesta del alumno, informe y encuesta del tutor, plazo de dos semanas y entrega a través de la aplicación) y está completamente respaldada por los fragmentos proporcionados.",
+   "justificacion": "La respuesta del sistema incluye de forma exacta y completa todos los documentos que deben entregar tanto el alumno como el tutor de la entidad según la referencia, estando además totalmente respaldada por los fragmentos leídos.",
    "correccion": "correcta",
    "fiel": true,
    "modelo_juez": "gemini-3.5-flash-lite"
@@ -1321,7 +1321,7 @@
    "abstencion_correcta": true,
    "citas_correctas": 2,
    "citas_total": 2,
-   "justificacion": "La respuesta del sistema incluye todos los detalles clave de la referencia (comprimido único con DNI/NIE, documento, ficheros de software y manual de instalación) y además está respaldada íntegramente por los fragmentos provistos.",
+   "justificacion": "La respuesta del sistema incluye todos los datos esenciales de la referencia (comprimido único con DNI/NIE, documento, ficheros del software y manual de instalación) y todo está totalmente respaldado por los fragmentos proporcionados.",
    "correccion": "correcta",
    "fiel": true,
    "modelo_juez": "gemini-3.5-flash-lite"
@@ -1352,9 +1352,9 @@
    "abstencion_correcta": true,
    "citas_correctas": 1,
    "citas_total": 1,
-   "justificacion": "La respuesta del sistema es correcta porque incluye los datos esenciales de la referencia (plazos, órgano que designa y asignación de cargos del tribunal), y es totalmente fiel ya que se apoya en el fragmento [4].",
-   "correccion": "correcta",
-   "fiel": true,
+   "justificacion": "La respuesta del sistema es correcta ya que incluye todos los detalles esenciales sobre la designación del tribunal y sus cargos según la normativa. Sin embargo, no es fiel del todo porque el fragmento [4] no menciona explícitamente la cantidad de miembros titulares y suplentes que indica la referencia.",
+   "correccion": "parcial",
+   "fiel": false,
    "modelo_juez": "gemini-3.5-flash-lite"
   },
   {
@@ -1382,8 +1382,8 @@
    "abstencion_correcta": true,
    "citas_correctas": 1,
    "citas_total": 1,
-   "justificacion": "La respuesta del sistema es correcta y plenamente fiel a los fragmentos proporcionados, ya que se limita a responder en base al reglamento de la ESI consultado (exigiendo la totalidad de las materias salvo el TFG).",
-   "correccion": "correcta",
+   "justificacion": "La respuesta del sistema es parcial porque solo menciona el requisito del reglamento de la ESI y omite el del reglamento marco de la UCA indicado en la referencia. No obstante, lo que afirma está completamente respaldado por el fragmento [1], por lo que es fiel.",
+   "correccion": "parcial",
    "fiel": true,
    "modelo_juez": "gemini-3.5-flash-lite"
   },
@@ -1412,8 +1412,8 @@
    "abstencion_correcta": true,
    "citas_correctas": 1,
    "citas_total": 1,
-   "justificacion": "La respuesta del sistema es correcta ya que incluye todos los detalles esenciales de la referencia (idiomas permitidos, notificación y metadatos en español) y está completamente respaldada por el fragmento [1].",
-   "correccion": "correcta",
+   "justificacion": "La respuesta del sistema es correcta y fiel porque detalla los requisitos para el uso del inglés en la ESI basándose en el fragmento provisto, aunque omite el marco general de la UCA mencionado en la referencia.",
+   "correccion": "parcial",
    "fiel": true,
    "modelo_juez": "gemini-3.5-flash-lite"
   },
@@ -1442,8 +1442,8 @@
    "abstencion_correcta": true,
    "citas_correctas": 1,
    "citas_total": 1,
-   "justificacion": "La respuesta del sistema acierta completamente sobre la composición del tribunal y la exclusión del tutor basándose en la normativa de la ESI, y toda la información está respaldada por el fragmento [1].",
-   "correccion": "correcta",
+   "justificacion": "La respuesta del sistema es parcial porque omite la normativa del reglamento marco general de la UCA mencionada en la referencia, limitándose exclusivamente a la de la ESI. No obstante, todo lo que afirma está completamente respaldado por los fragmentos proporcionados.",
+   "correccion": "parcial",
    "fiel": true,
    "modelo_juez": "gemini-3.5-flash-lite"
   },
@@ -1470,7 +1470,7 @@
    "abstencion_correcta": false,
    "citas_correctas": 0,
    "citas_total": 0,
-   "justificacion": "El sistema indicó correctamente que la información no aparece en los fragmentos suministrados, por lo que su afirmación es fiel a los datos disponibles, aunque la referencia externa sí posea esa información.",
+   "justificacion": "La respuesta del sistema indica correctamente que la información no aparece en los fragmentos proporcionados, por lo que su afirmación es fiel a los mismos, aunque la referencia externa sí contenga el dato.",
    "correccion": "incorrecta",
    "fiel": true,
    "modelo_juez": "gemini-3.5-flash-lite"
@@ -1498,8 +1498,8 @@
    "abstencion_correcta": false,
    "citas_correctas": 0,
    "citas_total": 0,
-   "justificacion": "El sistema indicó correctamente que la información no aparecía en los fragmentos suministrados (los cuales no mencionan explícitamente si se puede hacer en grupo). Por tanto, la respuesta es fiel a los fragmentos y correcta ante la falta de datos en la normativa provista.",
-   "correccion": "correcta",
+   "justificacion": "La respuesta del sistema indica que no encuentra la información, lo cual es incorrecto ya que la referencia sí responde a la pregunta, aunque los fragmentos aportados no contenían dicha información (por lo que es fiel a los fragmentos dados).",
+   "correccion": "incorrecta",
    "fiel": true,
    "modelo_juez": "gemini-3.5-flash-lite"
   },
@@ -1529,8 +1529,8 @@
    "abstencion_correcta": true,
    "citas_correctas": 1,
    "citas_total": 2,
-   "justificacion": "La respuesta del sistema es correcta ya que indica que se puede solicitar la modalidad virtual de forma justificada y aprobada por la comisión, y es fiel porque toda la información proviene directamente de los fragmentos proporcionados.",
-   "correccion": "correcta",
+   "justificacion": "La respuesta es parcial porque solo explica el procedimiento de la ESI y omite el reglamento marco de la UCA mencionado en la referencia. Todo lo afirmado es fiel a los fragmentos proporcionados.",
+   "correccion": "parcial",
    "fiel": true,
    "modelo_juez": "gemini-3.5-flash-lite"
   },
@@ -1562,7 +1562,7 @@
    "abstencion_correcta": true,
    "citas_correctas": 1,
    "citas_total": 1,
-   "justificacion": "La respuesta del sistema omite la mención al tribunal y no responde directamente a si son dos TFG distintos, aunque acierta en la posibilidad del trabajo conjunto y tutores según los fragmentos. Por ello es parcial y fiel.",
+   "justificacion": "La corrección es parcial porque omite detalles esenciales presentes en la referencia (como la mención al tribunal o la generalidad de la norma marco), aunque lo que afirma es correcto. La respuesta es fiel ya que toda la información aportada está respaldada directamente por el fragmento [1].",
    "correccion": "parcial",
    "fiel": true,
    "modelo_juez": "gemini-3.5-flash-lite"
@@ -1611,8 +1611,8 @@
    "abstencion_correcta": false,
    "citas_correctas": 1,
    "citas_total": 1,
-   "justificacion": "La respuesta del sistema es correcta ya que explica adecuadamente que los reglamentos remiten a lo que prevea la memoria de cada plan de estudios, y es fiel porque se apoya correctamente en el fragmento [3].",
-   "correccion": "correcta",
+   "justificacion": "La respuesta del sistema acierta parcialmente al indicar que el contenido se ajusta a la memoria del plan de estudios, pero afirma erróneamente que los créditos exactos no aparecen en la normativa cuando el fragmento [3] menciona que deben ajustarse a los créditos previstos. Todo lo dicho está respaldado por los fragmentos.",
+   "correccion": "parcial",
    "fiel": true,
    "modelo_juez": "gemini-3.5-flash-lite"
   },
@@ -1718,7 +1718,7 @@
    "abstencion_correcta": true,
    "citas_correctas": 1,
    "citas_total": 2,
-   "justificacion": "La respuesta del sistema acierta en lo principal sobre la contratación tras las prácticas y las condiciones de antigüedad y periodo de prueba basadas en el fragmento [4], pero añade un dato sobre la compatibilidad de prácticas curriculares y relación laboral que tergiversa el texto del fragmento [5]. Por lo tanto, la corrección es parcial y la fidelidad es falsa al afirmar algo no respaldado adecuadamente.",
+   "justificacion": "La respuesta del sistema acierta en lo principal sobre la posibilidad de contratación, pero incluye información sobre relación laboral durante las prácticas curriculares que no estaba en la referencia, y afirma algo sobre autorización del centro que no se apoya en los fragmentos proporcionados.",
    "correccion": "parcial",
    "fiel": false,
    "modelo_juez": "gemini-3.5-flash-lite"
@@ -1752,8 +1752,8 @@
    "abstencion_correcta": true,
    "citas_correctas": 3,
    "citas_total": 3,
-   "justificacion": "La respuesta del sistema acierta plenamente al explicar los tutores ordinarios y de dobles titulaciones basándose en la normativa, coincidiendo sustancialmente con la referencia. Todo lo afirmado está respaldado de forma estricta por los fragmentos provistos.",
-   "correccion": "correcta",
+   "justificacion": "La respuesta del sistema omite la normativa del marco general de la UCA que estaba en la referencia, por lo que su corrección es parcial. Sin embargo, todo lo que menciona sobre la ESI y las dobles titulaciones está respaldado exactamente por los fragmentos proporcionados.",
+   "correccion": "parcial",
    "fiel": true,
    "modelo_juez": "gemini-3.5-flash-lite"
   },
@@ -1783,7 +1783,7 @@
    "abstencion_correcta": true,
    "citas_correctas": 1,
    "citas_total": 1,
-   "justificacion": "La respuesta del sistema es correcta y plenamente fiel a los fragmentos, ya que explica con precisión el plazo de entrega al tutor (una semana antes de la subida a la aplicación) y aporta detalles adicionales sobre el informe del tutor respaldados por la normativa.",
+   "justificacion": "La respuesta del sistema es correcta porque menciona el plazo de entrega a los tutores y el plazo del informe del tutor, y es fiel ya que toda la información proviene de los fragmentos provistos.",
    "correccion": "correcta",
    "fiel": true,
    "modelo_juez": "gemini-3.5-flash-lite"
@@ -1816,7 +1816,7 @@
    "abstencion_correcta": true,
    "citas_correctas": 1,
    "citas_total": 2,
-   "justificacion": "La respuesta del sistema responde correctamente sobre cuándo se comunica la fecha (al menos 5 días antes por el secretario a través de la aplicación), pero no menciona los periodos generales de examen fijados por la comisión. Todo lo que dice está respaldado por los fragmentos provistos.",
+   "justificacion": "La respuesta del sistema acierta con el plazo de los 5 días y la forma de notificación basándose en los fragmentos, pero omite la información relativa al marco general sobre cómo se fijan los periodos de examen y las actas, por lo que la corrección es parcial. Todo lo que dice está respaldado por los fragmentos, por lo que es fiel.",
    "correccion": "parcial",
    "fiel": true,
    "modelo_juez": "gemini-3.5-flash-lite"
@@ -1846,7 +1846,7 @@
    "abstencion_correcta": true,
    "citas_correctas": 1,
    "citas_total": 1,
-   "justificacion": "La respuesta del sistema es correcta ya que explica que la cantidad depende de la oferta y del anexo al convenio, y que no es una remuneración. Además, es fiel a los fragmentos proporcionados.",
+   "justificacion": "La respuesta del sistema es correcta ya que explica perfectamente cómo se determina la ayuda económica y que no se considera una nómina, y es fiel porque toda la información se encuentra textualmente en el fragmento [1].",
    "correccion": "correcta",
    "fiel": true,
    "modelo_juez": "gemini-3.5-flash-lite"

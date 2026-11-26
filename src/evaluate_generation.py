@@ -22,6 +22,7 @@ Uso (desde la raíz del proyecto, después de index.py; necesita GEMINI_API_KEY 
     python src/evaluate_generation.py                # evaluar (unos 10-15 minutos)
     python src/evaluate_generation.py --calibracion  # crear la muestra para corregir a mano
     python src/evaluate_generation.py --acuerdo      # comparar juez y corrección humana
+    python src/evaluate_generation.py --rejuzgar     # volver a juzgar tras cambiar la rúbrica
 """
 import argparse
 import csv
@@ -38,7 +39,7 @@ from typing import Literal
 from google import genai
 from pydantic import BaseModel, Field
 
-from generate import MODELO_LLM, MODELOS_RESERVA, llamar, responder
+from generate import MODELO_LLM, MODELOS_RESERVA, contexto, llamar, responder
 from retrieve import Buscador
 
 RAIZ = Path(__file__).resolve().parent.parent
@@ -57,14 +58,21 @@ Evalúa dos cosas por separado:
 
 1. "correccion", comparando la respuesta del sistema con la de referencia:
    - "correcta": contiene los datos esenciales de la referencia y no contradice nada.
-   - "parcial": acierta en parte pero le falta algo esencial de la referencia (por ejemplo, \
-solo explica uno de los dos reglamentos o una de las dos modalidades), o añade un error menor.
+   - "parcial": acierta en parte pero le falta algo esencial de la referencia, o añade un \
+error menor.
    - "incorrecta": contradice la referencia, da un dato equivocado, no responde a lo que se \
 pregunta o dice que no encuentra la información cuando la referencia sí la da.
-   No premies la longitud ni el estilo: solo importa el contenido.
+   Regla obligatoria: si la referencia explica lo que dicen DOS normas o casos (el reglamento \
+marco de la UCA y el de la ESI, o las prácticas curriculares y las extracurriculares) y la \
+respuesta del sistema solo da uno de ellos, la corrección es "parcial", aunque lo que diga sea \
+cierto y esté bien explicado.
+   No premies la longitud ni el estilo: solo importa el contenido. Los datos adicionales \
+ciertos que no estén en la referencia no restan.
 
 2. "fiel": true si TODO lo que afirma la respuesta del sistema está respaldado por los \
-fragmentos; false si afirma algo que no aparece en ellos, aunque sea cierto.
+fragmentos; false si afirma algo que no aparece en ellos, aunque sea cierto. Antes de marcar \
+false, busca la afirmación en todos los fragmentos: si alguno la dice, aunque sea con otras \
+palabras, es fiel.
 
 Justifica cada decisión en una o dos frases."""
 
@@ -198,6 +206,30 @@ def acuerdo(filas: list[dict]) -> None:
             print(f"  {i}: humano {h}, juez {nota(juez[i])} — {juez[i]['justificacion']}")
 
 
+def rejuzgar(filas: list[dict], cliente: genai.Client, modelo: str) -> None:
+    """Vuelve a pasar por el juez las respuestas ya generadas, sin generarlas de nuevo.
+
+    Sirve para probar cambios en la rúbrica del juez sobre las MISMAS respuestas que se
+    corrigieron a mano. Los fragmentos se reconstruyen con el buscador, que es
+    determinista: se comprueba que salen los mismos que en la evaluación original.
+    """
+    buscador = Buscador()
+    con = [f for f in filas if f["fuentes"]]
+    for i, f in enumerate(con, start=1):
+        resultados = buscador.buscar(f["pregunta"], k=5)
+        if [r["id"] for r in resultados] != f["recuperados"]:
+            sys.exit(f"✗ {f['id']}: el buscador ya no devuelve los mismos fragmentos (¿índice cambiado?)")
+        r = {"respuesta": f["respuesta"], "contexto": contexto(resultados)}
+        q = {"pregunta": f["pregunta"], "respuesta": f["referencia"]}
+        antes = f["correccion"]
+        veredicto, modelo_juez = juzgar(cliente, modelo, q, r)
+        f.update(veredicto.model_dump())
+        f["modelo_juez"] = modelo_juez
+        cambio = f"  (antes {antes})" if f["correccion"] != antes else ""
+        print(f"  [{i}/{len(con)}] {f['id']} {f['correccion']}{cambio}")
+        time.sleep(PAUSA)
+
+
 def main() -> None:
     sys.stdout.reconfigure(encoding="utf-8")  # tildes en la consola de Windows
     parser = argparse.ArgumentParser(description="Evalúa las respuestas del RAG.")
@@ -205,6 +237,8 @@ def main() -> None:
     parser.add_argument("--de-nuevo", action="store_true", help="ignorar el progreso guardado")
     parser.add_argument("--calibracion", action="store_true", help="crear eval/calibracion.csv")
     parser.add_argument("--acuerdo", action="store_true", help="medir el acuerdo juez-humano")
+    parser.add_argument("--rejuzgar", action="store_true",
+                        help="volver a juzgar las respuestas guardadas (tras cambiar la rúbrica)")
     args = parser.parse_args()
 
     ruta = RESULTADOS / f"generacion_{args.modelo}.json"
@@ -217,11 +251,17 @@ def main() -> None:
         crear_calibracion(filas) if args.calibracion else acuerdo(filas)
         return
 
-    preguntas = json.loads(PREGUNTAS.read_text(encoding="utf-8"))
-    hechas = {f["id"] for f in filas}
-    pendientes = [q for q in preguntas if q["id"] not in hechas]
-    print(f"{len(hechas)} preguntas ya evaluadas, {len(pendientes)} pendientes")
-    buscador, cliente = Buscador(), genai.Client()
+    if args.rejuzgar:
+        if not filas:
+            sys.exit(f"✗ Primero hay que evaluar: no existe {ruta.relative_to(RAIZ)}")
+        rejuzgar(filas, genai.Client(), args.modelo)
+        pendientes = []
+    else:
+        preguntas = json.loads(PREGUNTAS.read_text(encoding="utf-8"))
+        hechas = {f["id"] for f in filas}
+        pendientes = [q for q in preguntas if q["id"] not in hechas]
+        print(f"{len(hechas)} preguntas ya evaluadas, {len(pendientes)} pendientes")
+        buscador, cliente = Buscador(), genai.Client()
 
     RESULTADOS.mkdir(parents=True, exist_ok=True)
     for i, q in enumerate(pendientes, start=1):

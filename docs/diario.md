@@ -1480,3 +1480,91 @@ con `--acuerdo`.
   el modelo lo lee todo. El RAG gana en coste y rapidez por pregunta, escala a miles de
   documentos, da citas precisas y no sufre el "lost in the middle" con contextos enormes.
   Comparar las dos opciones es un buen experimento para el paso 8.
+
+### Apuntes: RAG y transformer no son lo mismo
+Están en niveles distintos:
+
+| | Transformer | RAG |
+|---|---|---|
+| Qué es | Una **arquitectura de red neuronal** (2017), el "motor" por dentro | Un **diseño de sistema**, una forma de usar un LLM |
+| Dónde vive | Dentro del modelo: capas, pesos, atención | Fuera del modelo: nuestro código en Python |
+| Qué hace | Convierte un texto en representaciones; en un LLM, predice el siguiente token | Busca información y se la pone delante al LLM antes de que responda |
+| Lo hemos programado | No: lo usamos ya entrenado | Sí: `chunks.py`, `index.py`, `retrieve.py`, `generate.py` |
+
+- **La idea clave del transformer es la atención.** Cada token "mira" a todos los demás del
+  texto y decide cuáles le importan para entenderse. Por ejemplo, en "el tutor del TFG lo
+  evalúa", "lo" atiende a "TFG". Gracias a eso el LLM puede leer nuestros 5 fragmentos y
+  relacionar la pregunta con la frase que la responde.
+- **En el proyecto usamos dos transformers distintos:**
+  1. **bge-m3** (tipo *encoder*): lee un texto entero y lo resume en un vector de 1024
+     números. Sirve para buscar.
+  2. **Gemini** (tipo *decoder*): lee el prompt y genera la respuesta token a token. Sirve
+     para escribir.
+- **El RAG es lo que conecta los dos:** trocear, indexar, buscar, montar el prompt, citar y
+  evaluar. Si mañana el LLM no fuera un transformer, el sistema seguiría siendo un RAG.
+- **Analogía:** el transformer es el motor de un coche; el RAG es la ruta que planificas y
+  el mapa que le das al conductor. El RAG no cambia el motor (no reentrena el modelo): le
+  da mejor información para el viaje.
+
+### Calibración: resultado y ajuste del juez
+Corrección humana de las 15 respuestas: 13 "correcta", 2 "parcial" (q047, q061) y, tras
+revisarla, también q060 como "parcial" (solo explica la ESI, igual que q047).
+
+**Juez v1 (rúbrica original): acuerdo 12/15 (80 %).** Desacuerdos:
+- q047 y q060: el juez dice "correcta" a respuestas que solo explican la ESI. Es un
+  **sesgo sistemático** con las ambiguas: la rúbrica lo mencionaba solo como ejemplo entre
+  paréntesis y el juez lo ignoraba.
+- q058: el juez dice que la respuesta "tergiversa" el art. 11 de prácticas, pero el
+  artículo dice exactamente eso. **El juez también se equivoca siendo estricto**, no solo
+  indulgente.
+
+**Cambios en la rúbrica (juez v2):**
+1. Regla obligatoria: si la referencia da dos normas o casos (marco/ESI,
+   curriculares/extracurriculares) y la respuesta solo uno → "parcial".
+2. Los datos adicionales ciertos no restan.
+3. Antes de marcar "no fiel", buscar la afirmación en todos los fragmentos.
+
+Nueva opción `--rejuzgar`: vuelve a juzgar las **mismas** respuestas que se corrigieron a
+mano, sin regenerarlas. Si se regeneraran, la corrección humana dejaría de valer. Los
+fragmentos se reconstruyen con el buscador (determinista), y se comprueba que son los mismos.
+
+**Juez v2: acuerdo 12/15 (80 %), pero con otros fallos.**
+- ✅ Arregla q047: el sesgo con las ambiguas desaparece. Las ambiguas pasan de 55 %
+  correctas a 9 %, con 73 % parciales.
+- ✗ q058 sigue fallando: el juez insiste en que la autorización del centro "no se apoya en
+  los fragmentos", y sí se apoya.
+- ✗ q060 sigue "correcta".
+- ✗ q044 pasa a "parcial", y su justificación dice "es correcta": **la etiqueta contradice
+  su propio razonamiento**. Mezcla la fidelidad con la corrección.
+
+**Resultados con el juez v2:**
+
+| Métrica | Valor |
+|---|---|
+| Abstención correcta (sin respuesta) | 100 % |
+| Falsas abstenciones | 11 % |
+| Precisión de las citas | 91 % |
+| Corrección | correcta 61 % · parcial 28 % · incorrecta 11 % |
+| Fidelidad | 95 % |
+
+| Tipo | n | correcta | parcial | incorrecta |
+|---|---|---|---|---|
+| ambigua | 11 | 9 % | 73 % | 18 % |
+| cifra | 11 | 73 % | 9 % | 18 % |
+| directa | 15 | 73 % | 20 % | 7 % |
+| multi | 7 | 57 % | 43 % | 0 % |
+| parafrase | 13 | 85 % | 8 % | 8 % |
+
+**Conclusiones:**
+- Un juez Flash-Lite es **ruidoso**: además de los sesgos que se corrigen con la rúbrica,
+  comete errores sueltos de lectura (q058) y de coherencia (q044). Con 15 muestras, un 80 %
+  tiene un margen de unos ±10 puntos.
+- Seguir retocando la rúbrica con estas mismas 15 respuestas sería **sobreajustarla**
+  (estudiar con las preguntas del examen). Las reglas añadidas son generales, pero el
+  acuerdo medido sobre la muestra de ajuste es algo optimista.
+- Lo importante para el paso 8 es que el juez **no tenga sesgo sistemático** en lo que
+  vamos a mejorar (las ambiguas), y el v2 lo consigue. Los errores sueltos afectan por igual
+  a todos los experimentos, así que las comparaciones siguen siendo válidas.
+- Mejoras posibles, si hicieran falta: un juez de otra familia de modelos (evita la
+  autopreferencia; Gemini se está juzgando a sí mismo), o votar entre varias ejecuciones.
+- La abstención y las citas se miden con código, sin juez, y son exactas.

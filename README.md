@@ -37,7 +37,7 @@ pregunta → embedding → buscar los chunks más cercanos → prompt con los ch
 | 4 | Conjunto de evaluación | 62 preguntas de 6 tipos (directas, parafraseadas, cifras, varios artículos, ambiguas y sin respuesta) con su respuesta y sus artículos | `eval/questions.json`, `scripts/validar_preguntas.py`, `scripts/revisar_preguntas.py` | ✅ |
 | 5 | Indexación | Embedding de cada chunk con `BAAI/bge-m3` (1024 dimensiones), guardado en Chroma con sus metadatos | `src/index.py` | ✅ |
 | 6 | Recuperación | Buscar los k chunks más parecidos a una pregunta y medir si aciertan (Acierto@k, Recall@k, MRR) | `src/retrieve.py`, `src/evaluate.py` | ✅ |
-| 7 | Generación | Prompt + LLM (Gemini, nivel gratuito) → respuesta con citas, o "no lo encuentro" si no está en los documentos | `src/generate.py` | ⏳ |
+| 7 | Generación | Prompt + LLM (Gemini, nivel gratuito) → respuesta con citas, o "no lo encuentro" si no está en los documentos; evaluación con LLM como juez calibrado a mano | `src/generate.py`, `src/evaluate_generation.py` | ✅ |
 | 8 | Mejoras y experimentos | Búsqueda híbrida, *reranker*, comparar troceados y modelos de embeddings | — | |
 | 9 | Interfaz y despliegue | App en Streamlit publicada en Hugging Face Spaces | `app.py` | |
 | 10 | Documentación final | Resultados, gráficas y lecciones aprendidas | `README.md` | |
@@ -58,6 +58,29 @@ Recuperación con `BAAI/bge-m3` sobre las 57 preguntas de evaluación con respue
 Punto débil: en las preguntas que responden a la vez el reglamento marco de la UCA y el
 de la Escuela, casi nunca llegan los dos (Recall@5 del 37 %), porque el marco no usa la
 sigla "TFG" y los alumnos sí. El análisis está en el [diario](docs/diario.md).
+
+### Generación
+
+Respuestas de punta a punta (búsqueda + Gemini 3.5 Flash-Lite, k = 5) sobre las 62
+preguntas de evaluación:
+
+| Métrica | Valor | Cómo se mide |
+|---|---|---|
+| Se abstiene cuando la normativa no lo dice | 100 % (5/5) | código |
+| Falsas abstenciones (dice que no está, pero sí está) | 11 % | código |
+| Precisión de las citas | 91 % | código |
+| Corrección | correcta 61 % · parcial 28 % · incorrecta 11 % | LLM como juez |
+| Fidelidad (no afirma nada que no esté en los fragmentos) | 95 % | LLM como juez |
+
+- **El LLM no se inventa nada cuando el buscador falla:** 5 de las 6 falsas abstenciones
+  son exactamente los 5 fallos de recuperación. Casi todos los errores vienen de la
+  búsqueda, no de la generación.
+- **Las preguntas ambiguas son el punto débil** (9 % correctas, 73 % parciales): como no
+  llega el reglamento marco, la respuesta solo explica el de la Escuela.
+- **El juez está calibrado a mano:** coincide con la corrección humana en 12 de 15
+  respuestas (80 %). La calibración destapó un sesgo sistemático (daba por correctas las
+  respuestas incompletas de las preguntas ambiguas), que se corrigió en la rúbrica.
+  También hubo errores sueltos, que se documentan en el [diario](docs/diario.md).
 
 ## Datos
 
@@ -113,6 +136,7 @@ python src/generate.py "¿Las prácticas se cobran?"   # respuesta con citas (ne
 python src/evaluate_generation.py      # evalúa las respuestas con un LLM como juez -> eval/resultados/
 python src/evaluate_generation.py --calibracion   # muestra para corregir a mano -> eval/calibracion.csv
 python src/evaluate_generation.py --acuerdo       # acuerdo entre el juez y la corrección humana
+python src/evaluate_generation.py --rejuzgar      # vuelve a juzgar las mismas respuestas tras cambiar la rúbrica
 
 # Solo si se añade una modificación nueva de la normativa:
 python scripts/borrador_parches.py     # borrador de los parches (revisarlo y pasarlo a data/parches.json)
