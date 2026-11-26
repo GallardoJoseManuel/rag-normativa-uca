@@ -1200,3 +1200,132 @@ el primer objetivo del paso 8. Hipótesis a probar:
 ### Pendiente
 - Paso 7: generación de la respuesta con el LLM a partir de los 5 primeros chunks.
 - Paso 8: atacar la confusión entre el marco y la ESI (hipótesis de arriba).
+
+## 2026-11-26 · Sesión 11: generación de respuestas (paso 7)
+
+### Apuntes: qué se hace en este paso
+Hasta el paso 6 el sistema **encuentra** los artículos; en el 7 **responde**:
+
+```
+pregunta → retrieve.py (top 5 chunks) → prompt = instrucciones + chunks numerados + pregunta
+         → LLM → respuesta en español con citas [1], [2]... o "no lo encuentro en la normativa"
+```
+
+`src/generate.py` monta el prompt, llama al LLM y devuelve la respuesta con sus fuentes.
+El LLM no busca nada: solo lee los chunks que le pasamos. Si el artículo correcto no llega
+(el 9 % de las preguntas en la línea base), no puede responder bien; por eso la
+recuperación se midió antes.
+
+### Apuntes: qué hace exactamente el LLM (y qué no)
+El LLM **no consulta el RAG ni busca nada por su cuenta**: no tiene acceso a Chroma, ni a
+los PDFs, ni a internet. Todo lo hace nuestro código, y el LLM solo recibe **un texto** y
+devuelve **otro texto**:
+
+```
+generate.py (en tu ordenador)                         Gemini (servidores de Google)
+─────────────────────────────                         ─────────────────────────────
+1. retrieve.py busca los 5 chunks en Chroma
+2. monta UN texto: instrucciones + chunks + pregunta
+3. lo envía por la API  ───────────────────────────►  4. lee el texto completo
+                                                       5. escribe la respuesta palabra a
+                                                          palabra (predice el siguiente token)
+6. recibe la respuesta  ◄───────────────────────────
+7. la muestra con sus citas
+```
+
+- **No tiene memoria entre llamadas:** cada pregunta es una petición independiente; lo
+  único que "sabe" de la normativa es lo que va en ese texto.
+- **Sí tiene conocimiento propio**, aprendido en su entrenamiento (guardado en sus pesos),
+  y ahí está el riesgo: podría mezclar lo que recuerda de otras universidades o de leyes
+  antiguas. Por eso el prompt le exige responder solo con los fragmentos, y la evaluación
+  mide la **fidelidad**.
+- Algunos LLM pueden usar herramientas (buscar en la web, ejecutar código) si se las das;
+  aquí no se le da ninguna, a propósito.
+
+### Apuntes: las decisiones del paso
+1. **Qué LLM.** Por API (Claude) o local (por ejemplo, con Ollama).
+   - API: mejor calidad siguiendo instrucciones (citar, no inventar, español), rápido, y la
+     demo en Hugging Face funciona sin GPU. Hace falta una clave de API (variable de entorno,
+     nunca en el código) y cuesta dinero por uso. Precios por millón de tokens
+     (entrada / salida): Opus 5.5 4 $ / 20 $, Sonnet 5.5 2 $ / 10 $, Haiku 5.5 0,10 $ / 0,50 $.
+     Una pregunta son unos 2.000-2.500 tokens de entrada (5 chunks + instrucciones) y unos
+     cientos de salida.
+   - Local: gratis y privado, pero hay que descargar un modelo de varios GB, en CPU tarda
+     de segundos a minutos por respuesta, los modelos pequeños siguen peor las reglas y la
+     demo gratuita de Hugging Face no podría ejecutarlo.
+   - El código dejará el modelo como parámetro, para poder cambiarlo y comparar.
+2. **El prompt.** Instrucciones (*system prompt*): responder solo con la información de
+   los fragmentos, citar cada afirmación con su número, decir que no está en la normativa
+   si no lo está (en lugar de inventar), y si el reglamento marco y el de la ESI dicen
+   cosas distintas, explicar los dos e indicar que el de la ESI es el específico para sus
+   estudiantes. Cada fragmento va etiquetado con su cita (documento, artículo, apartados) y,
+   si procede, la modificación que le dio su redacción actual.
+3. **Formato de salida.** Texto libre con marcas [n], o **salida estructurada** (JSON con
+   la respuesta, las fuentes usadas y si ha encontrado la información). La estructurada
+   facilita evaluar y mostrar las fuentes en la app.
+
+### Apuntes: cómo se evalúa la generación
+Es más difícil que evaluar la recuperación, porque la respuesta es texto libre. Se mide:
+1. **Abstención:** ¿dice "no lo encuentro" en las preguntas `sin_respuesta`? ¿Y no lo dice
+   cuando sí hay respuesta?
+2. **Citas:** ¿las fuentes que cita están entre las fuentes correctas de la pregunta?
+3. **Corrección:** ¿coincide con la respuesta de referencia? Se usa otro LLM como juez
+   (*LLM-as-a-judge*), que compara la respuesta con la de referencia y la clasifica como
+   correcta, parcial o incorrecta. El juez también se equivoca: hay que revisar una muestra
+   a mano.
+4. **Fidelidad** (*faithfulness*): ¿todo lo que afirma está en los fragmentos que recibió?
+   Una respuesta puede ser "correcta" por conocimiento propio del LLM y no por los
+   documentos, y eso es justo lo que no queremos.
+
+Cada evaluación completa son unas 62 llamadas para generar más 62 para juzgar, así que
+tiene un coste por ejecución que hay que tener en cuenta.
+
+### Decisiones
+- **LLM: Gemini (modelo Flash) en su nivel gratuito**, por API. Alternativas valoradas:
+  Claude (sin nivel gratuito; con Haiku 5.5 el proyecto entero costaría menos de 1 $),
+  OpenAI (sin saldo disponible), Groq (gratuito, modelos abiertos algo menos fiables
+  siguiendo instrucciones) y OpenRouter (50 peticiones al día, insuficiente para evaluar).
+  Una evaluación completa son unas 124 llamadas (62 para responder y 62 para juzgar), y el
+  nivel gratuito de Gemini las cubre.
+- **¿Es suficiente un modelo "Flash"?** La tarea no exige conocimiento propio del modelo:
+  es comprensión lectora de 5 fragmentos cortos en español, siguiendo reglas (citar,
+  abstenerse, contrastar el marco con la ESI). Es justo lo que hacen bien los modelos
+  rápidos actuales. Lo difícil será la abstención y las preguntas ambiguas, y eso lo dirá
+  la evaluación, no la intuición.
+- **Precauciones:** en el nivel gratuito Google puede usar lo que se envía para mejorar sus
+  productos (aquí solo va normativa pública y preguntas de ejemplo); los límites y los
+  nombres de los modelos cambian, así que el modelo será un parámetro; la clave va en un
+  archivo `.env` (ignorado por git), nunca en el código.
+
+### Qué he hecho
+- Clave de Gemini creada en Google AI Studio (proyecto "Default Gemini Project") y
+  guardada en `.env`, que git ignora. La clave no se escribe en ningún otro sitio: ni en
+  el código, ni en el chat.
+- Instalada la librería `google-genai`.
+- **Prueba de modelos en el nivel gratuito:** los Flash completos (3.5, 3.6, 3.7, 3.8)
+  respondían "alta demanda" (503) de forma persistente, y 2.5 Flash ya no está disponible
+  (404). Los Flash-Lite sí responden (~1,5 s). Modelo por defecto: `gemini-3.5-flash-lite`,
+  con `gemini-3.1-flash-lite` de reserva.
+- **`src/generate.py`**: busca los 5 chunks, monta el prompt (instrucciones + fragmentos
+  numerados con su cita + pregunta) y pide una **salida estructurada** con un esquema de
+  pydantic: `encontrado` (bool), `respuesta` (texto con citas [n]) y `fuentes` (números de
+  los fragmentos usados). Temperatura 0 para que sea lo más estable posible. Si el nivel
+  gratuito responde 503 o 429, reintenta con espera creciente (5, 10, 20 s) y después
+  prueba el modelo de reserva. Descarta números de fuente que no existan.
+
+### Primeras respuestas
+- "¿Las prácticas en empresa se cobran?" → distingue curriculares (la empresa *podrá*
+  pagar) y extracurriculares (pagará lo previsto en la oferta), aclara que no es una nómina
+  y cita los arts. 20 y 3. Correcta.
+- "Me puse malo y falté tres días..." → no hay que recuperarlas si están justificadas y
+  no superan 15 días no consecutivos o 5 consecutivos; cita el art. 14, apartado 3.
+  Correcta.
+- "¿Cuánto cuesta matricularse del TFG?" → `encontrado: false`, "no aparece en la
+  normativa consultada". **Se abstiene bien**, sin inventar un precio.
+- "¿Puedo escribir y defender el TFG en inglés?" → correcta según la ESI (art. 17), pero
+  **no menciona el reglamento marco**, porque el buscador no lo recuperó: el problema del
+  "TFG" del paso 6 se arrastra a la respuesta, como era de esperar.
+
+### Pendiente
+- Evaluar la generación sobre todo el conjunto: abstención, citas, corrección (con un LLM
+  como juez) y fidelidad.

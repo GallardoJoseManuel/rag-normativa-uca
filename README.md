@@ -37,7 +37,7 @@ pregunta → embedding → buscar los chunks más cercanos → prompt con los ch
 | 4 | Conjunto de evaluación | 62 preguntas de 6 tipos (directas, parafraseadas, cifras, varios artículos, ambiguas y sin respuesta) con su respuesta y sus artículos | `eval/questions.json`, `scripts/validar_preguntas.py`, `scripts/revisar_preguntas.py` | ✅ |
 | 5 | Indexación | Embedding de cada chunk con `BAAI/bge-m3` (1024 dimensiones), guardado en Chroma con sus metadatos | `src/index.py` | ✅ |
 | 6 | Recuperación | Buscar los k chunks más parecidos a una pregunta y medir si aciertan (Acierto@k, Recall@k, MRR) | `src/retrieve.py`, `src/evaluate.py` | ✅ |
-| 7 | Generación | Prompt + LLM → respuesta con citas, o "no lo sé" si no está en los documentos | `src/generate.py` | |
+| 7 | Generación | Prompt + LLM (Gemini, nivel gratuito) → respuesta con citas, o "no lo encuentro" si no está en los documentos | `src/generate.py` | ⏳ |
 | 8 | Mejoras y experimentos | Búsqueda híbrida, *reranker*, comparar troceados y modelos de embeddings | — | |
 | 9 | Interfaz y despliegue | App en Streamlit publicada en Hugging Face Spaces | `app.py` | |
 | 10 | Documentación final | Resultados, gráficas y lecciones aprendidas | `README.md` | |
@@ -79,6 +79,7 @@ data/raw/*.pdf
   │ src/index.py         embeddings (bge-m3) en Chroma          → data/index/
   ▼
 src/retrieve.py          pregunta → los k chunks más parecidos
+src/generate.py          pregunta → chunks → LLM → respuesta con citas
 src/evaluate.py          métricas de recuperación con eval/questions.json → eval/resultados/
 ```
 
@@ -107,6 +108,7 @@ python scripts/revisar_preguntas.py    # muestra cada pregunta con el texto de s
 python src/index.py                    # embeddings de los chunks -> base vectorial en data/index/ (descarga el modelo la primera vez)
 python src/retrieve.py "¿Las prácticas se cobran?"   # busca los chunks más parecidos a una pregunta
 python src/evaluate.py                 # mide el buscador con eval/questions.json -> eval/resultados/
+python src/generate.py "¿Las prácticas se cobran?"   # respuesta con citas (necesita GEMINI_API_KEY en .env)
 
 # Solo si se añade una modificación nueva de la normativa:
 python scripts/borrador_parches.py     # borrador de los parches (revisarlo y pasarlo a data/parches.json)
