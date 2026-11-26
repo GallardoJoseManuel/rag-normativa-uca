@@ -65,6 +65,31 @@ Los documentos son normativa pública de la Universidad de Cádiz y de la Escuel
 Ingeniería. No se incluyen en el repositorio: [`data/sources.csv`](data/sources.csv) recoge
 el título, el organismo, la fecha y la URL oficial de cada uno. Se guardan en `data/raw/`.
 
+## Estructura del código
+
+`src/` contiene el *pipeline* (cada script lee la salida del anterior); `scripts/`, las
+herramientas de análisis y comprobación.
+
+```
+data/raw/*.pdf
+  │ src/ingest.py        texto limpio de cada PDF             → data/processed/<id>.txt
+  │ src/articulos.py     división en artículos y disposiciones → data/processed/articulos/
+  │ src/consolidar.py    aplica data/parches.json (2014, 2015)  → data/processed/consolidado/
+  │ src/chunks.py        chunks con encabezado de contexto     → data/processed/chunks.json
+  │ src/index.py         embeddings (bge-m3) en Chroma          → data/index/
+  ▼
+src/retrieve.py          pregunta → los k chunks más parecidos
+src/evaluate.py          métricas de recuperación con eval/questions.json → eval/resultados/
+```
+
+| Script | Qué hace |
+|---|---|
+| `scripts/explorar_pdfs.py` | Análisis exploratorio: caracteres por página, tablas, encabezados repetidos, caracteres raros |
+| `scripts/validar_extraccion.py` | Comprueba palabra a palabra que la extracción no inventa ni pierde texto |
+| `scripts/borrador_parches.py` | Borrador de los parches de una modificación nueva, para revisarlo a mano |
+| `scripts/validar_preguntas.py` | Comprueba el formato y las fuentes del conjunto de evaluación |
+| `scripts/revisar_preguntas.py` | Muestra cada pregunta junto al texto de sus fuentes, para revisarla |
+
 ## Uso
 
 Con el entorno virtual activado:
