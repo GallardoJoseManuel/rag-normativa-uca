@@ -337,7 +337,7 @@ es solo membretes, notas al pie y sus llamadas.
 ```
 
 ### Decisiones
-- **Opción A (expresiones regulares) como base**, con la opción B (negrita del PDF) como
+- **Expresiones regularescomo base**, con la opción de usar la letra negrita del PDF como
   plan de reserva si algún documento falla. No ha hecho falta.
 - **Las disposiciones también son unidades** (`tipo: "disposicion"`, `numero: null`):
   tienen contenido útil (entrada en vigor, igualdad de género, régimen transitorio).
@@ -592,7 +592,7 @@ python src/consolidar.py              # artículos + parches -> versión vigente
 (art. 21 de la ESI). 11 unidades pasan de 300 palabras.
 
 ### Decisiones
-- **Opción B: artículo entero salvo los largos, que se dividen por apartados.** Las
+- **Artículo entero salvo los largos, que se dividen por apartados.** Las
   alternativas eran A (un artículo = un chunk) y C (trozos de tamaño fijo con
   solapamiento, que ignora la estructura y corta artículos por la mitad). B respeta la
   estructura de la norma y la cita sigue siendo precisa ("art. 22, apartados 7-14"). A no
