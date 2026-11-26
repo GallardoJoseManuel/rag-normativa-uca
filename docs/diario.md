@@ -1113,6 +1113,36 @@ exactamente el mismo buscador que usarán los usuarios.
   Recall@k y MRR en total y por tipo, compara la similitud máxima de las preguntas con y sin
   respuesta, lista los fallos y guarda todo en `eval/resultados/normativa_bge-m3.json`.
 
+### Apuntes: cómo funcionan `retrieve.py` y `evaluate.py`
+**`retrieve.py`**
+- `unidad(id)`: quita el sufijo `_p1`, `_p2`... con una expresión regular
+  (`practicas_uca_2012_art_14_p2` → `practicas_uca_2012_art_14`), para comparar chunks con
+  las fuentes, que son artículos.
+- `Buscador.__init__`: abre la colección, lee de sus metadatos el modelo que la creó, lo
+  carga **una sola vez** y prepara el prefijo de pregunta (vacío en bge-m3). Es una clase
+  para que la carga lenta (segundos) no se repita en cada búsqueda.
+- `Buscador.buscar(pregunta, k, filtro)`: embedding normalizado de la pregunta →
+  `coleccion.query(...)` → Chroma devuelve listas paralelas (ids, distancias, textos,
+  metadatos) **por cada pregunta enviada**, por eso el `[0]` → se juntan en un diccionario
+  por resultado, con `similitud = 1 − distancia`. `filtro` se pasa como `where` (por
+  ejemplo `{"documento": "tfgm_esi"}`) y Chroma solo compara con esos chunks.
+- `cita(resultado)`: texto legible para mostrar ("Art. 22 (apartados 7-14) · practicas_uca_2012").
+- `main`: argumentos de consola (pregunta, `-k`, `--documento`, `--modelo`) e impresión.
+
+**`evaluate.py`**
+- `puntuar(recuperados, fuentes)`: métricas de **una** pregunta. Para cada k corta la
+  lista de artículos recuperados, hace la intersección con las fuentes y calcula Acierto@k
+  (¿alguna?) y Recall@k (¿qué fracción?). La posición de la primera fuente correcta da el
+  rango recíproco (1/posición).
+- `media(filas)`: media de cada métrica en un grupo de preguntas; la media del rango
+  recíproco es el MRR.
+- `tabla(grupos)`: formatea la tabla de resultados.
+- `main`: crea **un** buscador, recupera el top 10 de cada pregunta (una sola búsqueda
+  sirve para calcular todos los k), puntúa las que tienen fuentes, agrupa por tipo,
+  compara la similitud máxima con y sin respuesta, lista los fallos (ninguna fuente en el
+  top 5) y las preguntas incompletas, y guarda configuración, métricas y detalle en
+  `eval/resultados/<colección>.json`.
+
 ### Resultado: línea base (bge-m3, troceado B, sin mejoras)
 
 | | n | Acierto@1 | Acierto@3 | Acierto@5 | Acierto@10 | Recall@5 | MRR |
