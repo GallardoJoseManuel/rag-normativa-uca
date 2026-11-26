@@ -33,8 +33,8 @@ pregunta → embedding → buscar los chunks más cercanos → prompt con los ch
 | 0 | Preparación | Repositorio, entorno, corpus, `sources.csv` | — | ✅ |
 | 1 | Análisis exploratorio | Entender los documentos y sus problemas | `scripts/explorar_pdfs.py` | ✅ |
 | 2 | Extracción y limpieza | PDF → texto limpio, división en artículos y consolidación de las modificaciones de 2014 y 2015 | `src/ingest.py`, `src/articulos.py`, `src/consolidar.py` | ✅ |
-| 3 | Troceado (*chunking*) | Dividir el texto en fragmentos (por artículo) con metadatos: documento, artículo, sección | `src/articulos.py` | ⏳ |
-| 4 | Conjunto de evaluación | 40-60 preguntas escritas a mano con su respuesta y el artículo correcto | `eval/questions.json` | |
+| 3 | Troceado (*chunking*) | Un chunk por artículo; los de más de 300 palabras se dividen por apartados. Cada chunk lleva un encabezado de contexto y metadatos para citar | `src/chunks.py` | ✅ |
+| 4 | Conjunto de evaluación | 40-60 preguntas escritas a mano con su respuesta y el artículo correcto | `eval/questions.json` | ⏳ |
 | 5 | Indexación | Calcular el embedding de cada chunk y guardarlo en Chroma | `src/index.py` | |
 | 6 | Recuperación | Devolver los k chunks más relevantes para una pregunta y medir si aciertan (Recall@k) | `src/retrieve.py`, `src/evaluate.py` | |
 | 7 | Generación | Prompt + LLM → respuesta con citas, o "no lo sé" si no está en los documentos | `src/generate.py` | |
@@ -59,6 +59,7 @@ python src/ingest.py                   # extrae y limpia el texto -> data/proces
 python scripts/validar_extraccion.py   # comprueba que no se pierde ni se inventa texto
 python src/articulos.py                # divide cada reglamento en artículos -> data/processed/articulos/
 python src/consolidar.py               # aplica data/parches.json -> data/processed/consolidado/ (versión vigente)
+python src/chunks.py                   # trocea la versión vigente -> data/processed/chunks.json
 
 # Solo si se añade una modificación nueva de la normativa:
 python scripts/borrador_parches.py     # borrador de los parches (revisarlo y pasarlo a data/parches.json)

@@ -570,3 +570,72 @@ python src/consolidar.py              # artículos + parches -> versión vigente
 ### Pendiente
 - Paso 3 (troceado): decidir si cada artículo es un chunk o si los artículos largos se
   subdividen, y qué metadatos lleva cada chunk.
+
+## 2026-11-25 · Sesión 7: troceado en chunks (paso 3)
+
+### Qué he aprendido antes de empezar
+- Un **embedding** es un vector de números que representa el significado de un texto. El
+  modelo está entrenado para que textos con significado parecido queden cerca (similitud
+  coseno), aunque no compartan palabras: "¿me pagan por las prácticas?" encuentra "ayuda
+  al estudio". Falla con lo exacto (números de artículo, cifras, siglas): por eso en el
+  paso 8 probaré la búsqueda híbrida.
+- El modelo de embeddings no es el LLM: es pequeño, se ejecuta en local y solo convierte
+  texto en vectores. Muchos tienen un límite de ~512 tokens (~350-400 palabras en español).
+- **Cada chunk se resume en un solo punto.** Si es muy grande, su vector es un "promedio"
+  de varios temas y no se parece especialmente a ninguna pregunta (y lo que pase del
+  límite se corta sin avisar). Si es muy pequeño, pierde el contexto.
+- La mayoría de los fallos de un RAG son de **recuperación**: si el artículo correcto no
+  llega al LLM, da igual lo bueno que sea el LLM.
+
+### Datos del corpus consolidado
+108 unidades, 16.600 palabras. Mediana 124 palabras por unidad, el 90 % ≤ 308, máximo 675
+(art. 21 de la ESI). 11 unidades pasan de 300 palabras.
+
+### Decisiones
+- **Opción B: artículo entero salvo los largos, que se dividen por apartados.** Las
+  alternativas eran A (un artículo = un chunk) y C (trozos de tamaño fijo con
+  solapamiento, que ignora la estructura y corta artículos por la mitad). B respeta la
+  estructura de la norma y la cita sigue siendo precisa ("art. 22, apartados 7-14"). A no
+  se descarta: será la línea base del experimento de troceado del paso 8.
+- **Máximo de 300 palabras por chunk** (~400-450 tokens), para que quepa en modelos con
+  límite de 512.
+- **Se divide por los apartados de primer nivel**: el tipo de marca con que empieza el
+  artículo ("1." o "a)"). Los subapartados y los párrafos sin marca se quedan con su
+  apartado: nunca se parte un apartado por la mitad.
+- **Reparto equilibrado:** se calcula cuántos trozos hacen falta y se reparten los
+  apartados a partes parecidas, para no dejar un último trozo diminuto.
+- **La frase introductoria se repite en cada trozo** ("La entidad colaboradora está
+  obligada a:"), porque sin ella "7. Comunicar las faltas de asistencia…" no se entiende.
+- **Encabezado de contexto** (*contextual chunk header*): el texto que se convierte en
+  embedding lleva delante "documento > sección > Art. N. Título (apartados x-y)". Se
+  guardan los dos textos: `texto` (para mostrar y citar) y `texto_embedding`.
+- **Metadatos de cada chunk:** id, documento, titulo_documento y url (de `sources.csv`),
+  tipo, numero, titulo, seccion, modificado_por, apartados, parte y partes.
+
+### Resultado
+
+| Reglamento | Unidades | Chunks | Unidades divididas |
+|---|---|---|---|
+| tfg_uca_2012 | 17 | 22 | 5 (arts. 2, 4, 5, 6, 7) |
+| tfgm_esi | 27 | 32 | 2 (arts. 21 y 22) |
+| practicas_uca_2012 | 64 | 68 | 4 (arts. 8, 14, 22, 48) |
+
+122 chunks: mínimo 16 palabras, mediana 136, máximo 315. Dos chunks pasan un poco de 300
+(el art. 21 de la ESI, apartados b) y d)) porque son un solo apartado con 5 y 4
+subapartados; el script avisa, pero no los parte.
+
+### Validación
+- El script comprueba que, quitando las introducciones repetidas, los trozos de cada
+  artículo **reproducen su texto exacto**, que cada trozo empieza por la introducción y que
+  no hay ids repetidos. Si algo falla, se detiene con código de salida 1.
+- **Prueba negativa:** cambiar una palabra de un trozo, borrar un trozo y quitar la
+  introducción de un trozo: los tres casos se detectan.
+
+### Limitaciones
+- El reparto es "voraz" (va llenando trozos en orden), así que a veces queda un trozo
+  pequeño: el art. 22 de la ESI sale en 222 + 293 + 54 palabras. Como los apartados
+  pequeños tratan un tema propio, no lo considero un problema.
+
+### Pendiente
+- Paso 4: escribir el conjunto de evaluación (40-60 preguntas con su artículo correcto)
+  antes de indexar, para poder medir cada decisión.
