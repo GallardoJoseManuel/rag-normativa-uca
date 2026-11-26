@@ -639,3 +639,85 @@ subapartados; el script avisa, pero no los parte.
 ### Pendiente
 - Paso 4: escribir el conjunto de evaluación (40-60 preguntas con su artículo correcto)
   antes de indexar, para poder medir cada decisión.
+
+## 2026-11-26 · Sesión 8: conjunto de evaluación (paso 4)
+
+### Qué es y para qué sirve
+Una lista de preguntas con su respuesta de referencia y los artículos donde está la
+respuesta. No la usa el RAG al responder: es una **muestra** para medirlo, como un
+examen. Si acierta el 85 % de estas preguntas, estimo que acertará más o menos el 85 % de
+las reales, siempre que la muestra se parezca a cómo preguntan los alumnos. Va antes de
+indexar para no escribir, sin querer, preguntas "fáciles" para el sistema.
+
+Métricas que permitirá calcular: Recall@k y MRR (paso 6), corrección de la respuesta y
+abstención ante preguntas sin respuesta (paso 7).
+
+### Decisiones
+- **Formato** (`eval/questions.json`): id, pregunta, respuesta, fuentes (ids de las
+  unidades del consolidado, sin `_p1`/`_p2`, para que cualquier trozo de un artículo
+  dividido cuente como acierto) y tipo.
+- **Seis tipos** para cubrir los puntos fuertes y débiles de un RAG: `directa`
+  (vocabulario del reglamento), `parafrase` (como lo diría un alumno), `cifra` (horas,
+  plazos, porcentajes: la debilidad de los embeddings), `multi` (respuesta en varios
+  artículos), `ambigua` (el marco UCA y el reglamento de la ESI dicen cosas distintas) y
+  `sin_respuesta` (para comprobar que el LLM no se inventa nada).
+- **Riesgo de sesgo:** quien escribe las preguntas ha leído los artículos, así que pueden
+  acercarse a su vocabulario. Para compensarlo: revisarlas una a una contra el artículo,
+  incluir dudas reales de alumnos y, al final del proyecto, escribir 10 preguntas nuevas
+  como comprobación limpia.
+- **Script de validación** (`scripts/validar_preguntas.py`): comprueba campos, tipos,
+  ids y preguntas repetidas, que cada fuente exista en el consolidado, que las
+  `sin_respuesta` (y solo ellas) vayan sin fuentes y que las `multi` tengan al menos 2.
+  Además mide el **solapamiento de vocabulario** entre cada pregunta y sus fuentes y
+  avisa si una pregunta que no es `directa` repite demasiadas palabras del artículo.
+
+### Resultado
+
+| Tipo | Preguntas | Solapamiento medio |
+|---|---|---|
+| directa | 15 | 0,65 |
+| parafrase | 13 | 0,39 |
+| cifra | 11 | 0,45 |
+| multi | 7 | 0,43 |
+| ambigua | 11 | 0,68 |
+| sin_respuesta | 5 | — |
+
+62 preguntas: 41 citan prácticas, 34 la ESI y 23 el marco. Cubren 54 de los 108
+artículos y disposiciones. El solapamiento confirma que las de tipo `parafrase` se
+alejan del vocabulario del reglamento más que las `directa`.
+
+Ejemplos de preguntas `ambigua` interesantes: la validez de la asignación del TFG (el
+marco dice un curso, la ESI dos años) y los requisitos para defender (básicas y
+obligatorias en el marco, todas las materias en la ESI).
+
+### Limitación del solapamiento
+Es una medida aproximada: palabras como "TFG", "tutor" o "prácticas" salen en casi
+todos los artículos y suben el porcentaje en preguntas cortas, aunque estén bien
+formuladas (por eso salen avisos que, revisados, no son problemas de redacción. Una pregunta tan natural como "¿Cuántos tutores de TFG tengo?" da un 100 %).
+
+### Revisión de las respuestas de referencia
+Las fuentes y respuestas son la "solución" del examen: si están mal, la evaluación
+castiga al sistema cuando acierta. `scripts/revisar_preguntas.py` muestra cada pregunta
+con el texto completo de sus fuentes para revisarlas. Correcciones:
+- **El error más frecuente era una fuente que faltaba**, no una respuesta equivocada. Se
+  han añadido fuentes en 14 preguntas. Por ejemplo, "¿quién me da un papel que demuestre
+  lo que he hecho?" no citaba el art. 23.4 de prácticas (la UCA debe expedir la
+  acreditación), y la pregunta sobre dobles grados hablaba del tribunal de cuatro
+  miembros sin citar los artículos que lo dicen.
+- "¿Cuántos créditos vale el TFG?" pasa de `sin_respuesta` a `cifra`: los reglamentos no
+  dan una cifra, pero sí dicen de dónde sale (la memoria del título). Marcarla sin fuentes
+  habría castigado al buscador por encontrar justo lo que debe.
+- En "¿cuánto dinero puedo ganar?" la respuesta ahora menciona que las cantidades las
+  aprueba el Vicerrector mediante Instrucción, sin interpretar más de lo que dice el texto.
+
+Es probable que aún falte alguna fuente. En el paso 6, cada vez que el buscador falle se
+revisará si el artículo que trajo también respondía; así la revisión se guía por los
+errores reales en lugar de releer todo.
+
+### Validación
+Prueba negativa: una fuente inexistente, una `sin_respuesta` con fuentes, un id
+repetido, un campo que falta, un tipo desconocido y una `multi` con una sola fuente. Los
+seis casos se detectan.
+
+### Pendiente
+- Paso 5: indexación (embeddings + Chroma).
