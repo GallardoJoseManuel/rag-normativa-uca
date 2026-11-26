@@ -1669,3 +1669,50 @@ necesita otra solución: la diagnosis decía que *dentro* del marco el artículo
 sale casi siempre el primero, así que lo siguiente es el **experimento B (búsqueda
 diversificada por reglamento)**. No se insiste en "reforzar" el encabezado (repetir la
 sigla, etc.): sería forzar el embedding para estas preguntas, y eso es sobreajustar.
+
+### Experimento B: búsqueda diversificada por reglamento
+- **Hipótesis:** dentro del marco el buscador ya encuentra el artículo correcto; solo falta
+  dejarle hueco entre los 5 chunks que recibe el LLM.
+- **Cambio** (`retrieve.py`, método `diversificar`):
+  - Si entre los 5 primeros resultados hay alguno de la ESI, la pregunta se considera de
+    TFG. Se detecta por los resultados, sin listas de palabras clave.
+  - Se hace una segunda búsqueda solo en el marco y sus mejores chunks ocupan los últimos
+    `RESERVA_MARCO` puestos del top 5. Los desplazados bajan, en orden, justo detrás.
+  - El primer resultado nunca cambia.
+  - La pregunta se convierte en vector una sola vez y se reutiliza en las dos búsquedas.
+  - `RESERVA_MARCO = 0` desactiva la diversificación. En `retrieve.py` y `evaluate.py` se
+    puede cambiar con `--reserva-marco`.
+- Se prueba con 1 y 2 puestos reservados (B1 y B2), sobre el índice con el encabezado de A.
+
+**Resultado (recuperación):**
+
+| | Acierto@5 | Recall@5 | MRR | Recall@5 ambiguas | Recall@5 multi | Fuentes del marco en el top 5 |
+|---|---|---|---|---|---|---|
+| Línea base | 91 % | 72 % | 0,79 | 37 % | 73 % | 4 / 23 |
+| A | 91 % | 73 % | 0,80 | 42 % | 73 % | 5 / 23 |
+| **B1** (1 puesto) | 93 % | 77 % | 0,80 | **60 %** | 65 % | 11 / 23 |
+| B2 (2 puestos) | 93 % | 79 % | 0,80 | 55 % | 61 % | 13 / 23 |
+
+Cambios por pregunta respecto a A:
+- **B1:** mejoran 6 (q001, q046, q048, q050, q051, q059) y empeora 1 (q043, una *multi* que
+  pierde una de sus dos fuentes de la ESI).
+- **B2:** mejoran 10, pero empeoran 3. Entre ellas q044 ("¿Cómo se elige el tribunal **en
+  la ESI**?"), que pierde *todas* sus fuentes: los dos puestos del marco echan del top 5 al
+  artículo de la ESI que respondía.
+
+**Análisis:**
+- **La hipótesis se confirma:** las fuentes del marco que llegan al LLM pasan de 5 a 11 de 23
+  con un solo puesto reservado. El Recall@5 de las ambiguas sube del 42 % al 60 %.
+- **Hay un precio, y se ve en las *multi*:** cada puesto que se da al marco se le quita a la
+  ESI. Con 1 puesto el coste es pequeño (una pregunta). Con 2 ya cuesta preguntas que solo
+  iban de la ESI.
+- B2 tiene más Recall@5 total, pero gana sobre todo en preguntas *directas* sobre el marco,
+  y lo paga rompiendo preguntas *de la ESI*. Es peor intercambio que B1.
+- Sigue fallando q049 ("¿Puedo hacer el TFG junto a un compañero?"): su artículo del marco
+  sale el 10.º incluso buscando solo dentro del marco. Ahí el problema es el vocabulario del
+  propio artículo, no la competencia entre documentos.
+
+**Decisión provisional:** B1. Antes de fijarlo como opción por defecto, falta comprobar con
+la evaluación de la generación que el LLM aprovecha el fragmento del marco (las ambiguas
+deberían pasar de "parcial" a "correcta") y que el chunk extra no le confunde en las
+preguntas solo de la ESI.

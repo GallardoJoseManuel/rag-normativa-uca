@@ -29,7 +29,7 @@ from datetime import date
 from pathlib import Path
 
 from index import MODELO, nombre_coleccion
-from retrieve import Buscador
+from retrieve import RESERVA_MARCO, Buscador
 
 RAIZ = Path(__file__).resolve().parent.parent
 PREGUNTAS = RAIZ / "eval" / "questions.json"
@@ -77,13 +77,15 @@ def main() -> None:
     sys.stdout.reconfigure(encoding="utf-8")  # tildes en la consola de Windows
     parser = argparse.ArgumentParser(description="Evalúa el buscador con eval/questions.json.")
     parser.add_argument("--modelo", default=MODELO, help=f"colección a evaluar (por defecto {MODELO})")
+    parser.add_argument("--reserva-marco", type=int, default=RESERVA_MARCO,
+                        help="puestos del top 5 reservados al reglamento marco (experimento B)")
     parser.add_argument("--etiqueta", default="",
                         help="nombre del experimento: guarda en <colección>__<etiqueta>.json "
                              "sin pisar la línea base")
     args = parser.parse_args()
 
     preguntas = json.loads(PREGUNTAS.read_text(encoding="utf-8"))
-    buscador = Buscador(args.modelo)
+    buscador = Buscador(args.modelo, args.reserva_marco)
 
     detalle, inicio = [], time.perf_counter()
     for q in preguntas:
@@ -128,6 +130,7 @@ def main() -> None:
     ruta.write_text(json.dumps({
         "configuracion": {"modelo": buscador.nombre_modelo, "coleccion": buscador.coleccion.name,
                           "etiqueta": args.etiqueta or "linea_base",
+                          "reserva_marco": args.reserva_marco,
                           "fecha": date.today().isoformat(), "ks": KS,
                           "n_preguntas": len(preguntas), "ms_por_pregunta": round(segundos * 1000)},
         "metricas": grupos, "detalle": detalle}, ensure_ascii=False, indent=1), encoding="utf-8")
