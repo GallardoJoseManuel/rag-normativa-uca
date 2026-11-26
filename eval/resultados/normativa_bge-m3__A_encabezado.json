@@ -1,0 +1,3855 @@
+{
+ "configuracion": {
+  "modelo": "BAAI/bge-m3",
+  "coleccion": "normativa_bge-m3",
+  "etiqueta": "A_encabezado",
+  "fecha": "2026-11-26",
+  "ks": [
+   1,
+   3,
+   5,
+   10
+  ],
+  "n_preguntas": 62,
+  "ms_por_pregunta": 179
+ },
+ "metricas": {
+  "TOTAL": {
+   "acierto@1": 0.7192982456140351,
+   "acierto@3": 0.8596491228070176,
+   "acierto@5": 0.9122807017543859,
+   "acierto@10": 0.9298245614035088,
+   "recall@1": 0.5371345029239766,
+   "recall@3": 0.6730994152046783,
+   "recall@5": 0.7315789473684211,
+   "recall@10": 0.7774853801169591,
+   "mrr": 0.7958089668615984,
+   "n": 57
+  },
+  "ambigua": {
+   "acierto@1": 0.7272727272727273,
+   "acierto@3": 0.8181818181818182,
+   "acierto@5": 0.8181818181818182,
+   "acierto@10": 0.9090909090909091,
+   "recall@1": 0.2833333333333333,
+   "recall@3": 0.37424242424242427,
+   "recall@5": 0.4196969696969697,
+   "recall@10": 0.5363636363636364,
+   "mrr": 0.7676767676767676,
+   "n": 11
+  },
+  "cifra": {
+   "acierto@1": 0.7272727272727273,
+   "acierto@3": 0.9090909090909091,
+   "acierto@5": 0.9090909090909091,
+   "acierto@10": 0.9090909090909091,
+   "recall@1": 0.5909090909090909,
+   "recall@3": 0.7727272727272727,
+   "recall@5": 0.7727272727272727,
+   "recall@10": 0.8181818181818182,
+   "mrr": 0.803030303030303,
+   "n": 11
+  },
+  "directa": {
+   "acierto@1": 0.8666666666666667,
+   "acierto@3": 0.9333333333333333,
+   "acierto@5": 0.9333333333333333,
+   "acierto@10": 0.9333333333333333,
+   "recall@1": 0.8,
+   "recall@3": 0.8666666666666667,
+   "recall@5": 0.9,
+   "recall@10": 0.9,
+   "mrr": 0.9,
+   "n": 15
+  },
+  "multi": {
+   "acierto@1": 0.5714285714285714,
+   "acierto@3": 0.7142857142857143,
+   "acierto@5": 1.0,
+   "acierto@10": 1.0,
+   "recall@1": 0.2857142857142857,
+   "recall@3": 0.5357142857142857,
+   "recall@5": 0.7261904761904762,
+   "recall@10": 0.7738095238095238,
+   "mrr": 0.6904761904761905,
+   "n": 7
+  },
+  "parafrase": {
+   "acierto@1": 0.6153846153846154,
+   "acierto@3": 0.8461538461538461,
+   "acierto@5": 0.9230769230769231,
+   "acierto@10": 0.9230769230769231,
+   "recall@1": 0.5384615384615384,
+   "recall@3": 0.6923076923076923,
+   "recall@5": 0.7692307692307693,
+   "recall@10": 0.8076923076923077,
+   "mrr": 0.75,
+   "n": 13
+  }
+ },
+ "detalle": [
+  {
+   "id": "q001",
+   "tipo": "directa",
+   "pregunta": "¿Qué funciones tiene la Comisión de TFG/M de la Escuela Superior de Ingeniería?",
+   "fuentes": [
+    "tfgm_esi_art_7",
+    "tfg_uca_2012_art_3"
+   ],
+   "similitud_max": 0.8101828098297119,
+   "recuperados": [
+    [
+     "tfgm_esi_art_7",
+     0.8102
+    ],
+    [
+     "tfgm_esi_art_6",
+     0.7981
+    ],
+    [
+     "tfgm_esi_art_20",
+     0.6873
+    ],
+    [
+     "tfgm_esi_art_9",
+     0.6793
+    ],
+    [
+     "tfgm_esi_art_19",
+     0.6766
+    ],
+    [
+     "tfgm_esi_art_11",
+     0.6739
+    ],
+    [
+     "tfgm_esi_art_14",
+     0.6718
+    ],
+    [
+     "tfgm_esi_art_21_p4",
+     0.6707
+    ],
+    [
+     "tfgm_esi_art_8",
+     0.659
+    ],
+    [
+     "tfgm_esi_art_3",
+     0.6536
+    ]
+   ],
+   "acierto@1": 1.0,
+   "recall@1": 0.5,
+   "acierto@3": 1.0,
+   "recall@3": 0.5,
+   "acierto@5": 1.0,
+   "recall@5": 0.5,
+   "acierto@10": 1.0,
+   "recall@10": 0.5,
+   "rr": 1.0,
+   "posicion": 1
+  },
+  {
+   "id": "q002",
+   "tipo": "directa",
+   "pregunta": "¿Quién forma parte de la Comisión de TFG/M de la ESI?",
+   "fuentes": [
+    "tfgm_esi_art_6"
+   ],
+   "similitud_max": 0.6361680626869202,
+   "recuperados": [
+    [
+     "tfgm_esi_art_6",
+     0.6362
+    ],
+    [
+     "tfgm_esi_art_11",
+     0.5933
+    ],
+    [
+     "tfgm_esi_art_7",
+     0.5922
+    ],
+    [
+     "tfgm_esi_art_8",
+     0.561
+    ],
+    [
+     "tfgm_esi_art_19",
+     0.5537
+    ],
+    [
+     "tfgm_esi_art_21_p4",
+     0.549
+    ],
+    [
+     "tfgm_esi_art_9",
+     0.5459
+    ],
+    [
+     "tfgm_esi_art_15",
+     0.5445
+    ],
+    [
+     "tfgm_esi_art_20",
+     0.5393
+    ],
+    [
+     "tfgm_esi_art_14",
+     0.5257
+    ]
+   ],
+   "acierto@1": 1.0,
+   "recall@1": 1.0,
+   "acierto@3": 1.0,
+   "recall@3": 1.0,
+   "acierto@5": 1.0,
+   "recall@5": 1.0,
+   "acierto@10": 1.0,
+   "recall@10": 1.0,
+   "rr": 1.0,
+   "posicion": 1
+  },
+  {
+   "id": "q003",
+   "tipo": "directa",
+   "pregunta": "¿Qué estructuras puede seguir el documento de un TFG en la ESI?",
+   "fuentes": [
+    "tfgm_esi_art_16"
+   ],
+   "similitud_max": 0.6357627511024475,
+   "recuperados": [
+    [
+     "tfgm_esi_art_16",
+     0.6358
+    ],
+    [
+     "tfgm_esi_art_17",
+     0.6067
+    ],
+    [
+     "tfgm_esi_art_11",
+     0.5909
+    ],
+    [
+     "tfgm_esi_art_15",
+     0.5525
+    ],
+    [
+     "tfgm_esi_art_1",
+     0.5515
+    ],
+    [
+     "tfgm_esi_art_3",
+     0.5456
+    ],
+    [
+     "tfgm_esi_art_2",
+     0.5364
+    ],
+    [
+     "tfgm_esi_art_18",
+     0.5356
+    ],
+    [
+     "tfgm_esi_disp_2",
+     0.5282
+    ],
+    [
+     "tfgm_esi_art_21_p2",
+     0.526
+    ]
+   ],
+   "acierto@1": 1.0,
+   "recall@1": 1.0,
+   "acierto@3": 1.0,
+   "recall@3": 1.0,
+   "acierto@5": 1.0,
+   "recall@5": 1.0,
+   "acierto@10": 1.0,
+   "recall@10": 1.0,
+   "rr": 1.0,
+   "posicion": 1
+  },
+  {
+   "id": "q004",
+   "tipo": "directa",
+   "pregunta": "¿Cuáles son las obligaciones del tutor académico de la universidad en unas prácticas externas?",
+   "fuentes": [
+    "practicas_uca_2012_art_30"
+   ],
+   "similitud_max": 0.763813853263855,
+   "recuperados": [
+    [
+     "practicas_uca_2012_art_16",
+     0.7638
+    ],
+    [
+     "practicas_uca_2012_art_30",
+     0.7636
+    ],
+    [
+     "practicas_uca_2012_art_28",
+     0.7262
+    ],
+    [
+     "practicas_uca_2012_art_24",
+     0.7138
+    ],
+    [
+     "practicas_uca_2012_art_29",
+     0.706
+    ],
+    [
+     "practicas_uca_2012_art_45",
+     0.7014
+    ],
+    [
+     "practicas_uca_2012_art_27",
+     0.6969
+    ],
+    [
+     "practicas_uca_2012_art_36",
+     0.6961
+    ],
+    [
+     "practicas_uca_2012_art_26",
+     0.6884
+    ],
+    [
+     "practicas_uca_2012_art_23",
+     0.6758
+    ]
+   ],
+   "acierto@1": 0.0,
+   "recall@1": 0.0,
+   "acierto@3": 1.0,
+   "recall@3": 1.0,
+   "acierto@5": 1.0,
+   "recall@5": 1.0,
+   "acierto@10": 1.0,
+   "recall@10": 1.0,
+   "rr": 0.5,
+   "posicion": 2
+  },
+  {
+   "id": "q005",
+   "tipo": "directa",
+   "pregunta": "¿Qué requisitos tiene que cumplir una entidad colaboradora para ofrecer prácticas?",
+   "fuentes": [
+    "practicas_uca_2012_art_9"
+   ],
+   "similitud_max": 0.7174332141876221,
+   "recuperados": [
+    [
+     "practicas_uca_2012_art_9",
+     0.7174
+    ],
+    [
+     "practicas_uca_2012_art_22_p2",
+     0.6875
+    ],
+    [
+     "practicas_uca_2012_art_22_p1",
+     0.6802
+    ],
+    [
+     "practicas_uca_2012_art_28",
+     0.6597
+    ],
+    [
+     "practicas_uca_2012_art_24",
+     0.6546
+    ],
+    [
+     "practicas_uca_2012_art_21",
+     0.647
+    ],
+    [
+     "practicas_uca_2012_art_16",
+     0.6276
+    ],
+    [
+     "practicas_uca_2012_art_20",
+     0.6157
+    ],
+    [
+     "practicas_uca_2012_art_38",
+     0.6093
+    ],
+    [
+     "practicas_uca_2012_art_27",
+     0.5949
+    ]
+   ],
+   "acierto@1": 1.0,
+   "recall@1": 1.0,
+   "acierto@3": 1.0,
+   "recall@3": 1.0,
+   "acierto@5": 1.0,
+   "recall@5": 1.0,
+   "acierto@10": 1.0,
+   "recall@10": 1.0,
+   "rr": 1.0,
+   "posicion": 1
+  },
+  {
+   "id": "q006",
+   "tipo": "directa",
+   "pregunta": "¿Qué diferencia hay entre prácticas curriculares y extracurriculares?",
+   "fuentes": [
+    "practicas_uca_2012_art_5"
+   ],
+   "similitud_max": 0.6954002380371094,
+   "recuperados": [
+    [
+     "practicas_uca_2012_art_5",
+     0.6954
+    ],
+    [
+     "practicas_uca_2012_art_13",
+     0.6672
+    ],
+    [
+     "practicas_uca_2012_art_35",
+     0.6528
+    ],
+    [
+     "practicas_uca_2012_art_39",
+     0.6373
+    ],
+    [
+     "practicas_uca_2012_art_44",
+     0.6337
+    ],
+    [
+     "practicas_uca_2012_art_40",
+     0.6275
+    ],
+    [
+     "practicas_uca_2012_art_17",
+     0.6009
+    ],
+    [
+     "practicas_uca_2012_art_52",
+     0.5978
+    ],
+    [
+     "practicas_uca_2012_art_14_p2",
+     0.5978
+    ],
+    [
+     "practicas_uca_2012_art_8_p1",
+     0.5952
+    ]
+   ],
+   "acierto@1": 1.0,
+   "recall@1": 1.0,
+   "acierto@3": 1.0,
+   "recall@3": 1.0,
+   "acierto@5": 1.0,
+   "recall@5": 1.0,
+   "acierto@10": 1.0,
+   "recall@10": 1.0,
+   "rr": 1.0,
+   "posicion": 1
+  },
+  {
+   "id": "q007",
+   "tipo": "directa",
+   "pregunta": "¿Qué derechos tienen los alumnos durante las prácticas externas?",
+   "fuentes": [
+    "practicas_uca_2012_art_25"
+   ],
+   "similitud_max": 0.7531793713569641,
+   "recuperados": [
+    [
+     "practicas_uca_2012_art_25",
+     0.7532
+    ],
+    [
+     "practicas_uca_2012_art_26",
+     0.703
+    ],
+    [
+     "practicas_uca_2012_art_23",
+     0.6675
+    ],
+    [
+     "practicas_uca_2012_art_8_p2",
+     0.6595
+    ],
+    [
+     "practicas_uca_2012_art_8_p1",
+     0.6555
+    ],
+    [
+     "practicas_uca_2012_art_7",
+     0.6542
+    ],
+    [
+     "practicas_uca_2012_art_6",
+     0.6513
+    ],
+    [
+     "practicas_uca_2012_art_4",
+     0.6468
+    ],
+    [
+     "practicas_uca_2012_art_2",
+     0.6425
+    ],
+    [
+     "practicas_uca_2012_art_5",
+     0.6382
+    ]
+   ],
+   "acierto@1": 1.0,
+   "recall@1": 1.0,
+   "acierto@3": 1.0,
+   "recall@3": 1.0,
+   "acierto@5": 1.0,
+   "recall@5": 1.0,
+   "acierto@10": 1.0,
+   "recall@10": 1.0,
+   "rr": 1.0,
+   "posicion": 1
+  },
+  {
+   "id": "q008",
+   "tipo": "directa",
+   "pregunta": "¿Qué tiene que incluir la memoria final de prácticas del alumno?",
+   "fuentes": [
+    "practicas_uca_2012_art_47"
+   ],
+   "similitud_max": 0.6851006746292114,
+   "recuperados": [
+    [
+     "practicas_uca_2012_art_47",
+     0.6851
+    ],
+    [
+     "practicas_uca_2012_art_46",
+     0.5979
+    ],
+    [
+     "practicas_uca_2012_art_13",
+     0.5927
+    ],
+    [
+     "practicas_uca_2012_art_26",
+     0.5861
+    ],
+    [
+     "practicas_uca_2012_art_35",
+     0.5842
+    ],
+    [
+     "practicas_uca_2012_art_17",
+     0.5788
+    ],
+    [
+     "practicas_uca_2012_art_12",
+     0.5735
+    ],
+    [
+     "practicas_uca_2012_art_48_p1",
+     0.572
+    ],
+    [
+     "practicas_uca_2012_art_48_p2",
+     0.5681
+    ],
+    [
+     "practicas_uca_2012_art_3",
+     0.5651
+    ]
+   ],
+   "acierto@1": 1.0,
+   "recall@1": 1.0,
+   "acierto@3": 1.0,
+   "recall@3": 1.0,
+   "acierto@5": 1.0,
+   "recall@5": 1.0,
+   "acierto@10": 1.0,
+   "recall@10": 1.0,
+   "rr": 1.0,
+   "posicion": 1
+  },
+  {
+   "id": "q009",
+   "tipo": "directa",
+   "pregunta": "¿Quién designa al tutor académico del trabajo fin de grado según el reglamento marco de la UCA?",
+   "fuentes": [
+    "tfg_uca_2012_art_4",
+    "tfg_uca_2012_art_6"
+   ],
+   "similitud_max": 0.7318446636199951,
+   "recuperados": [
+    [
+     "tfg_uca_2012_art_4_p1",
+     0.7318
+    ],
+    [
+     "tfg_uca_2012_art_11",
+     0.6933
+    ],
+    [
+     "tfg_uca_2012_art_4_p2",
+     0.6916
+    ],
+    [
+     "tfg_uca_2012_art_6_p2",
+     0.6881
+    ],
+    [
+     "tfg_uca_2012_art_6_p1",
+     0.6821
+    ],
+    [
+     "tfg_uca_2012_art_15",
+     0.6671
+    ],
+    [
+     "practicas_uca_2012_art_16",
+     0.6538
+    ],
+    [
+     "practicas_uca_2012_art_28",
+     0.6302
+    ],
+    [
+     "practicas_uca_2012_art_30",
+     0.6293
+    ],
+    [
+     "tfg_uca_2012_art_13",
+     0.6272
+    ]
+   ],
+   "acierto@1": 1.0,
+   "recall@1": 0.5,
+   "acierto@3": 1.0,
+   "recall@3": 0.5,
+   "acierto@5": 1.0,
+   "recall@5": 1.0,
+   "acierto@10": 1.0,
+   "recall@10": 1.0,
+   "rr": 1.0,
+   "posicion": 1
+  },
+  {
+   "id": "q010",
+   "tipo": "directa",
+   "pregunta": "¿Qué aspectos se tienen en cuenta en la calificación del TFG según el reglamento marco?",
+   "fuentes": [
+    "tfg_uca_2012_art_8"
+   ],
+   "similitud_max": 0.6074579358100891,
+   "recuperados": [
+    [
+     "tfgm_esi_art_16",
+     0.6075
+    ],
+    [
+     "tfgm_esi_art_1",
+     0.5982
+    ],
+    [
+     "tfgm_esi_art_7",
+     0.5645
+    ],
+    [
+     "tfgm_esi_art_21_p4",
+     0.5628
+    ],
+    [
+     "tfgm_esi_art_3",
+     0.5619
+    ],
+    [
+     "tfgm_esi_art_17",
+     0.5595
+    ],
+    [
+     "tfgm_esi_art_20",
+     0.5586
+    ],
+    [
+     "tfgm_esi_art_23",
+     0.5571
+    ],
+    [
+     "tfgm_esi_art_2",
+     0.5484
+    ],
+    [
+     "tfgm_esi_art_21_p2",
+     0.5447
+    ]
+   ],
+   "acierto@1": 0.0,
+   "recall@1": 0.0,
+   "acierto@3": 0.0,
+   "recall@3": 0.0,
+   "acierto@5": 0.0,
+   "recall@5": 0.0,
+   "acierto@10": 0.0,
+   "recall@10": 0.0,
+   "rr": 0.0,
+   "posicion": null
+  },
+  {
+   "id": "q011",
+   "tipo": "directa",
+   "pregunta": "¿Qué funciones tiene el tutor de un TFG/M en la ESI?",
+   "fuentes": [
+    "tfgm_esi_art_14"
+   ],
+   "similitud_max": 0.7032844424247742,
+   "recuperados": [
+    [
+     "tfgm_esi_art_14",
+     0.7033
+    ],
+    [
+     "tfgm_esi_art_15",
+     0.6607
+    ],
+    [
+     "tfgm_esi_art_13",
+     0.653
+    ],
+    [
+     "tfgm_esi_art_11",
+     0.6244
+    ],
+    [
+     "tfgm_esi_art_9",
+     0.6147
+    ],
+    [
+     "tfgm_esi_art_10",
+     0.6088
+    ],
+    [
+     "tfgm_esi_art_21_p4",
+     0.598
+    ],
+    [
+     "tfgm_esi_art_19",
+     0.5959
+    ],
+    [
+     "tfgm_esi_art_6",
+     0.5959
+    ],
+    [
+     "tfgm_esi_art_3",
+     0.5941
+    ]
+   ],
+   "acierto@1": 1.0,
+   "recall@1": 1.0,
+   "acierto@3": 1.0,
+   "recall@3": 1.0,
+   "acierto@5": 1.0,
+   "recall@5": 1.0,
+   "acierto@10": 1.0,
+   "recall@10": 1.0,
+   "rr": 1.0,
+   "posicion": 1
+  },
+  {
+   "id": "q012",
+   "tipo": "directa",
+   "pregunta": "¿Quién compone la Comisión de Prácticas en Empresas de la UCA?",
+   "fuentes": [
+    "practicas_uca_2012_art_54"
+   ],
+   "similitud_max": 0.664368212223053,
+   "recuperados": [
+    [
+     "practicas_uca_2012_art_54",
+     0.6644
+    ],
+    [
+     "practicas_uca_2012_art_55",
+     0.5775
+    ],
+    [
+     "practicas_uca_2012_art_17",
+     0.5001
+    ],
+    [
+     "practicas_uca_2012_art_48_p1",
+     0.4992
+    ],
+    [
+     "practicas_uca_2012_disp_6",
+     0.4939
+    ],
+    [
+     "practicas_uca_2012_art_32",
+     0.4936
+    ],
+    [
+     "practicas_uca_2012_art_49",
+     0.4933
+    ],
+    [
+     "practicas_uca_2012_art_31",
+     0.4931
+    ],
+    [
+     "practicas_uca_2012_art_38",
+     0.4906
+    ],
+    [
+     "practicas_uca_2012_art_14_p1",
+     0.4837
+    ]
+   ],
+   "acierto@1": 1.0,
+   "recall@1": 1.0,
+   "acierto@3": 1.0,
+   "recall@3": 1.0,
+   "acierto@5": 1.0,
+   "recall@5": 1.0,
+   "acierto@10": 1.0,
+   "recall@10": 1.0,
+   "rr": 1.0,
+   "posicion": 1
+  },
+  {
+   "id": "q013",
+   "tipo": "directa",
+   "pregunta": "¿Cuándo entró en vigor el reglamento marco de TFG y TFM de la UCA?",
+   "fuentes": [
+    "tfg_uca_2012_disp_2"
+   ],
+   "similitud_max": 0.5890974998474121,
+   "recuperados": [
+    [
+     "tfg_uca_2012_disp_2",
+     0.5891
+    ],
+    [
+     "tfg_uca_2012_art_15",
+     0.5404
+    ],
+    [
+     "practicas_uca_2012_disp_7",
+     0.5272
+    ],
+    [
+     "tfg_uca_2012_art_1",
+     0.5202
+    ],
+    [
+     "tfg_uca_2012_disp_1",
+     0.5087
+    ],
+    [
+     "tfgm_esi_art_10",
+     0.5083
+    ],
+    [
+     "tfgm_esi_art_7",
+     0.4901
+    ],
+    [
+     "tfg_uca_2012_art_6_p2",
+     0.4888
+    ],
+    [
+     "tfg_uca_2012_art_14",
+     0.4831
+    ],
+    [
+     "tfg_uca_2012_art_11",
+     0.4827
+    ]
+   ],
+   "acierto@1": 1.0,
+   "recall@1": 1.0,
+   "acierto@3": 1.0,
+   "recall@3": 1.0,
+   "acierto@5": 1.0,
+   "recall@5": 1.0,
+   "acierto@10": 1.0,
+   "recall@10": 1.0,
+   "rr": 1.0,
+   "posicion": 1
+  },
+  {
+   "id": "q014",
+   "tipo": "directa",
+   "pregunta": "¿Qué información debe aparecer en una oferta de prácticas extracurriculares?",
+   "fuentes": [
+    "practicas_uca_2012_art_39"
+   ],
+   "similitud_max": 0.7277957797050476,
+   "recuperados": [
+    [
+     "practicas_uca_2012_art_39",
+     0.7278
+    ],
+    [
+     "practicas_uca_2012_art_40",
+     0.6806
+    ],
+    [
+     "practicas_uca_2012_art_52",
+     0.6734
+    ],
+    [
+     "practicas_uca_2012_art_32",
+     0.6695
+    ],
+    [
+     "practicas_uca_2012_art_8_p1",
+     0.6443
+    ],
+    [
+     "practicas_uca_2012_art_42",
+     0.6435
+    ],
+    [
+     "practicas_uca_2012_art_41",
+     0.6266
+    ],
+    [
+     "practicas_uca_2012_art_13",
+     0.6204
+    ],
+    [
+     "practicas_uca_2012_art_26",
+     0.6203
+    ],
+    [
+     "practicas_uca_2012_art_14_p2",
+     0.6202
+    ]
+   ],
+   "acierto@1": 1.0,
+   "recall@1": 1.0,
+   "acierto@3": 1.0,
+   "recall@3": 1.0,
+   "acierto@5": 1.0,
+   "recall@5": 1.0,
+   "acierto@10": 1.0,
+   "recall@10": 1.0,
+   "rr": 1.0,
+   "posicion": 1
+  },
+  {
+   "id": "q015",
+   "tipo": "directa",
+   "pregunta": "¿Qué pasa con los TFG que empezaron a tramitarse antes de que existiera la aplicación de gestión de TFG/M?",
+   "fuentes": [
+    "tfgm_esi_disp_2"
+   ],
+   "similitud_max": 0.6595557332038879,
+   "recuperados": [
+    [
+     "tfgm_esi_disp_2",
+     0.6596
+    ],
+    [
+     "tfgm_esi_art_21_p2",
+     0.5802
+    ],
+    [
+     "tfgm_esi_art_21_p3",
+     0.5782
+    ],
+    [
+     "tfgm_esi_art_3",
+     0.5762
+    ],
+    [
+     "tfgm_esi_art_16",
+     0.5666
+    ],
+    [
+     "tfgm_esi_art_5",
+     0.5658
+    ],
+    [
+     "tfgm_esi_art_11",
+     0.5647
+    ],
+    [
+     "tfgm_esi_art_17",
+     0.5621
+    ],
+    [
+     "tfgm_esi_art_12",
+     0.5473
+    ],
+    [
+     "tfgm_esi_art_21_p4",
+     0.5463
+    ]
+   ],
+   "acierto@1": 1.0,
+   "recall@1": 1.0,
+   "acierto@3": 1.0,
+   "recall@3": 1.0,
+   "acierto@5": 1.0,
+   "recall@5": 1.0,
+   "acierto@10": 1.0,
+   "recall@10": 1.0,
+   "rr": 1.0,
+   "posicion": 1
+  },
+  {
+   "id": "q016",
+   "tipo": "parafrase",
+   "pregunta": "Si la empresa me contrata al terminar, ¿el tiempo que estuve de prácticas me cuenta como antigüedad?",
+   "fuentes": [
+    "practicas_uca_2012_art_3"
+   ],
+   "similitud_max": 0.6369836926460266,
+   "recuperados": [
+    [
+     "practicas_uca_2012_art_3",
+     0.637
+    ],
+    [
+     "practicas_uca_2012_art_13",
+     0.553
+    ],
+    [
+     "practicas_uca_2012_art_35",
+     0.5523
+    ],
+    [
+     "practicas_uca_2012_art_15",
+     0.5515
+    ],
+    [
+     "practicas_uca_2012_art_14_p2",
+     0.5416
+    ],
+    [
+     "practicas_uca_2012_art_44",
+     0.5394
+    ],
+    [
+     "practicas_uca_2012_art_17",
+     0.5351
+    ],
+    [
+     "practicas_uca_2012_art_42",
+     0.5334
+    ],
+    [
+     "practicas_uca_2012_art_47",
+     0.5288
+    ],
+    [
+     "tfgm_esi_art_12",
+     0.528
+    ]
+   ],
+   "acierto@1": 1.0,
+   "recall@1": 1.0,
+   "acierto@3": 1.0,
+   "recall@3": 1.0,
+   "acierto@5": 1.0,
+   "recall@5": 1.0,
+   "acierto@10": 1.0,
+   "recall@10": 1.0,
+   "rr": 1.0,
+   "posicion": 1
+  },
+  {
+   "id": "q017",
+   "tipo": "parafrase",
+   "pregunta": "Me puse malo y falté tres días a mis prácticas extracurriculares, ¿tengo que recuperarlos?",
+   "fuentes": [
+    "practicas_uca_2012_art_14"
+   ],
+   "similitud_max": 0.6069328784942627,
+   "recuperados": [
+    [
+     "practicas_uca_2012_art_14_p2",
+     0.6069
+    ],
+    [
+     "practicas_uca_2012_art_43",
+     0.5415
+    ],
+    [
+     "practicas_uca_2012_art_13",
+     0.5348
+    ],
+    [
+     "practicas_uca_2012_art_14_p1",
+     0.5292
+    ],
+    [
+     "practicas_uca_2012_art_42",
+     0.5284
+    ],
+    [
+     "practicas_uca_2012_art_44",
+     0.5251
+    ],
+    [
+     "practicas_uca_2012_art_17",
+     0.5207
+    ],
+    [
+     "practicas_uca_2012_art_35",
+     0.52
+    ],
+    [
+     "practicas_uca_2012_art_40",
+     0.5197
+    ],
+    [
+     "practicas_uca_2012_art_39",
+     0.517
+    ]
+   ],
+   "acierto@1": 1.0,
+   "recall@1": 1.0,
+   "acierto@3": 1.0,
+   "recall@3": 1.0,
+   "acierto@5": 1.0,
+   "recall@5": 1.0,
+   "acierto@10": 1.0,
+   "recall@10": 1.0,
+   "rr": 1.0,
+   "posicion": 1
+  },
+  {
+   "id": "q018",
+   "tipo": "parafrase",
+   "pregunta": "¿Quién me pone la nota de las prácticas que van en el plan de estudios?",
+   "fuentes": [
+    "practicas_uca_2012_art_48",
+    "practicas_uca_2012_art_30"
+   ],
+   "similitud_max": 0.6450393199920654,
+   "recuperados": [
+    [
+     "practicas_uca_2012_art_48_p1",
+     0.645
+    ],
+    [
+     "practicas_uca_2012_art_47",
+     0.6259
+    ],
+    [
+     "practicas_uca_2012_art_46",
+     0.6142
+    ],
+    [
+     "practicas_uca_2012_art_49",
+     0.6046
+    ],
+    [
+     "practicas_uca_2012_art_48_p2",
+     0.5862
+    ],
+    [
+     "practicas_uca_2012_art_36",
+     0.5841
+    ],
+    [
+     "practicas_uca_2012_art_45",
+     0.5831
+    ],
+    [
+     "practicas_uca_2012_art_39",
+     0.5804
+    ],
+    [
+     "practicas_uca_2012_art_33",
+     0.5803
+    ],
+    [
+     "practicas_uca_2012_art_55",
+     0.5751
+    ]
+   ],
+   "acierto@1": 1.0,
+   "recall@1": 0.5,
+   "acierto@3": 1.0,
+   "recall@3": 0.5,
+   "acierto@5": 1.0,
+   "recall@5": 0.5,
+   "acierto@10": 1.0,
+   "recall@10": 0.5,
+   "rr": 1.0,
+   "posicion": 1
+  },
+  {
+   "id": "q019",
+   "tipo": "parafrase",
+   "pregunta": "Tengo una idea para el TFG, ¿puedo llevársela a un profesor de la ESI para que me la proponga?",
+   "fuentes": [
+    "tfgm_esi_art_10",
+    "tfg_uca_2012_art_6"
+   ],
+   "similitud_max": 0.6998734474182129,
+   "recuperados": [
+    [
+     "tfgm_esi_art_11",
+     0.6999
+    ],
+    [
+     "tfgm_esi_art_10",
+     0.6724
+    ],
+    [
+     "tfgm_esi_art_9",
+     0.6692
+    ],
+    [
+     "tfgm_esi_art_6",
+     0.5934
+    ],
+    [
+     "tfgm_esi_art_15",
+     0.591
+    ],
+    [
+     "tfgm_esi_art_24",
+     0.5601
+    ],
+    [
+     "tfgm_esi_art_5",
+     0.5597
+    ],
+    [
+     "tfgm_esi_art_13",
+     0.5514
+    ],
+    [
+     "tfgm_esi_art_3",
+     0.551
+    ],
+    [
+     "tfgm_esi_art_14",
+     0.5503
+    ]
+   ],
+   "acierto@1": 0.0,
+   "recall@1": 0.0,
+   "acierto@3": 1.0,
+   "recall@3": 0.5,
+   "acierto@5": 1.0,
+   "recall@5": 0.5,
+   "acierto@10": 1.0,
+   "recall@10": 0.5,
+   "rr": 0.5,
+   "posicion": 2
+  },
+  {
+   "id": "q020",
+   "tipo": "parafrase",
+   "pregunta": "Si me hago daño durante las prácticas, ¿qué seguro me cubre?",
+   "fuentes": [
+    "practicas_uca_2012_art_12",
+    "practicas_uca_2012_art_23"
+   ],
+   "similitud_max": 0.6913996934890747,
+   "recuperados": [
+    [
+     "practicas_uca_2012_art_12",
+     0.6914
+    ],
+    [
+     "practicas_uca_2012_art_23",
+     0.5804
+    ],
+    [
+     "practicas_uca_2012_art_20",
+     0.5275
+    ],
+    [
+     "practicas_uca_2012_art_25",
+     0.5272
+    ],
+    [
+     "practicas_uca_2012_art_17",
+     0.5128
+    ],
+    [
+     "practicas_uca_2012_art_26",
+     0.5126
+    ],
+    [
+     "practicas_uca_2012_art_14_p2",
+     0.504
+    ],
+    [
+     "practicas_uca_2012_disp_7",
+     0.5026
+    ],
+    [
+     "practicas_uca_2012_art_1",
+     0.4951
+    ],
+    [
+     "practicas_uca_2012_art_14_p1",
+     0.4895
+    ]
+   ],
+   "acierto@1": 1.0,
+   "recall@1": 0.5,
+   "acierto@3": 1.0,
+   "recall@3": 1.0,
+   "acierto@5": 1.0,
+   "recall@5": 1.0,
+   "acierto@10": 1.0,
+   "recall@10": 1.0,
+   "rr": 1.0,
+   "posicion": 1
+  },
+  {
+   "id": "q021",
+   "tipo": "parafrase",
+   "pregunta": "Ya he dicho que no a dos ofertas que me salieron en la plataforma de prácticas, ¿me puede pasar algo?",
+   "fuentes": [
+    "practicas_uca_2012_art_40"
+   ],
+   "similitud_max": 0.5355932116508484,
+   "recuperados": [
+    [
+     "practicas_uca_2012_art_18",
+     0.5356
+    ],
+    [
+     "practicas_uca_2012_art_42",
+     0.5348
+    ],
+    [
+     "practicas_uca_2012_art_43",
+     0.5181
+    ],
+    [
+     "practicas_uca_2012_art_40",
+     0.5145
+    ],
+    [
+     "practicas_uca_2012_art_17",
+     0.5076
+    ],
+    [
+     "practicas_uca_2012_art_34",
+     0.5054
+    ],
+    [
+     "practicas_uca_2012_art_53",
+     0.5049
+    ],
+    [
+     "practicas_uca_2012_art_52",
+     0.4929
+    ],
+    [
+     "practicas_uca_2012_art_3",
+     0.492
+    ],
+    [
+     "practicas_uca_2012_art_32",
+     0.4901
+    ]
+   ],
+   "acierto@1": 0.0,
+   "recall@1": 0.0,
+   "acierto@3": 0.0,
+   "recall@3": 0.0,
+   "acierto@5": 1.0,
+   "recall@5": 1.0,
+   "acierto@10": 1.0,
+   "recall@10": 1.0,
+   "rr": 0.25,
+   "posicion": 4
+  },
+  {
+   "id": "q022",
+   "tipo": "ambigua",
+   "pregunta": "¿Puedo hacer el TFG con un tutor de la escuela y otro de una empresa?",
+   "fuentes": [
+    "tfgm_esi_art_10",
+    "tfg_uca_2012_art_4"
+   ],
+   "similitud_max": 0.6170914769172668,
+   "recuperados": [
+    [
+     "tfgm_esi_art_4",
+     0.6171
+    ],
+    [
+     "tfgm_esi_art_14",
+     0.6109
+    ],
+    [
+     "tfgm_esi_art_10",
+     0.6082
+    ],
+    [
+     "tfgm_esi_art_13",
+     0.601
+    ],
+    [
+     "tfg_uca_2012_art_4_p2",
+     0.5936
+    ],
+    [
+     "tfgm_esi_art_9",
+     0.5869
+    ],
+    [
+     "tfgm_esi_art_5",
+     0.577
+    ],
+    [
+     "tfgm_esi_art_22_p1",
+     0.5721
+    ],
+    [
+     "tfgm_esi_art_3",
+     0.5672
+    ],
+    [
+     "tfgm_esi_art_19",
+     0.5633
+    ]
+   ],
+   "acierto@1": 0.0,
+   "recall@1": 0.0,
+   "acierto@3": 1.0,
+   "recall@3": 0.5,
+   "acierto@5": 1.0,
+   "recall@5": 1.0,
+   "acierto@10": 1.0,
+   "recall@10": 1.0,
+   "rr": 0.3333333333333333,
+   "posicion": 3
+  },
+  {
+   "id": "q023",
+   "tipo": "parafrase",
+   "pregunta": "¿Puedo hacer el TFG mientras estoy de Erasmus?",
+   "fuentes": [
+    "tfgm_esi_art_5"
+   ],
+   "similitud_max": 0.6862852573394775,
+   "recuperados": [
+    [
+     "tfgm_esi_art_5",
+     0.6863
+    ],
+    [
+     "tfgm_esi_art_21_p2",
+     0.6117
+    ],
+    [
+     "tfgm_esi_art_11",
+     0.6068
+    ],
+    [
+     "tfgm_esi_art_21_p3",
+     0.6052
+    ],
+    [
+     "tfgm_esi_art_22_p2",
+     0.605
+    ],
+    [
+     "tfgm_esi_art_3",
+     0.6005
+    ],
+    [
+     "tfgm_esi_art_10",
+     0.591
+    ],
+    [
+     "tfgm_esi_disp_2",
+     0.5876
+    ],
+    [
+     "tfgm_esi_art_22_p1",
+     0.5861
+    ],
+    [
+     "tfgm_esi_art_17",
+     0.5809
+    ]
+   ],
+   "acierto@1": 1.0,
+   "recall@1": 1.0,
+   "acierto@3": 1.0,
+   "recall@3": 1.0,
+   "acierto@5": 1.0,
+   "recall@5": 1.0,
+   "acierto@10": 1.0,
+   "recall@10": 1.0,
+   "rr": 1.0,
+   "posicion": 1
+  },
+  {
+   "id": "q024",
+   "tipo": "parafrase",
+   "pregunta": "Ya trabajo con contrato en una empresa, ¿puedo hacer las prácticas allí mismo?",
+   "fuentes": [
+    "practicas_uca_2012_art_8",
+    "practicas_uca_2012_art_18"
+   ],
+   "similitud_max": 0.5739859342575073,
+   "recuperados": [
+    [
+     "practicas_uca_2012_art_3",
+     0.574
+    ],
+    [
+     "practicas_uca_2012_art_18",
+     0.5617
+    ],
+    [
+     "practicas_uca_2012_art_17",
+     0.5615
+    ],
+    [
+     "practicas_uca_2012_art_32",
+     0.5531
+    ],
+    [
+     "practicas_uca_2012_art_15",
+     0.5517
+    ],
+    [
+     "practicas_uca_2012_art_8_p2",
+     0.5496
+    ],
+    [
+     "practicas_uca_2012_art_35",
+     0.5495
+    ],
+    [
+     "practicas_uca_2012_art_11",
+     0.548
+    ],
+    [
+     "practicas_uca_2012_art_14_p1",
+     0.5466
+    ],
+    [
+     "practicas_uca_2012_art_26",
+     0.5446
+    ]
+   ],
+   "acierto@1": 0.0,
+   "recall@1": 0.0,
+   "acierto@3": 1.0,
+   "recall@3": 0.5,
+   "acierto@5": 1.0,
+   "recall@5": 0.5,
+   "acierto@10": 1.0,
+   "recall@10": 1.0,
+   "rr": 0.5,
+   "posicion": 2
+  },
+  {
+   "id": "q025",
+   "tipo": "parafrase",
+   "pregunta": "¿Quién me va a supervisar dentro de la empresa?",
+   "fuentes": [
+    "practicas_uca_2012_art_16",
+    "practicas_uca_2012_art_28",
+    "practicas_uca_2012_art_22"
+   ],
+   "similitud_max": 0.5116791129112244,
+   "recuperados": [
+    [
+     "practicas_uca_2012_art_54",
+     0.5117
+    ],
+    [
+     "practicas_uca_2012_art_37",
+     0.4737
+    ],
+    [
+     "practicas_uca_2012_art_31",
+     0.4722
+    ],
+    [
+     "practicas_uca_2012_art_55",
+     0.4658
+    ],
+    [
+     "practicas_uca_2012_art_45",
+     0.4625
+    ],
+    [
+     "tfgm_esi_art_14",
+     0.459
+    ],
+    [
+     "tfg_uca_2012_art_11",
+     0.4539
+    ],
+    [
+     "tfgm_esi_art_21_p4",
+     0.4535
+    ],
+    [
+     "practicas_uca_2012_art_49",
+     0.4514
+    ],
+    [
+     "tfgm_esi_art_13",
+     0.4514
+    ]
+   ],
+   "acierto@1": 0.0,
+   "recall@1": 0.0,
+   "acierto@3": 0.0,
+   "recall@3": 0.0,
+   "acierto@5": 0.0,
+   "recall@5": 0.0,
+   "acierto@10": 0.0,
+   "recall@10": 0.0,
+   "rr": 0.0,
+   "posicion": null
+  },
+  {
+   "id": "q026",
+   "tipo": "parafrase",
+   "pregunta": "No me convence el tutor y el tema que me han dado de forma provisional, ¿puedo quejarme?",
+   "fuentes": [
+    "tfg_uca_2012_art_6"
+   ],
+   "similitud_max": 0.6242577433586121,
+   "recuperados": [
+    [
+     "tfg_uca_2012_art_6_p2",
+     0.6243
+    ],
+    [
+     "tfg_uca_2012_art_6_p1",
+     0.5843
+    ],
+    [
+     "practicas_uca_2012_art_17",
+     0.5643
+    ],
+    [
+     "tfg_uca_2012_art_4_p2",
+     0.5556
+    ],
+    [
+     "tfg_uca_2012_art_4_p1",
+     0.5462
+    ],
+    [
+     "practicas_uca_2012_art_30",
+     0.5354
+    ],
+    [
+     "practicas_uca_2012_art_48_p1",
+     0.5293
+    ],
+    [
+     "practicas_uca_2012_art_46",
+     0.5287
+    ],
+    [
+     "tfgm_esi_art_14",
+     0.5284
+    ],
+    [
+     "practicas_uca_2012_art_43",
+     0.5278
+    ]
+   ],
+   "acierto@1": 1.0,
+   "recall@1": 1.0,
+   "acierto@3": 1.0,
+   "recall@3": 1.0,
+   "acierto@5": 1.0,
+   "recall@5": 1.0,
+   "acierto@10": 1.0,
+   "recall@10": 1.0,
+   "rr": 1.0,
+   "posicion": 1
+  },
+  {
+   "id": "q027",
+   "tipo": "parafrase",
+   "pregunta": "¿Cómo tengo que llamar al archivo cuando suba el TFG?",
+   "fuentes": [
+    "tfgm_esi_art_21"
+   ],
+   "similitud_max": 0.5444440841674805,
+   "recuperados": [
+    [
+     "tfgm_esi_art_21_p2",
+     0.5444
+    ],
+    [
+     "tfgm_esi_art_21_p4",
+     0.5144
+    ],
+    [
+     "tfgm_esi_art_3",
+     0.511
+    ],
+    [
+     "tfgm_esi_art_17",
+     0.5067
+    ],
+    [
+     "tfgm_esi_art_16",
+     0.5022
+    ],
+    [
+     "tfgm_esi_art_11",
+     0.4972
+    ],
+    [
+     "tfgm_esi_art_21_p3",
+     0.4777
+    ],
+    [
+     "tfgm_esi_disp_2",
+     0.4751
+    ],
+    [
+     "tfgm_esi_art_22_p1",
+     0.4751
+    ],
+    [
+     "tfgm_esi_art_10",
+     0.4701
+    ]
+   ],
+   "acierto@1": 1.0,
+   "recall@1": 1.0,
+   "acierto@3": 1.0,
+   "recall@3": 1.0,
+   "acierto@5": 1.0,
+   "recall@5": 1.0,
+   "acierto@10": 1.0,
+   "recall@10": 1.0,
+   "rr": 1.0,
+   "posicion": 1
+  },
+  {
+   "id": "q028",
+   "tipo": "parafrase",
+   "pregunta": "¿Las prácticas en empresa se cobran?",
+   "fuentes": [
+    "practicas_uca_2012_art_20",
+    "practicas_uca_2012_art_25"
+   ],
+   "similitud_max": 0.5533124804496765,
+   "recuperados": [
+    [
+     "practicas_uca_2012_art_14_p1",
+     0.5533
+    ],
+    [
+     "practicas_uca_2012_art_20",
+     0.5492
+    ],
+    [
+     "practicas_uca_2012_art_3",
+     0.5458
+    ],
+    [
+     "practicas_uca_2012_art_14_p2",
+     0.5396
+    ],
+    [
+     "practicas_uca_2012_art_12",
+     0.5323
+    ],
+    [
+     "practicas_uca_2012_art_32",
+     0.532
+    ],
+    [
+     "practicas_uca_2012_art_33",
+     0.5231
+    ],
+    [
+     "practicas_uca_2012_art_39",
+     0.521
+    ],
+    [
+     "practicas_uca_2012_art_17",
+     0.5199
+    ],
+    [
+     "practicas_uca_2012_art_54",
+     0.516
+    ]
+   ],
+   "acierto@1": 0.0,
+   "recall@1": 0.0,
+   "acierto@3": 1.0,
+   "recall@3": 0.5,
+   "acierto@5": 1.0,
+   "recall@5": 0.5,
+   "acierto@10": 1.0,
+   "recall@10": 0.5,
+   "rr": 0.5,
+   "posicion": 2
+  },
+  {
+   "id": "q029",
+   "tipo": "parafrase",
+   "pregunta": "¿Puedo parar un tiempo mis prácticas extracurriculares y volver después?",
+   "fuentes": [
+    "practicas_uca_2012_art_17"
+   ],
+   "similitud_max": 0.695641279220581,
+   "recuperados": [
+    [
+     "practicas_uca_2012_art_17",
+     0.6956
+    ],
+    [
+     "practicas_uca_2012_art_44",
+     0.6949
+    ],
+    [
+     "practicas_uca_2012_art_35",
+     0.6864
+    ],
+    [
+     "practicas_uca_2012_art_43",
+     0.6646
+    ],
+    [
+     "practicas_uca_2012_art_14_p2",
+     0.6479
+    ],
+    [
+     "practicas_uca_2012_art_13",
+     0.6437
+    ],
+    [
+     "practicas_uca_2012_art_34",
+     0.6144
+    ],
+    [
+     "practicas_uca_2012_art_42",
+     0.6129
+    ],
+    [
+     "practicas_uca_2012_art_39",
+     0.6111
+    ],
+    [
+     "practicas_uca_2012_art_5",
+     0.6097
+    ]
+   ],
+   "acierto@1": 1.0,
+   "recall@1": 1.0,
+   "acierto@3": 1.0,
+   "recall@3": 1.0,
+   "acierto@5": 1.0,
+   "recall@5": 1.0,
+   "acierto@10": 1.0,
+   "recall@10": 1.0,
+   "rr": 1.0,
+   "posicion": 1
+  },
+  {
+   "id": "q030",
+   "tipo": "cifra",
+   "pregunta": "¿Cuántas horas a la semana se hacen de prácticas?",
+   "fuentes": [
+    "practicas_uca_2012_art_14"
+   ],
+   "similitud_max": 0.6797128319740295,
+   "recuperados": [
+    [
+     "practicas_uca_2012_art_14_p1",
+     0.6797
+    ],
+    [
+     "practicas_uca_2012_art_13",
+     0.6074
+    ],
+    [
+     "practicas_uca_2012_art_14_p2",
+     0.6037
+    ],
+    [
+     "practicas_uca_2012_art_17",
+     0.5817
+    ],
+    [
+     "practicas_uca_2012_art_44",
+     0.5513
+    ],
+    [
+     "practicas_uca_2012_art_35",
+     0.5472
+    ],
+    [
+     "practicas_uca_2012_art_39",
+     0.5452
+    ],
+    [
+     "practicas_uca_2012_art_15",
+     0.5354
+    ],
+    [
+     "practicas_uca_2012_art_47",
+     0.534
+    ],
+    [
+     "practicas_uca_2012_art_5",
+     0.5275
+    ]
+   ],
+   "acierto@1": 1.0,
+   "recall@1": 1.0,
+   "acierto@3": 1.0,
+   "recall@3": 1.0,
+   "acierto@5": 1.0,
+   "recall@5": 1.0,
+   "acierto@10": 1.0,
+   "recall@10": 1.0,
+   "rr": 1.0,
+   "posicion": 1
+  },
+  {
+   "id": "q031",
+   "tipo": "cifra",
+   "pregunta": "¿Cuánto pueden durar como mucho las prácticas extracurriculares?",
+   "fuentes": [
+    "practicas_uca_2012_art_13",
+    "practicas_uca_2012_art_44"
+   ],
+   "similitud_max": 0.7166349291801453,
+   "recuperados": [
+    [
+     "practicas_uca_2012_art_13",
+     0.7166
+    ],
+    [
+     "practicas_uca_2012_art_44",
+     0.7127
+    ],
+    [
+     "practicas_uca_2012_art_35",
+     0.6987
+    ],
+    [
+     "practicas_uca_2012_art_17",
+     0.6745
+    ],
+    [
+     "practicas_uca_2012_art_39",
+     0.635
+    ],
+    [
+     "practicas_uca_2012_art_5",
+     0.6331
+    ],
+    [
+     "practicas_uca_2012_art_14_p2",
+     0.6311
+    ],
+    [
+     "practicas_uca_2012_art_14_p1",
+     0.6246
+    ],
+    [
+     "practicas_uca_2012_art_40",
+     0.6035
+    ],
+    [
+     "practicas_uca_2012_art_42",
+     0.6015
+    ]
+   ],
+   "acierto@1": 1.0,
+   "recall@1": 0.5,
+   "acierto@3": 1.0,
+   "recall@3": 1.0,
+   "acierto@5": 1.0,
+   "recall@5": 1.0,
+   "acierto@10": 1.0,
+   "recall@10": 1.0,
+   "rr": 1.0,
+   "posicion": 1
+  },
+  {
+   "id": "q032",
+   "tipo": "cifra",
+   "pregunta": "¿Qué parte de la carrera tengo que llevar aprobada para poder hacer prácticas voluntarias?",
+   "fuentes": [
+    "practicas_uca_2012_art_8"
+   ],
+   "similitud_max": 0.6241010427474976,
+   "recuperados": [
+    [
+     "practicas_uca_2012_art_42",
+     0.6241
+    ],
+    [
+     "practicas_uca_2012_art_8_p1",
+     0.6088
+    ],
+    [
+     "practicas_uca_2012_art_40",
+     0.6058
+    ],
+    [
+     "practicas_uca_2012_art_48_p1",
+     0.5977
+    ],
+    [
+     "practicas_uca_2012_art_26",
+     0.5975
+    ],
+    [
+     "practicas_uca_2012_art_5",
+     0.5928
+    ],
+    [
+     "practicas_uca_2012_art_9",
+     0.5858
+    ],
+    [
+     "practicas_uca_2012_art_23",
+     0.5831
+    ],
+    [
+     "practicas_uca_2012_art_4",
+     0.5829
+    ],
+    [
+     "practicas_uca_2012_art_3",
+     0.5822
+    ]
+   ],
+   "acierto@1": 0.0,
+   "recall@1": 0.0,
+   "acierto@3": 1.0,
+   "recall@3": 1.0,
+   "acierto@5": 1.0,
+   "recall@5": 1.0,
+   "acierto@10": 1.0,
+   "recall@10": 1.0,
+   "rr": 0.5,
+   "posicion": 2
+  },
+  {
+   "id": "q033",
+   "tipo": "cifra",
+   "pregunta": "¿Cuánto tiempo tengo para presentar el TFG delante del tribunal en la ESI?",
+   "fuentes": [
+    "tfgm_esi_art_22"
+   ],
+   "similitud_max": 0.6368131637573242,
+   "recuperados": [
+    [
+     "tfgm_esi_art_22_p1",
+     0.6368
+    ],
+    [
+     "tfgm_esi_art_11",
+     0.6347
+    ],
+    [
+     "tfgm_esi_art_21_p2",
+     0.6296
+    ],
+    [
+     "tfgm_esi_art_21_p4",
+     0.6284
+    ],
+    [
+     "tfgm_esi_art_22_p2",
+     0.6262
+    ],
+    [
+     "tfgm_esi_art_22_p3",
+     0.6117
+    ],
+    [
+     "tfgm_esi_art_12",
+     0.5884
+    ],
+    [
+     "tfgm_esi_art_21_p3",
+     0.5846
+    ],
+    [
+     "tfgm_esi_art_9",
+     0.5709
+    ],
+    [
+     "tfgm_esi_art_17",
+     0.5676
+    ]
+   ],
+   "acierto@1": 1.0,
+   "recall@1": 1.0,
+   "acierto@3": 1.0,
+   "recall@3": 1.0,
+   "acierto@5": 1.0,
+   "recall@5": 1.0,
+   "acierto@10": 1.0,
+   "recall@10": 1.0,
+   "rr": 1.0,
+   "posicion": 1
+  },
+  {
+   "id": "q034",
+   "tipo": "cifra",
+   "pregunta": "En la ESI, ¿cuántas veces puedo suspender el mismo TFG antes de tener que pedir uno nuevo?",
+   "fuentes": [
+    "tfgm_esi_art_12"
+   ],
+   "similitud_max": 0.6204124093055725,
+   "recuperados": [
+    [
+     "tfgm_esi_art_12",
+     0.6204
+    ],
+    [
+     "tfgm_esi_art_11",
+     0.5889
+    ],
+    [
+     "tfgm_esi_art_22_p2",
+     0.5479
+    ],
+    [
+     "tfgm_esi_disp_2",
+     0.541
+    ],
+    [
+     "tfgm_esi_art_9",
+     0.5293
+    ],
+    [
+     "tfgm_esi_art_5",
+     0.5245
+    ],
+    [
+     "tfgm_esi_art_20",
+     0.5165
+    ],
+    [
+     "tfgm_esi_art_24",
+     0.5146
+    ],
+    [
+     "tfgm_esi_art_21_p4",
+     0.5131
+    ],
+    [
+     "tfgm_esi_art_10",
+     0.5123
+    ]
+   ],
+   "acierto@1": 1.0,
+   "recall@1": 1.0,
+   "acierto@3": 1.0,
+   "recall@3": 1.0,
+   "acierto@5": 1.0,
+   "recall@5": 1.0,
+   "acierto@10": 1.0,
+   "recall@10": 1.0,
+   "rr": 1.0,
+   "posicion": 1
+  },
+  {
+   "id": "q035",
+   "tipo": "cifra",
+   "pregunta": "¿Qué nota necesita un TFG para que lo suban al repositorio de la universidad?",
+   "fuentes": [
+    "tfg_uca_2012_art_7"
+   ],
+   "similitud_max": 0.5981597900390625,
+   "recuperados": [
+    [
+     "tfgm_esi_art_10",
+     0.5982
+    ],
+    [
+     "tfgm_esi_art_11",
+     0.5892
+    ],
+    [
+     "tfgm_esi_art_21_p2",
+     0.5889
+    ],
+    [
+     "tfgm_esi_art_17",
+     0.5771
+    ],
+    [
+     "tfgm_esi_art_3",
+     0.5703
+    ],
+    [
+     "tfgm_esi_art_23",
+     0.5687
+    ],
+    [
+     "tfgm_esi_art_12",
+     0.5663
+    ],
+    [
+     "tfgm_esi_art_16",
+     0.561
+    ],
+    [
+     "tfgm_esi_art_21_p4",
+     0.5563
+    ],
+    [
+     "tfgm_esi_art_5",
+     0.5551
+    ]
+   ],
+   "acierto@1": 0.0,
+   "recall@1": 0.0,
+   "acierto@3": 0.0,
+   "recall@3": 0.0,
+   "acierto@5": 0.0,
+   "recall@5": 0.0,
+   "acierto@10": 0.0,
+   "recall@10": 0.0,
+   "rr": 0.0,
+   "posicion": null
+  },
+  {
+   "id": "q036",
+   "tipo": "cifra",
+   "pregunta": "¿Cuántas matrículas de honor se pueden dar en el TFG?",
+   "fuentes": [
+    "tfg_uca_2012_art_8",
+    "tfgm_esi_art_23"
+   ],
+   "similitud_max": 0.68707674741745,
+   "recuperados": [
+    [
+     "tfgm_esi_art_23",
+     0.6871
+    ],
+    [
+     "tfgm_esi_art_22_p2",
+     0.5311
+    ],
+    [
+     "tfgm_esi_art_19",
+     0.5294
+    ],
+    [
+     "tfgm_esi_art_11",
+     0.5251
+    ],
+    [
+     "tfgm_esi_art_5",
+     0.5223
+    ],
+    [
+     "tfgm_esi_art_10",
+     0.5189
+    ],
+    [
+     "tfgm_esi_art_12",
+     0.5171
+    ],
+    [
+     "tfgm_esi_art_22_p1",
+     0.513
+    ],
+    [
+     "tfgm_esi_art_7",
+     0.5092
+    ],
+    [
+     "tfgm_esi_art_21_p4",
+     0.5018
+    ]
+   ],
+   "acierto@1": 1.0,
+   "recall@1": 0.5,
+   "acierto@3": 1.0,
+   "recall@3": 0.5,
+   "acierto@5": 1.0,
+   "recall@5": 0.5,
+   "acierto@10": 1.0,
+   "recall@10": 0.5,
+   "rr": 1.0,
+   "posicion": 1
+  },
+  {
+   "id": "q037",
+   "tipo": "cifra",
+   "pregunta": "Cuando termine las prácticas, ¿cuánto tiempo tengo para mandar la memoria?",
+   "fuentes": [
+    "practicas_uca_2012_art_47"
+   ],
+   "similitud_max": 0.7027647495269775,
+   "recuperados": [
+    [
+     "practicas_uca_2012_art_47",
+     0.7028
+    ],
+    [
+     "practicas_uca_2012_art_46",
+     0.6064
+    ],
+    [
+     "practicas_uca_2012_art_13",
+     0.5989
+    ],
+    [
+     "practicas_uca_2012_art_35",
+     0.5807
+    ],
+    [
+     "practicas_uca_2012_art_17",
+     0.5769
+    ],
+    [
+     "practicas_uca_2012_art_15",
+     0.5744
+    ],
+    [
+     "practicas_uca_2012_art_14_p1",
+     0.568
+    ],
+    [
+     "practicas_uca_2012_art_14_p2",
+     0.5636
+    ],
+    [
+     "practicas_uca_2012_art_44",
+     0.5628
+    ],
+    [
+     "practicas_uca_2012_art_42",
+     0.5612
+    ]
+   ],
+   "acierto@1": 1.0,
+   "recall@1": 1.0,
+   "acierto@3": 1.0,
+   "recall@3": 1.0,
+   "acierto@5": 1.0,
+   "recall@5": 1.0,
+   "acierto@10": 1.0,
+   "recall@10": 1.0,
+   "rr": 1.0,
+   "posicion": 1
+  },
+  {
+   "id": "q038",
+   "tipo": "cifra",
+   "pregunta": "¿Con cuánta antelación le tengo que pasar el TFG terminado a mi tutor?",
+   "fuentes": [
+    "tfgm_esi_art_21"
+   ],
+   "similitud_max": 0.6883435845375061,
+   "recuperados": [
+    [
+     "tfgm_esi_art_21_p2",
+     0.6883
+    ],
+    [
+     "tfgm_esi_art_21_p4",
+     0.6516
+    ],
+    [
+     "tfgm_esi_art_9",
+     0.6336
+    ],
+    [
+     "tfg_uca_2012_art_6_p2",
+     0.6318
+    ],
+    [
+     "tfgm_esi_disp_2",
+     0.6285
+    ],
+    [
+     "tfgm_esi_art_14",
+     0.6271
+    ],
+    [
+     "tfgm_esi_art_3",
+     0.6266
+    ],
+    [
+     "tfgm_esi_art_10",
+     0.6261
+    ],
+    [
+     "tfgm_esi_art_22_p2",
+     0.6237
+    ],
+    [
+     "tfgm_esi_art_13",
+     0.6223
+    ]
+   ],
+   "acierto@1": 1.0,
+   "recall@1": 1.0,
+   "acierto@3": 1.0,
+   "recall@3": 1.0,
+   "acierto@5": 1.0,
+   "recall@5": 1.0,
+   "acierto@10": 1.0,
+   "recall@10": 1.0,
+   "rr": 1.0,
+   "posicion": 1
+  },
+  {
+   "id": "q039",
+   "tipo": "multi",
+   "pregunta": "Si termino las prácticas de la carrera, ¿puedo quedarme en la empresa con unas extracurriculares? ¿Cuánto tiempo?",
+   "fuentes": [
+    "practicas_uca_2012_art_35",
+    "practicas_uca_2012_art_13"
+   ],
+   "similitud_max": 0.7053776383399963,
+   "recuperados": [
+    [
+     "practicas_uca_2012_art_35",
+     0.7054
+    ],
+    [
+     "practicas_uca_2012_art_44",
+     0.6834
+    ],
+    [
+     "practicas_uca_2012_art_13",
+     0.6735
+    ],
+    [
+     "practicas_uca_2012_art_17",
+     0.6518
+    ],
+    [
+     "practicas_uca_2012_art_14_p2",
+     0.631
+    ],
+    [
+     "practicas_uca_2012_art_39",
+     0.63
+    ],
+    [
+     "practicas_uca_2012_art_3",
+     0.6229
+    ],
+    [
+     "practicas_uca_2012_art_42",
+     0.6108
+    ],
+    [
+     "practicas_uca_2012_art_14_p1",
+     0.6094
+    ],
+    [
+     "practicas_uca_2012_art_40",
+     0.606
+    ]
+   ],
+   "acierto@1": 1.0,
+   "recall@1": 0.5,
+   "acierto@3": 1.0,
+   "recall@3": 1.0,
+   "acierto@5": 1.0,
+   "recall@5": 1.0,
+   "acierto@10": 1.0,
+   "recall@10": 1.0,
+   "rr": 1.0,
+   "posicion": 1
+  },
+  {
+   "id": "q040",
+   "tipo": "multi",
+   "pregunta": "¿Cómo dejo unas prácticas que ya me han asignado?",
+   "fuentes": [
+    "practicas_uca_2012_art_34",
+    "practicas_uca_2012_art_43"
+   ],
+   "similitud_max": 0.6380002498626709,
+   "recuperados": [
+    [
+     "practicas_uca_2012_art_34",
+     0.638
+    ],
+    [
+     "practicas_uca_2012_art_43",
+     0.6303
+    ],
+    [
+     "practicas_uca_2012_art_42",
+     0.616
+    ],
+    [
+     "practicas_uca_2012_art_17",
+     0.6137
+    ],
+    [
+     "practicas_uca_2012_art_15",
+     0.5996
+    ],
+    [
+     "practicas_uca_2012_art_33",
+     0.5797
+    ],
+    [
+     "practicas_uca_2012_art_32",
+     0.5768
+    ],
+    [
+     "practicas_uca_2012_art_35",
+     0.5764
+    ],
+    [
+     "practicas_uca_2012_art_14_p2",
+     0.5702
+    ],
+    [
+     "practicas_uca_2012_art_44",
+     0.5694
+    ]
+   ],
+   "acierto@1": 1.0,
+   "recall@1": 0.5,
+   "acierto@3": 1.0,
+   "recall@3": 1.0,
+   "acierto@5": 1.0,
+   "recall@5": 1.0,
+   "acierto@10": 1.0,
+   "recall@10": 1.0,
+   "rr": 1.0,
+   "posicion": 1
+  },
+  {
+   "id": "q041",
+   "tipo": "multi",
+   "pregunta": "Al acabar las prácticas, ¿quién me da un papel que demuestre lo que he hecho?",
+   "fuentes": [
+    "practicas_uca_2012_art_22",
+    "practicas_uca_2012_art_25",
+    "practicas_uca_2012_art_48",
+    "practicas_uca_2012_art_23"
+   ],
+   "similitud_max": 0.6521446108818054,
+   "recuperados": [
+    [
+     "practicas_uca_2012_art_47",
+     0.6521
+    ],
+    [
+     "practicas_uca_2012_art_46",
+     0.6275
+    ],
+    [
+     "practicas_uca_2012_art_48_p2",
+     0.6135
+    ],
+    [
+     "practicas_uca_2012_art_49",
+     0.5982
+    ],
+    [
+     "practicas_uca_2012_art_48_p1",
+     0.5951
+    ],
+    [
+     "practicas_uca_2012_art_15",
+     0.5684
+    ],
+    [
+     "practicas_uca_2012_art_42",
+     0.5649
+    ],
+    [
+     "practicas_uca_2012_art_36",
+     0.553
+    ],
+    [
+     "practicas_uca_2012_art_45",
+     0.5478
+    ],
+    [
+     "practicas_uca_2012_art_39",
+     0.5472
+    ]
+   ],
+   "acierto@1": 0.0,
+   "recall@1": 0.0,
+   "acierto@3": 1.0,
+   "recall@3": 0.25,
+   "acierto@5": 1.0,
+   "recall@5": 0.25,
+   "acierto@10": 1.0,
+   "recall@10": 0.25,
+   "rr": 0.3333333333333333,
+   "posicion": 3
+  },
+  {
+   "id": "q042",
+   "tipo": "multi",
+   "pregunta": "¿Qué hay que entregar al terminar las prácticas, tanto yo como mi tutor de la empresa?",
+   "fuentes": [
+    "practicas_uca_2012_art_46",
+    "practicas_uca_2012_art_47"
+   ],
+   "similitud_max": 0.670269250869751,
+   "recuperados": [
+    [
+     "practicas_uca_2012_art_46",
+     0.6703
+    ],
+    [
+     "practicas_uca_2012_art_47",
+     0.6518
+    ],
+    [
+     "practicas_uca_2012_art_36",
+     0.5963
+    ],
+    [
+     "practicas_uca_2012_art_30",
+     0.5951
+    ],
+    [
+     "practicas_uca_2012_art_49",
+     0.5949
+    ],
+    [
+     "practicas_uca_2012_art_45",
+     0.5908
+    ],
+    [
+     "practicas_uca_2012_art_48_p2",
+     0.5895
+    ],
+    [
+     "practicas_uca_2012_art_48_p1",
+     0.5893
+    ],
+    [
+     "practicas_uca_2012_art_28",
+     0.5834
+    ],
+    [
+     "tfg_uca_2012_art_6_p2",
+     0.5831
+    ]
+   ],
+   "acierto@1": 1.0,
+   "recall@1": 0.5,
+   "acierto@3": 1.0,
+   "recall@3": 1.0,
+   "acierto@5": 1.0,
+   "recall@5": 1.0,
+   "acierto@10": 1.0,
+   "recall@10": 1.0,
+   "rr": 1.0,
+   "posicion": 1
+  },
+  {
+   "id": "q043",
+   "tipo": "multi",
+   "pregunta": "Mi TFG es una aplicación, ¿qué tengo que subir a la plataforma?",
+   "fuentes": [
+    "tfgm_esi_art_21",
+    "tfgm_esi_art_17"
+   ],
+   "similitud_max": 0.6027539968490601,
+   "recuperados": [
+    [
+     "tfgm_esi_art_17",
+     0.6028
+    ],
+    [
+     "tfgm_esi_art_16",
+     0.5937
+    ],
+    [
+     "tfgm_esi_art_11",
+     0.5872
+    ],
+    [
+     "tfgm_esi_disp_2",
+     0.5839
+    ],
+    [
+     "tfgm_esi_art_21_p2",
+     0.581
+    ],
+    [
+     "tfgm_esi_art_3",
+     0.5681
+    ],
+    [
+     "tfgm_esi_art_10",
+     0.563
+    ],
+    [
+     "tfgm_esi_art_5",
+     0.545
+    ],
+    [
+     "tfgm_esi_art_24",
+     0.5324
+    ],
+    [
+     "tfgm_esi_art_12",
+     0.5319
+    ]
+   ],
+   "acierto@1": 1.0,
+   "recall@1": 0.5,
+   "acierto@3": 1.0,
+   "recall@3": 0.5,
+   "acierto@5": 1.0,
+   "recall@5": 1.0,
+   "acierto@10": 1.0,
+   "recall@10": 1.0,
+   "rr": 1.0,
+   "posicion": 1
+  },
+  {
+   "id": "q044",
+   "tipo": "multi",
+   "pregunta": "¿Cómo se elige a los profesores que me van a evaluar el TFG en la ESI?",
+   "fuentes": [
+    "tfgm_esi_art_19",
+    "tfgm_esi_art_21",
+    "tfgm_esi_art_14"
+   ],
+   "similitud_max": 0.6856695413589478,
+   "recuperados": [
+    [
+     "tfgm_esi_art_11",
+     0.6857
+    ],
+    [
+     "tfgm_esi_art_9",
+     0.6441
+    ],
+    [
+     "tfgm_esi_art_15",
+     0.6418
+    ],
+    [
+     "tfgm_esi_art_21_p4",
+     0.6187
+    ],
+    [
+     "tfgm_esi_art_6",
+     0.6186
+    ],
+    [
+     "tfgm_esi_art_20",
+     0.6119
+    ],
+    [
+     "tfgm_esi_art_10",
+     0.5991
+    ],
+    [
+     "tfgm_esi_art_19",
+     0.594
+    ],
+    [
+     "tfgm_esi_art_22_p1",
+     0.5895
+    ],
+    [
+     "tfgm_esi_art_25",
+     0.5865
+    ]
+   ],
+   "acierto@1": 0.0,
+   "recall@1": 0.0,
+   "acierto@3": 0.0,
+   "recall@3": 0.0,
+   "acierto@5": 1.0,
+   "recall@5": 0.3333333333333333,
+   "acierto@10": 1.0,
+   "recall@10": 0.6666666666666666,
+   "rr": 0.25,
+   "posicion": 4
+  },
+  {
+   "id": "q045",
+   "tipo": "ambigua",
+   "pregunta": "¿Qué asignaturas tengo que tener aprobadas para poder defender el TFG?",
+   "fuentes": [
+    "tfg_uca_2012_art_2",
+    "tfgm_esi_art_21"
+   ],
+   "similitud_max": 0.6718167662620544,
+   "recuperados": [
+    [
+     "tfgm_esi_art_21_p3",
+     0.6718
+    ],
+    [
+     "tfgm_esi_art_21_p2",
+     0.6473
+    ],
+    [
+     "tfgm_esi_art_10",
+     0.6143
+    ],
+    [
+     "tfgm_esi_art_22_p1",
+     0.6122
+    ],
+    [
+     "tfgm_esi_art_17",
+     0.6114
+    ],
+    [
+     "tfgm_esi_art_22_p2",
+     0.6105
+    ],
+    [
+     "tfgm_esi_art_11",
+     0.6086
+    ],
+    [
+     "tfgm_esi_art_3",
+     0.6045
+    ],
+    [
+     "tfgm_esi_art_21_p4",
+     0.6036
+    ],
+    [
+     "tfgm_esi_art_16",
+     0.5936
+    ]
+   ],
+   "acierto@1": 1.0,
+   "recall@1": 0.5,
+   "acierto@3": 1.0,
+   "recall@3": 0.5,
+   "acierto@5": 1.0,
+   "recall@5": 0.5,
+   "acierto@10": 1.0,
+   "recall@10": 0.5,
+   "rr": 1.0,
+   "posicion": 1
+  },
+  {
+   "id": "q046",
+   "tipo": "ambigua",
+   "pregunta": "¿Puedo escribir y defender el TFG en inglés?",
+   "fuentes": [
+    "tfgm_esi_art_17",
+    "tfg_uca_2012_art_7"
+   ],
+   "similitud_max": 0.640059769153595,
+   "recuperados": [
+    [
+     "tfgm_esi_art_17",
+     0.6401
+    ],
+    [
+     "tfgm_esi_art_3",
+     0.5741
+    ],
+    [
+     "tfgm_esi_art_22_p2",
+     0.5617
+    ],
+    [
+     "tfgm_esi_art_21_p3",
+     0.5613
+    ],
+    [
+     "tfgm_esi_art_16",
+     0.5561
+    ],
+    [
+     "tfgm_esi_art_21_p2",
+     0.5533
+    ],
+    [
+     "tfgm_esi_art_10",
+     0.5484
+    ],
+    [
+     "tfgm_esi_art_22_p1",
+     0.5472
+    ],
+    [
+     "tfgm_esi_art_11",
+     0.5335
+    ],
+    [
+     "tfgm_esi_art_5",
+     0.5331
+    ]
+   ],
+   "acierto@1": 1.0,
+   "recall@1": 0.5,
+   "acierto@3": 1.0,
+   "recall@3": 0.5,
+   "acierto@5": 1.0,
+   "recall@5": 0.5,
+   "acierto@10": 1.0,
+   "recall@10": 0.5,
+   "rr": 1.0,
+   "posicion": 1
+  },
+  {
+   "id": "q047",
+   "tipo": "ambigua",
+   "pregunta": "¿Cuántos profesores hay en el tribunal del TFG y puede estar mi tutor?",
+   "fuentes": [
+    "tfg_uca_2012_art_5",
+    "tfgm_esi_art_19"
+   ],
+   "similitud_max": 0.6785587072372437,
+   "recuperados": [
+    [
+     "tfgm_esi_art_19",
+     0.6786
+    ],
+    [
+     "tfgm_esi_art_22_p1",
+     0.6472
+    ],
+    [
+     "tfgm_esi_art_21_p4",
+     0.6457
+    ],
+    [
+     "tfgm_esi_art_10",
+     0.6241
+    ],
+    [
+     "tfgm_esi_art_14",
+     0.6237
+    ],
+    [
+     "tfgm_esi_art_25",
+     0.6134
+    ],
+    [
+     "tfgm_esi_art_9",
+     0.6085
+    ],
+    [
+     "tfgm_esi_art_13",
+     0.6084
+    ],
+    [
+     "tfg_uca_2012_art_4_p2",
+     0.5865
+    ],
+    [
+     "tfgm_esi_art_22_p2",
+     0.5858
+    ]
+   ],
+   "acierto@1": 1.0,
+   "recall@1": 0.5,
+   "acierto@3": 1.0,
+   "recall@3": 0.5,
+   "acierto@5": 1.0,
+   "recall@5": 0.5,
+   "acierto@10": 1.0,
+   "recall@10": 0.5,
+   "rr": 1.0,
+   "posicion": 1
+  },
+  {
+   "id": "q048",
+   "tipo": "ambigua",
+   "pregunta": "Si este curso no presento el TFG, ¿pierdo el tema y el tutor que me asignaron?",
+   "fuentes": [
+    "tfg_uca_2012_art_6",
+    "tfgm_esi_art_12"
+   ],
+   "similitud_max": 0.6117156744003296,
+   "recuperados": [
+    [
+     "tfgm_esi_art_9",
+     0.6117
+    ],
+    [
+     "tfgm_esi_art_21_p4",
+     0.5976
+    ],
+    [
+     "tfgm_esi_art_13",
+     0.5924
+    ],
+    [
+     "tfgm_esi_art_14",
+     0.5917
+    ],
+    [
+     "tfgm_esi_art_10",
+     0.5875
+    ],
+    [
+     "tfgm_esi_art_21_p2",
+     0.5842
+    ],
+    [
+     "tfgm_esi_art_11",
+     0.5821
+    ],
+    [
+     "tfgm_esi_art_22_p1",
+     0.5761
+    ],
+    [
+     "tfg_uca_2012_art_6_p2",
+     0.5738
+    ],
+    [
+     "tfgm_esi_art_3",
+     0.5699
+    ]
+   ],
+   "acierto@1": 0.0,
+   "recall@1": 0.0,
+   "acierto@3": 0.0,
+   "recall@3": 0.0,
+   "acierto@5": 0.0,
+   "recall@5": 0.0,
+   "acierto@10": 1.0,
+   "recall@10": 0.5,
+   "rr": 0.1111111111111111,
+   "posicion": 9
+  },
+  {
+   "id": "q049",
+   "tipo": "ambigua",
+   "pregunta": "¿Puedo hacer el TFG junto a un compañero?",
+   "fuentes": [
+    "tfg_uca_2012_art_2",
+    "tfgm_esi_art_3"
+   ],
+   "similitud_max": 0.6081457138061523,
+   "recuperados": [
+    [
+     "tfgm_esi_art_5",
+     0.6081
+    ],
+    [
+     "tfgm_esi_art_10",
+     0.5884
+    ],
+    [
+     "tfgm_esi_art_22_p1",
+     0.5856
+    ],
+    [
+     "tfgm_esi_art_21_p2",
+     0.5751
+    ],
+    [
+     "tfgm_esi_art_4",
+     0.5718
+    ],
+    [
+     "tfgm_esi_art_11",
+     0.5708
+    ],
+    [
+     "tfgm_esi_art_22_p2",
+     0.5635
+    ],
+    [
+     "tfgm_esi_art_19",
+     0.5635
+    ],
+    [
+     "tfgm_esi_art_21_p4",
+     0.5626
+    ],
+    [
+     "tfgm_esi_art_21_p3",
+     0.5552
+    ]
+   ],
+   "acierto@1": 0.0,
+   "recall@1": 0.0,
+   "acierto@3": 0.0,
+   "recall@3": 0.0,
+   "acierto@5": 0.0,
+   "recall@5": 0.0,
+   "acierto@10": 0.0,
+   "recall@10": 0.0,
+   "rr": 0.0,
+   "posicion": null
+  },
+  {
+   "id": "q050",
+   "tipo": "ambigua",
+   "pregunta": "¿Se puede defender el TFG por videollamada?",
+   "fuentes": [
+    "tfgm_esi_art_21",
+    "tfg_uca_2012_art_7"
+   ],
+   "similitud_max": 0.520268976688385,
+   "recuperados": [
+    [
+     "tfgm_esi_art_21_p2",
+     0.5203
+    ],
+    [
+     "tfgm_esi_art_21_p4",
+     0.519
+    ],
+    [
+     "tfgm_esi_art_8",
+     0.5087
+    ],
+    [
+     "tfgm_esi_art_22_p1",
+     0.5012
+    ],
+    [
+     "tfgm_esi_art_14",
+     0.4923
+    ],
+    [
+     "tfgm_esi_art_22_p2",
+     0.4904
+    ],
+    [
+     "tfgm_esi_art_21_p3",
+     0.4895
+    ],
+    [
+     "tfgm_esi_art_10",
+     0.4889
+    ],
+    [
+     "tfgm_esi_art_17",
+     0.4864
+    ],
+    [
+     "tfgm_esi_art_13",
+     0.4802
+    ]
+   ],
+   "acierto@1": 1.0,
+   "recall@1": 0.5,
+   "acierto@3": 1.0,
+   "recall@3": 0.5,
+   "acierto@5": 1.0,
+   "recall@5": 0.5,
+   "acierto@10": 1.0,
+   "recall@10": 0.5,
+   "rr": 1.0,
+   "posicion": 1
+  },
+  {
+   "id": "q051",
+   "tipo": "ambigua",
+   "pregunta": "Estudio un doble grado, ¿tengo que hacer dos TFG distintos?",
+   "fuentes": [
+    "tfg_uca_2012_art_9",
+    "tfg_uca_2012_art_11",
+    "tfgm_esi_art_4",
+    "tfg_uca_2012_art_13",
+    "tfgm_esi_art_19"
+   ],
+   "similitud_max": 0.6805484294891357,
+   "recuperados": [
+    [
+     "tfgm_esi_art_4",
+     0.6805
+    ],
+    [
+     "tfgm_esi_art_3",
+     0.6245
+    ],
+    [
+     "tfgm_esi_art_5",
+     0.6226
+    ],
+    [
+     "tfgm_esi_art_16",
+     0.5788
+    ],
+    [
+     "tfgm_esi_art_10",
+     0.5777
+    ],
+    [
+     "tfgm_esi_art_17",
+     0.5753
+    ],
+    [
+     "tfg_uca_2012_art_9",
+     0.5752
+    ],
+    [
+     "tfgm_esi_art_12",
+     0.5735
+    ],
+    [
+     "tfgm_esi_disp_2",
+     0.5727
+    ],
+    [
+     "tfg_uca_2012_art_10",
+     0.5726
+    ]
+   ],
+   "acierto@1": 1.0,
+   "recall@1": 0.2,
+   "acierto@3": 1.0,
+   "recall@3": 0.2,
+   "acierto@5": 1.0,
+   "recall@5": 0.2,
+   "acierto@10": 1.0,
+   "recall@10": 0.4,
+   "rr": 1.0,
+   "posicion": 1
+  },
+  {
+   "id": "q052",
+   "tipo": "sin_respuesta",
+   "pregunta": "¿Cuánto cuesta matricularse del TFG?",
+   "fuentes": [],
+   "similitud_max": 0.49533236026763916,
+   "recuperados": [
+    [
+     "tfgm_esi_art_23",
+     0.4953
+    ],
+    [
+     "tfgm_esi_art_21_p1",
+     0.4888
+    ],
+    [
+     "tfgm_esi_art_21_p2",
+     0.4861
+    ],
+    [
+     "tfgm_esi_art_5",
+     0.485
+    ],
+    [
+     "tfgm_esi_art_3",
+     0.4849
+    ],
+    [
+     "tfgm_esi_art_10",
+     0.4817
+    ],
+    [
+     "tfgm_esi_art_22_p1",
+     0.4755
+    ],
+    [
+     "tfgm_esi_art_21_p4",
+     0.4725
+    ],
+    [
+     "tfgm_esi_art_11",
+     0.4698
+    ],
+    [
+     "tfgm_esi_art_19",
+     0.4678
+    ]
+   ]
+  },
+  {
+   "id": "q053",
+   "tipo": "cifra",
+   "pregunta": "¿Cuántos créditos vale el TFG o el TFM?",
+   "fuentes": [
+    "tfg_uca_2012_art_2",
+    "tfgm_esi_art_10"
+   ],
+   "similitud_max": 0.5463207960128784,
+   "recuperados": [
+    [
+     "tfgm_esi_art_3",
+     0.5463
+    ],
+    [
+     "tfgm_esi_art_12",
+     0.533
+    ],
+    [
+     "tfgm_esi_art_10",
+     0.5298
+    ],
+    [
+     "tfgm_esi_art_23",
+     0.5269
+    ],
+    [
+     "tfgm_esi_art_11",
+     0.5171
+    ],
+    [
+     "tfgm_esi_art_22_p2",
+     0.5136
+    ],
+    [
+     "tfgm_esi_art_21_p2",
+     0.5103
+    ],
+    [
+     "tfgm_esi_art_5",
+     0.51
+    ],
+    [
+     "tfgm_esi_art_19",
+     0.5073
+    ],
+    [
+     "tfgm_esi_art_7",
+     0.5034
+    ]
+   ],
+   "acierto@1": 0.0,
+   "recall@1": 0.0,
+   "acierto@3": 1.0,
+   "recall@3": 0.5,
+   "acierto@5": 1.0,
+   "recall@5": 0.5,
+   "acierto@10": 1.0,
+   "recall@10": 0.5,
+   "rr": 0.3333333333333333,
+   "posicion": 3
+  },
+  {
+   "id": "q054",
+   "tipo": "sin_respuesta",
+   "pregunta": "¿Puedo hacer las prácticas en teletrabajo desde casa?",
+   "fuentes": [],
+   "similitud_max": 0.5160894393920898,
+   "recuperados": [
+    [
+     "practicas_uca_2012_art_17",
+     0.5161
+    ],
+    [
+     "practicas_uca_2012_art_40",
+     0.513
+    ],
+    [
+     "practicas_uca_2012_art_14_p2",
+     0.5086
+    ],
+    [
+     "practicas_uca_2012_art_39",
+     0.4973
+    ],
+    [
+     "practicas_uca_2012_art_8_p1",
+     0.4959
+    ],
+    [
+     "practicas_uca_2012_art_7",
+     0.4951
+    ],
+    [
+     "practicas_uca_2012_art_14_p1",
+     0.4918
+    ],
+    [
+     "practicas_uca_2012_art_44",
+     0.4903
+    ],
+    [
+     "practicas_uca_2012_art_52",
+     0.4854
+    ],
+    [
+     "practicas_uca_2012_art_26",
+     0.4849
+    ]
+   ]
+  },
+  {
+   "id": "q055",
+   "tipo": "sin_respuesta",
+   "pregunta": "¿Las prácticas extracurriculares cotizan a la Seguridad Social?",
+   "fuentes": [],
+   "similitud_max": 0.5447158813476562,
+   "recuperados": [
+    [
+     "practicas_uca_2012_art_12",
+     0.5447
+    ],
+    [
+     "practicas_uca_2012_art_20",
+     0.537
+    ],
+    [
+     "practicas_uca_2012_art_5",
+     0.5307
+    ],
+    [
+     "practicas_uca_2012_art_35",
+     0.5223
+    ],
+    [
+     "practicas_uca_2012_art_44",
+     0.5158
+    ],
+    [
+     "practicas_uca_2012_art_40",
+     0.5143
+    ],
+    [
+     "practicas_uca_2012_art_39",
+     0.5133
+    ],
+    [
+     "practicas_uca_2012_art_14_p2",
+     0.5081
+    ],
+    [
+     "practicas_uca_2012_art_43",
+     0.4955
+    ],
+    [
+     "practicas_uca_2012_art_37",
+     0.4951
+    ]
+   ]
+  },
+  {
+   "id": "q056",
+   "tipo": "sin_respuesta",
+   "pregunta": "¿Qué día acaba el plazo para subir el TFG en la convocatoria de junio de este curso?",
+   "fuentes": [],
+   "similitud_max": 0.6037381887435913,
+   "recuperados": [
+    [
+     "tfgm_esi_art_20",
+     0.6037
+    ],
+    [
+     "tfgm_esi_art_22_p2",
+     0.5834
+    ],
+    [
+     "tfgm_esi_art_21_p2",
+     0.5816
+    ],
+    [
+     "tfgm_esi_art_22_p1",
+     0.575
+    ],
+    [
+     "tfgm_esi_art_21_p4",
+     0.5748
+    ],
+    [
+     "tfgm_esi_art_12",
+     0.5723
+    ],
+    [
+     "tfgm_esi_disp_2",
+     0.5586
+    ],
+    [
+     "tfgm_esi_art_24",
+     0.5576
+    ],
+    [
+     "tfgm_esi_art_11",
+     0.5563
+    ],
+    [
+     "tfgm_esi_art_23",
+     0.5485
+    ]
+   ]
+  },
+  {
+   "id": "q057",
+   "tipo": "sin_respuesta",
+   "pregunta": "¿Cuál es la nota mínima para aprobar el TFG?",
+   "fuentes": [],
+   "similitud_max": 0.5779045224189758,
+   "recuperados": [
+    [
+     "tfgm_esi_art_10",
+     0.5779
+    ],
+    [
+     "tfgm_esi_art_21_p2",
+     0.5706
+    ],
+    [
+     "tfgm_esi_art_21_p4",
+     0.561
+    ],
+    [
+     "tfgm_esi_art_22_p1",
+     0.5569
+    ],
+    [
+     "tfgm_esi_art_22_p2",
+     0.5553
+    ],
+    [
+     "tfgm_esi_art_19",
+     0.5498
+    ],
+    [
+     "tfgm_esi_art_11",
+     0.5455
+    ],
+    [
+     "tfgm_esi_art_23",
+     0.544
+    ],
+    [
+     "tfgm_esi_art_7",
+     0.5435
+    ],
+    [
+     "tfgm_esi_art_16",
+     0.5312
+    ]
+   ]
+  },
+  {
+   "id": "q058",
+   "tipo": "multi",
+   "pregunta": "¿Tengo posibilidad de quedarme trabajando en la empresa de las prácticas?",
+   "fuentes": [
+    "practicas_uca_2012_art_3",
+    "practicas_uca_2012_art_22"
+   ],
+   "similitud_max": 0.5583321452140808,
+   "recuperados": [
+    [
+     "practicas_uca_2012_art_17",
+     0.5583
+    ],
+    [
+     "practicas_uca_2012_art_35",
+     0.544
+    ],
+    [
+     "practicas_uca_2012_art_32",
+     0.5423
+    ],
+    [
+     "practicas_uca_2012_art_3",
+     0.5405
+    ],
+    [
+     "practicas_uca_2012_art_11",
+     0.539
+    ],
+    [
+     "practicas_uca_2012_art_14_p1",
+     0.5373
+    ],
+    [
+     "practicas_uca_2012_art_13",
+     0.5316
+    ],
+    [
+     "practicas_uca_2012_art_18",
+     0.5252
+    ],
+    [
+     "practicas_uca_2012_art_7",
+     0.5231
+    ],
+    [
+     "practicas_uca_2012_art_14_p2",
+     0.5226
+    ]
+   ],
+   "acierto@1": 0.0,
+   "recall@1": 0.0,
+   "acierto@3": 0.0,
+   "recall@3": 0.0,
+   "acierto@5": 1.0,
+   "recall@5": 0.5,
+   "acierto@10": 1.0,
+   "recall@10": 0.5,
+   "rr": 0.25,
+   "posicion": 4
+  },
+  {
+   "id": "q059",
+   "tipo": "ambigua",
+   "pregunta": "¿Cuántos tutores de TFG tengo?",
+   "fuentes": [
+    "tfgm_esi_art_13",
+    "tfgm_esi_art_10",
+    "tfg_uca_2012_art_4",
+    "tfgm_esi_art_4"
+   ],
+   "similitud_max": 0.625396728515625,
+   "recuperados": [
+    [
+     "tfgm_esi_art_10",
+     0.6254
+    ],
+    [
+     "tfgm_esi_art_4",
+     0.625
+    ],
+    [
+     "tfgm_esi_art_13",
+     0.6244
+    ],
+    [
+     "tfgm_esi_art_14",
+     0.6094
+    ],
+    [
+     "tfgm_esi_art_19",
+     0.5983
+    ],
+    [
+     "tfgm_esi_art_9",
+     0.5752
+    ],
+    [
+     "tfg_uca_2012_art_4_p2",
+     0.5735
+    ],
+    [
+     "tfg_uca_2012_art_11",
+     0.5614
+    ],
+    [
+     "tfgm_esi_art_15",
+     0.5555
+    ],
+    [
+     "tfgm_esi_art_21_p4",
+     0.5532
+    ]
+   ],
+   "acierto@1": 1.0,
+   "recall@1": 0.25,
+   "acierto@3": 1.0,
+   "recall@3": 0.75,
+   "acierto@5": 1.0,
+   "recall@5": 0.75,
+   "acierto@10": 1.0,
+   "recall@10": 1.0,
+   "rr": 1.0,
+   "posicion": 1
+  },
+  {
+   "id": "q060",
+   "tipo": "ambigua",
+   "pregunta": "¿Qué plazos tengo para entregar el TFG?",
+   "fuentes": [
+    "tfgm_esi_art_21",
+    "tfgm_esi_art_20",
+    "tfg_uca_2012_art_7"
+   ],
+   "similitud_max": 0.6715035438537598,
+   "recuperados": [
+    [
+     "tfgm_esi_art_21_p2",
+     0.6715
+    ],
+    [
+     "tfgm_esi_art_12",
+     0.6701
+    ],
+    [
+     "tfgm_esi_art_11",
+     0.6417
+    ],
+    [
+     "tfgm_esi_art_22_p3",
+     0.6322
+    ],
+    [
+     "tfgm_esi_art_21_p4",
+     0.6281
+    ],
+    [
+     "tfgm_esi_art_22_p2",
+     0.6212
+    ],
+    [
+     "tfgm_esi_art_22_p1",
+     0.6169
+    ],
+    [
+     "tfgm_esi_art_3",
+     0.6065
+    ],
+    [
+     "tfgm_esi_art_16",
+     0.6043
+    ],
+    [
+     "tfgm_esi_art_7",
+     0.6034
+    ]
+   ],
+   "acierto@1": 1.0,
+   "recall@1": 0.3333333333333333,
+   "acierto@3": 1.0,
+   "recall@3": 0.3333333333333333,
+   "acierto@5": 1.0,
+   "recall@5": 0.3333333333333333,
+   "acierto@10": 1.0,
+   "recall@10": 0.3333333333333333,
+   "rr": 1.0,
+   "posicion": 1
+  },
+  {
+   "id": "q061",
+   "tipo": "ambigua",
+   "pregunta": "¿Qué plazos hay para defender el TFG y cuándo me dicen la fecha?",
+   "fuentes": [
+    "tfgm_esi_art_20",
+    "tfgm_esi_art_21",
+    "tfg_uca_2012_art_5"
+   ],
+   "similitud_max": 0.6254912614822388,
+   "recuperados": [
+    [
+     "tfgm_esi_art_21_p2",
+     0.6255
+    ],
+    [
+     "tfgm_esi_art_21_p4",
+     0.6218
+    ],
+    [
+     "tfgm_esi_art_12",
+     0.6126
+    ],
+    [
+     "tfgm_esi_art_22_p1",
+     0.6063
+    ],
+    [
+     "tfgm_esi_art_22_p2",
+     0.6053
+    ],
+    [
+     "tfgm_esi_art_20",
+     0.5865
+    ],
+    [
+     "tfgm_esi_art_21_p3",
+     0.582
+    ],
+    [
+     "tfgm_esi_art_22_p3",
+     0.5791
+    ],
+    [
+     "tfgm_esi_art_11",
+     0.5774
+    ],
+    [
+     "tfgm_esi_art_17",
+     0.5599
+    ]
+   ],
+   "acierto@1": 1.0,
+   "recall@1": 0.3333333333333333,
+   "acierto@3": 1.0,
+   "recall@3": 0.3333333333333333,
+   "acierto@5": 1.0,
+   "recall@5": 0.3333333333333333,
+   "acierto@10": 1.0,
+   "recall@10": 0.6666666666666666,
+   "rr": 1.0,
+   "posicion": 1
+  },
+  {
+   "id": "q062",
+   "tipo": "cifra",
+   "pregunta": "¿Cuánto dinero puedo ganar en las prácticas extracurriculares?",
+   "fuentes": [
+    "practicas_uca_2012_art_20",
+    "practicas_uca_2012_art_39"
+   ],
+   "similitud_max": 0.5915171504020691,
+   "recuperados": [
+    [
+     "practicas_uca_2012_art_20",
+     0.5915
+    ],
+    [
+     "practicas_uca_2012_art_5",
+     0.5802
+    ],
+    [
+     "practicas_uca_2012_art_44",
+     0.5791
+    ],
+    [
+     "practicas_uca_2012_art_35",
+     0.5768
+    ],
+    [
+     "practicas_uca_2012_art_13",
+     0.5675
+    ],
+    [
+     "practicas_uca_2012_art_39",
+     0.5663
+    ],
+    [
+     "practicas_uca_2012_art_8_p1",
+     0.558
+    ],
+    [
+     "practicas_uca_2012_art_40",
+     0.5526
+    ],
+    [
+     "practicas_uca_2012_art_14_p2",
+     0.5409
+    ],
+    [
+     "practicas_uca_2012_art_14_p1",
+     0.5369
+    ]
+   ],
+   "acierto@1": 1.0,
+   "recall@1": 0.5,
+   "acierto@3": 1.0,
+   "recall@3": 0.5,
+   "acierto@5": 1.0,
+   "recall@5": 0.5,
+   "acierto@10": 1.0,
+   "recall@10": 1.0,
+   "rr": 1.0,
+   "posicion": 1
+  }
+ ]
+}

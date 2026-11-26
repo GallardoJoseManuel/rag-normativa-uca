@@ -35,6 +35,14 @@ SALIDA = RAIZ / "data" / "processed" / "chunks.json"
 
 MAX_PALABRAS = 300  # ~400-450 tokens en español: cabe en modelos con límite de 512
 
+# Paso 8, experimento A: texto que se añade al título del documento SOLO en el encabezado del
+# embedding (no en el texto que se muestra ni en las citas). El reglamento marco nunca usa la
+# sigla "TFG", que es como preguntan los alumnos, y el buscador ponía casi toda la ESI por
+# delante de cualquier artículo del marco.
+CONTEXTO_DOCUMENTO = {
+    "tfg_uca_2012": "TFG/TFM: Trabajo Fin de Grado y Trabajo Fin de Máster",
+}
+
 # Marca al principio de un párrafo, con un grupo con nombre para cada tipo.
 MARCA = re.compile(r"^(?:(?P<num>\d+)\.(?:\s|$)"     # 1.
                    r"|(?P<letra>[a-zñ])\)"           # a)
@@ -119,6 +127,8 @@ def encabezado(unidad: dict, titulo_documento: str, apartados: list[str]) -> str
         articulo = unidad["titulo"]
     if apartados:
         articulo += f" (apartados {rango(apartados)})"
+    if unidad["documento"] in CONTEXTO_DOCUMENTO:
+        titulo_documento += f" ({CONTEXTO_DOCUMENTO[unidad['documento']]})"
     partes = [titulo_documento, unidad["seccion"], articulo]
     return " > ".join(p for p in partes if p)
 

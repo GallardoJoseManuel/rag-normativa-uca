@@ -1568,3 +1568,104 @@ fragmentos se reconstruyen con el buscador (determinista), y se comprueba que so
 - Mejoras posibles, si hicieran falta: un juez de otra familia de modelos (evita la
   autopreferencia; Gemini se está juzgando a sí mismo), o votar entre varias ejecuciones.
 - La abstención y las citas se miden con código, sin juez, y son exactas.
+
+## 2026-11-26 · Sesión 12: mejoras y experimentos (paso 8)
+
+### Apuntes: qué se hace en este paso
+Hasta ahora hemos construido el sistema y lo hemos medido (línea base). En el paso 8 se
+**intenta mejorarlo con experimentos controlados**, como en un laboratorio:
+
+1. **Hipótesis:** "el fallo X se debe a Y; si cambio Z, debería mejorar".
+2. **Un solo cambio cada vez.** Si se cambian dos cosas a la vez, no se sabe cuál ha
+   funcionado.
+3. **Medir con las mismas preguntas y las mismas métricas** que la línea base.
+4. **Decidir:** si mejora, se queda; si no, se descarta. Y se apunta igualmente: un
+   experimento que no funciona también es un resultado.
+
+**Dos evaluaciones, dos costes:**
+- **Recuperación** (`evaluate.py`): segundos y gratis. Es el filtro rápido: casi todos los
+  errores vienen de aquí.
+- **Generación** (`evaluate_generation.py`): unos 10–15 minutos y limitada por el nivel
+  gratuito. Solo se lanza con los cambios que ya han mejorado la recuperación.
+
+**El riesgo: sobreajustar al conjunto de evaluación.** Si se toman muchas decisiones
+mirando las mismas 62 preguntas, el sistema acaba funcionando bien *en esas preguntas*.
+Por eso las 62 hacen de **conjunto de desarrollo** (para decidir), y las 10 preguntas
+nuevas del paso 10 harán de **conjunto de test** (para comprobar al final, una sola vez).
+Es la misma idea que train/validation/test en machine learning.
+
+### Diagnóstico antes de elegir: ¿dónde está el reglamento marco?
+Para elegir bien la mejora, primero hay que saber *por qué* falla. Para las 20 preguntas
+cuya fuente incluye un artículo del marco (`tfg_uca_2012`), medí dos cosas:
+
+1. **Búsqueda normal (todos los documentos):** el primer chunk del marco aparece casi
+   siempre **entre las posiciones 25 y 33**. La ESI tiene 32 chunks: el buscador pone
+   **casi toda la ESI por delante de cualquier artículo del marco**. Excepciones: q009, q013
+   y q026, en el puesto 1.
+2. **Búsqueda solo dentro del marco** (filtro `documento = tfg_uca_2012`): el artículo
+   correcto sale **el 1.º en 11 de 20** preguntas y entre los 6 primeros en 17 de 20.
+
+**Conclusión:** el problema **no está en elegir el artículo dentro del marco** (eso lo hace
+bien), sino **entre documentos**. Todo el marco "suena" menos a TFG que la ESI, porque no
+usa la sigla y porque sus encabezados no dicen que trata de TFG/TFM.
+
+**Qué descarta esto:**
+- **Reranker** (un segundo modelo que reordena los 20 primeros): no puede subir un chunk
+  que no está entre esos 20, y el marco suele estar más allá del puesto 25.
+- **Búsqueda híbrida con BM25** (palabras exactas): la sigla "TFG" tampoco está en el marco,
+  así que la búsqueda por palabras clave no lo encontraría.
+
+Las dos son mejoras útiles en general, pero **no para este fallo**.
+
+### Apuntes: los experimentos candidatos
+Ordenados por relación entre lo que cuestan y lo que prometen:
+
+| # | Experimento | Idea | Ataca |
+|---|---|---|---|
+| A | **Encabezado enriquecido** | Añadir al encabezado de los chunks del marco "Reglamento marco de Trabajos Fin de Grado y Máster (TFG/TFM)". Solo cambia el texto del embedding: hay que reindexar. | La causa: el vocabulario del documento |
+| B | **Búsqueda diversificada por reglamento** | Si la pregunta es de TFG, buscar por separado en el marco y en la ESI y juntar los mejores de cada uno | El síntoma: garantiza que lleguen los dos |
+| C | **Expansión de la consulta** | Antes de buscar, sustituir las siglas por su forma completa ("TFG" → "Trabajo Fin de Grado (TFG)") con un diccionario | La causa, desde el lado de la pregunta |
+| D | **Variar k** (5, 8, 10) | Pasar más chunks al LLM | Más contexto, a cambio de más ruido |
+| E | **Todo en el contexto** | Sin buscador: los 122 chunks (unos 25 000 tokens) en el prompt | Comparar RAG frente a contexto largo |
+| F | **Juez de otra familia** | Evaluar con un modelo que no sea Gemini | La autopreferencia del juez |
+
+Plan: A (el más barato y va a la causa); luego B o C según lo que quede; D y E como
+comparativas; F si sobra tiempo.
+
+### Experimento A: encabezado enriquecido
+- **Hipótesis:** el marco queda por detrás de la ESI porque no usa la sigla "TFG". Si se
+  añade al encabezado de sus chunks, subirá en el ranking.
+- **Cambio:** en `chunks.py`, `CONTEXTO_DOCUMENTO` añade "(TFG/TFM: Trabajo Fin de Grado y
+  Trabajo Fin de Máster)" al título del marco, **solo en el texto del embedding**. Lo que se
+  muestra y se cita no cambia. Después hay que regenerar los chunks y reindexar.
+- **Cómo se mide sin pisar la línea base:** nueva opción `evaluate.py --etiqueta`, que guarda
+  en `eval/resultados/normativa_bge-m3__A_encabezado.json`.
+
+**Resultado (recuperación):**
+
+| | Acierto@1 | Acierto@5 | Acierto@10 | Recall@5 | MRR | Recall@5 ambiguas |
+|---|---|---|---|---|---|---|
+| Línea base | 72 % | 91 % | 91 % | 72 % | 0,79 | 37 % |
+| A | 72 % | 91 % | 93 % | 73 % | 0,80 | 42 % |
+
+Posición del artículo correcto del marco (búsqueda en todos los documentos):
+
+| | q046 | q050 | q051 | q059 | q047 | q010 | q048 |
+|---|---|---|---|---|---|---|---|
+| Línea base | 25 | 28 | 15 | 12 | 45 | 31 | 16 |
+| A | 11 | 17 | 7 | 7 | 35 | 26 | 9 |
+
+**Análisis:**
+- **La dirección es la correcta:** el marco sube en casi todas las preguntas, a veces más de
+  10 puestos. No empeora ninguna pregunta.
+- **Pero no basta:** solo q022 consigue meter el marco en el top 5. La mayoría sigue
+  entre los puestos 10 y 40.
+- **Por qué es tan poco efecto:** el encabezado son unas 20 palabras dentro de un chunk de
+  unas 140. El embedding es un "resumen" de todo el texto, así que lo que pesa es el cuerpo
+  del artículo, y ese sigue sin decir "TFG". Es una señal real pero diluida.
+
+**Decisión:** se queda. No cuesta nada, no empeora nada y mejora un poco. Pero el problema
+necesita otra solución: la diagnosis decía que *dentro* del marco el artículo correcto
+sale casi siempre el primero, así que lo siguiente es el **experimento B (búsqueda
+diversificada por reglamento)**. No se insiste en "reforzar" el encabezado (repetir la
+sigla, etc.): sería forzar el embedding para estas preguntas, y eso es sobreajustar.

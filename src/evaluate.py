@@ -18,6 +18,7 @@ es la referencia para comparar los experimentos del paso 8.
 Uso (desde la raíz del proyecto, después de index.py):
     python src/evaluate.py
     python src/evaluate.py --modelo intfloat/multilingual-e5-small
+    python src/evaluate.py --etiqueta A_encabezado   # experimento del paso 8
 """
 import argparse
 import json
@@ -76,6 +77,9 @@ def main() -> None:
     sys.stdout.reconfigure(encoding="utf-8")  # tildes en la consola de Windows
     parser = argparse.ArgumentParser(description="Evalúa el buscador con eval/questions.json.")
     parser.add_argument("--modelo", default=MODELO, help=f"colección a evaluar (por defecto {MODELO})")
+    parser.add_argument("--etiqueta", default="",
+                        help="nombre del experimento: guarda en <colección>__<etiqueta>.json "
+                             "sin pisar la línea base")
     args = parser.parse_args()
 
     preguntas = json.loads(PREGUNTAS.read_text(encoding="utf-8"))
@@ -119,9 +123,11 @@ def main() -> None:
           f"{', '.join(f['id'] for f in incompletas) or 'ninguna'}")
 
     RESULTADOS.mkdir(parents=True, exist_ok=True)
-    ruta = RESULTADOS / f"{nombre_coleccion(args.modelo)}.json"
+    sufijo = f"__{args.etiqueta}" if args.etiqueta else ""
+    ruta = RESULTADOS / f"{nombre_coleccion(args.modelo)}{sufijo}.json"
     ruta.write_text(json.dumps({
         "configuracion": {"modelo": buscador.nombre_modelo, "coleccion": buscador.coleccion.name,
+                          "etiqueta": args.etiqueta or "linea_base",
                           "fecha": date.today().isoformat(), "ks": KS,
                           "n_preguntas": len(preguntas), "ms_por_pregunta": round(segundos * 1000)},
         "metricas": grupos, "detalle": detalle}, ensure_ascii=False, indent=1), encoding="utf-8")
