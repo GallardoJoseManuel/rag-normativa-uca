@@ -1329,3 +1329,154 @@ tiene un coste por ejecución que hay que tener en cuenta.
 ### Pendiente
 - Evaluar la generación sobre todo el conjunto: abstención, citas, corrección (con un LLM
   como juez) y fidelidad.
+
+### Apuntes: por qué un LLM como juez, si también se equivoca
+Para evaluar texto libre hay cuatro opciones:
+
+| Opción | Problema |
+|---|---|
+| Corregir a mano las 62 respuestas | Fiable, pero hay que repetirlo en cada experimento del paso 8: no escala |
+| Métricas de coincidencia de palabras (exact match, BLEU, ROUGE) | Penalizan una respuesta correcta dicha con otras palabras y premian una que copia palabras pero se equivoca |
+| Similitud de embeddings entre respuesta y referencia | Mide si hablan del mismo tema, no si el dato es correcto ("25 horas" frente a "20 horas" sale casi igual) |
+| **LLM como juez** | Entiende el significado y escala, pero tiene sesgos: indulgencia, preferencia por respuestas largas, inconsistencia y preferencia por textos de su misma familia de modelos |
+
+Se elige el juez, pero acotando dónde puede equivocarse:
+1. **Lo que se puede medir con código no lo juzga el LLM.** La abstención (campo
+   `encontrado`) y las citas (fuentes citadas frente a las fuentes de la pregunta) se
+   calculan de forma exacta.
+2. **El juez no evalúa en abstracto:** recibe la pregunta, la **respuesta de referencia**
+   y los fragmentos, y solo compara. Comparar con una referencia es mucho más fácil y
+   fiable que decidir desde cero si algo es correcto.
+3. **Rúbrica cerrada y salida estructurada:** correcta / parcial / incorrecta, y
+   fiel / no fiel, siempre con una justificación breve. Temperatura 0.
+4. **Calibración humana:** se corrige a mano una muestra (unas 15 respuestas) y se mide
+   cuántas veces coincide el juez. Si coincide en la gran mayoría, sus cifras agregadas
+   son creíbles; si no, se ajusta la rúbrica. El porcentaje de acuerdo se publica junto a
+   los resultados.
+5. **Se usa sobre todo para comparar:** el mismo juez mide dos configuraciones, así que
+   sus errores afectan a las dos por igual y la diferencia entre ellas es más fiable que
+   la cifra absoluta.
+
+Limitación conocida: con el nivel gratuito, el juez es de la misma familia que el modelo
+que responde (Gemini Flash-Lite), y eso puede hacerlo más indulgente. Una alternativa
+para el paso 8 es un juez de otra familia (por ejemplo, un modelo abierto en Groq).
+
+### Apuntes: cómo funciona `src/evaluate_generation.py`
+- **`INSTRUCCIONES_JUEZ` y `Veredicto`:** la rúbrica del juez (correcta / parcial /
+  incorrecta, fiel sí/no) y el esquema de su salida. La justificación va **primero** en el
+  esquema para que el juez razone antes de decidir.
+- **`juzgar`:** monta el prompt del juez (pregunta, referencia, respuesta del sistema y
+  fragmentos) y reutiliza `llamar` de `generate.py` con otras instrucciones y otro esquema.
+- **`evaluar_una`:** genera la respuesta con `responder`. Si la pregunta no tiene fuentes,
+  solo comprueba con código que se ha abstenido (sin juez). Si las tiene, comprueba que
+  **no** se ha abstenido, cuenta las citas correctas y llama al juez.
+- **`resumen`:** abstención bien en las `sin_respuesta`, falsas abstenciones, precisión de
+  las citas, porcentaje que cita algo correcto, reparto correcta/parcial/incorrecta y
+  fidelidad, en total y por tipo.
+- **`crear_calibracion`:** muestra de 15 respuestas, repartida por tipos, con semilla fija
+  (siempre la misma), en un CSV con `;` y `utf-8-sig` para que Excel lo abra bien, y
+  **sin** el veredicto del juez para no influir en la corrección humana.
+- **`acuerdo`:** cruza por id la corrección humana con la del juez, da el porcentaje de
+  acuerdo y lista los desacuerdos con la justificación del juez.
+- **`main`:** reanuda el progreso guardado (las llamadas gratuitas pueden cortarse), guarda
+  después de cada pregunta, espera unos segundos entre llamadas por el límite por minuto
+  y al final escribe métricas y detalle en `eval/resultados/generacion_<modelo>.json`.
+
+### Resultado: evaluación de la generación (Gemini 3.5 Flash-Lite, k=5)
+
+| Métrica | Valor | Cómo se mide |
+|---|---|---|
+| Abstención correcta en preguntas sin respuesta | **100 %** (5/5) | código |
+| Falsas abstenciones (dice que no está, pero sí está) | 11 % (6/57) | código |
+| Precisión de las citas | 91 % | código |
+| Cita al menos un artículo correcto | 91 % | código |
+| Corrección | correcta 72 % · parcial 18 % · incorrecta 11 % | juez + código |
+| Fidelidad | 96 % | juez |
+
+Por tipo (corrección correcta / parcial / incorrecta): ambigua 55/27/18, cifra 73/9/18,
+directa 73/20/7, multi 71/29/0, parafrase 85/8/8.
+
+Unas 125 llamadas gratuitas, sin ningún corte por límite.
+
+### Análisis
+- **El LLM no se inventa nada cuando el buscador falla.** 5 de las 6 falsas abstenciones
+  son exactamente las 5 preguntas en las que el buscador no trajo ningún artículo correcto
+  (paso 6): sin la información, dice "no aparece en la normativa consultada" en vez de
+  rellenar. Los errores de punta a punta son, casi todos, errores de **recuperación**. La
+  sexta (q053, créditos del TFG) es un caso límite: dice que no hay una cifra exacta y da
+  el matiz correcto, pero marca `encontrado = false`.
+- **Fidelidad del 96 %:** solo 2 respuestas añaden algo que no estaba en los fragmentos.
+- **Las ambiguas son las peores** (55 % correctas): como el buscador casi nunca trae el
+  reglamento marco, el LLM responde solo con el de la ESI.
+
+### El juez es indulgente (lo que se temía)
+Revisando sus veredictos:
+1. En 3 falsas abstenciones (q010, q049, q053) puso "correcta" porque el sistema fue
+   "fiel a lo que leyó", aunque la rúbrica dice que abstenerse cuando la referencia sí da
+   la respuesta es "incorrecta". Confunde fidelidad con corrección. **Corregido con
+   código:** una abstención en una pregunta con respuesta cuenta siempre como incorrecta
+   (de 77 % a 72 % de correctas).
+2. En varias ambiguas (q045, q046, q047, q050, q060) puso "correcta" a respuestas que solo
+   explican el reglamento de la ESI, cuando la referencia incluye los dos reglamentos. Según
+   la rúbrica deberían ser "parcial". Esto no se corrige a ojo: lo decidirá la
+   **calibración humana** (q047 y q060 están en la muestra).
+
+### Calibración
+`python src/evaluate_generation.py --calibracion` → `eval/calibracion.csv` con 15
+respuestas (q001, q004, q012, q016, q017, q020, q031, q032, q034, q042, q044, q047, q058,
+q060, q061), sin el veredicto del juez. Pendiente: corregirlas a mano y medir el acuerdo
+con `--acuerdo`.
+
+### Apuntes: cómo sabe el LLM si la respuesta está en los fragmentos
+- **Al LLM no le llegan vectores, le llegan textos.** Los embeddings solo sirven para
+  *buscar* (comparar la pregunta con los chunks en Chroma). Lo que se envía a Gemini es el
+  texto de los 5 chunks, numerados, más la pregunta. Tampoco le pasamos la similitud.
+- **No lo "sabe" con ninguna comprobación: lo juzga leyendo**, como un estudiante en un
+  examen de comprensión lectora. Lee la pregunta y los fragmentos y decide si alguno la
+  responde. Lo empujamos con la regla 3 del prompt ("si no está, encontrado = false; no lo
+  deduzcas") y con el campo `encontrado` de la salida estructurada.
+- **Lo hace bien, pero puede fallar en los dos sentidos:**
+  - *Falsa abstención:* la respuesta está y dice que no (q053, créditos del TFG).
+  - *Falso positivo:* da por buena información que parece responder pero es de otro
+    contexto. Por ejemplo, responde con el reglamento de la ESI a una pregunta sobre el
+    marco. Es más peligroso, porque la respuesta suena segura.
+- **No puede saber lo que no le llega.** Si el buscador trae solo la ESI, el LLM no tiene
+  forma de saber que el marco dice otra cosa. Por eso las preguntas ambiguas son las más
+  flojas: el fallo está en la recuperación, no en la lectura.
+- **El orden influye un poco.** Los LLM tienden a atender más al principio y al final del
+  contexto que al medio ("lost in the middle"). Con 5 fragmentos cortos el efecto es
+  pequeño, pero existe.
+- **Lo que dicen nuestros datos:** abstención correcta en el 100 % de las preguntas sin
+  respuesta, y 5 de las 6 falsas abstenciones coinciden con los 5 fallos del buscador.
+  Cuando no le llega la información, lo detecta y no se la inventa.
+
+### Apuntes: cómo usan RAG los asistentes como Claude o ChatGPT
+- **Un LLM no está "siempre al día".** Su conocimiento se congela en la fecha de corte de
+  su entrenamiento, y no aprende de las conversaciones. Lo que sabe está guardado de forma
+  difusa en sus pesos: puede recordar "más o menos" un reglamento, pero no citar el
+  artículo exacto, y puede mezclarlo con el de otra universidad.
+- **Para qué sirve entonces el RAG:**
+  1. **Información nueva:** normativa publicada después del corte.
+  2. **Información privada o de nicho:** documentos de una empresa, o un reglamento de una
+     escuela que casi no aparece en internet.
+  3. **Citas verificables:** el usuario puede comprobar el artículo exacto, cosa que la
+     memoria del modelo no permite.
+  4. **Menos alucinaciones:** el modelo copia de un texto delante en vez de reconstruir de
+     memoria.
+- **Cómo lo hacen los asistentes (en general):** con **herramientas**. El modelo decide
+  buscar en la web, leer un archivo o consultar documentos subidos, el sistema le devuelve
+  el texto encontrado y responde con él. Es "RAG agéntico": el modelo decide cuándo y qué
+  buscar, y puede buscar varias veces. Claude Code, por ejemplo, recupera información con
+  búsquedas de texto (grep) y leyendo archivos, sin embeddings. Nuestro RAG es el "clásico":
+  el código siempre busca una vez y el modelo no elige.
+- **¿A qué da más importancia, al contexto o a su memoria?** Están entrenados para
+  apoyarse en el contexto que se les da, pero no es una regla absoluta. Si el contexto
+  contradice algo que el modelo "cree saber", a veces gana su memoria (se llama *conflicto
+  de conocimiento*). Por eso nuestro prompt dice "aunque creas saber la respuesta", y por
+  eso medimos la fidelidad.
+- **Alternativa: meterlo todo en el contexto.** Nuestro corpus son 122 chunks y unas
+  16 600 palabras (unos 25 000 tokens, a ojo), y cabe entero en el contexto de Gemini. Para
+  un corpus tan pequeño sería una alternativa real: no hay fallos de recuperación, porque
+  el modelo lo lee todo. El RAG gana en coste y rapidez por pregunta, escala a miles de
+  documentos, da citas precisas y no sufre el "lost in the middle" con contextos enormes.
+  Comparar las dos opciones es un buen experimento para el paso 8.

@@ -1,0 +1,1855 @@
+{
+ "configuracion": {
+  "modelo": "gemini-3.5-flash-lite",
+  "juez": "gemini-3.5-flash-lite",
+  "fecha": "2026-11-26",
+  "k": 5,
+  "n_preguntas": 62
+ },
+ "metricas": {
+  "n_con_respuesta": 57,
+  "n_sin_respuesta": 5,
+  "abstencion_bien_sin_respuesta": 1,
+  "falsas_abstenciones": 0.10526315789473684,
+  "precision_citas": 0.90625,
+  "cita_alguna_correcta": 0.9122807017543859,
+  "correccion": {
+   "correcta": 0.7192982456140351,
+   "parcial": 0.17543859649122806,
+   "incorrecta": 0.10526315789473684
+  },
+  "fidelidad": 0.9649122807017544,
+  "por_tipo": {
+   "ambigua": {
+    "n": 11,
+    "correcta": 0.5454545454545454,
+    "parcial": 0.2727272727272727,
+    "incorrecta": 0.18181818181818182,
+    "fidelidad": 0.9090909090909091
+   },
+   "cifra": {
+    "n": 11,
+    "correcta": 0.7272727272727273,
+    "parcial": 0.09090909090909091,
+    "incorrecta": 0.18181818181818182,
+    "fidelidad": 1
+   },
+   "directa": {
+    "n": 15,
+    "correcta": 0.7333333333333333,
+    "parcial": 0.2,
+    "incorrecta": 0.06666666666666667,
+    "fidelidad": 1
+   },
+   "multi": {
+    "n": 7,
+    "correcta": 0.7142857142857143,
+    "parcial": 0.2857142857142857,
+    "incorrecta": 0.0,
+    "fidelidad": 0.8571428571428571
+   },
+   "parafrase": {
+    "n": 13,
+    "correcta": 0.8461538461538461,
+    "parcial": 0.07692307692307693,
+    "incorrecta": 0.07692307692307693,
+    "fidelidad": 1
+   }
+  }
+ },
+ "detalle": [
+  {
+   "id": "q001",
+   "tipo": "directa",
+   "pregunta": "¿Qué funciones tiene la Comisión de TFG/M de la Escuela Superior de Ingeniería?",
+   "referencia": "Además de las del reglamento marco: aprobar las propuestas de los estudiantes, fijar los periodos de examen, designar los tribunales, elaborar el reglamento y las rúbricas, decidir la difusión de los TFG/M en la biblioteca, proponer matrículas de honor y tribunales de revisión.",
+   "fuentes": [
+    "tfgm_esi_art_7",
+    "tfg_uca_2012_art_3"
+   ],
+   "respuesta": "La Comisión de TFG/M de la Escuela Superior de Ingeniería tiene, además de las reflejadas en el artículo 3.3 del Reglamento Marco UCA/CG07/2012, las siguientes funciones y competencias: evaluar y aprobar propuestas de TFG/M de los estudiantes; fijar los períodos de examen para cada curso académico; designar a los miembros de los Tribunales de TFG/M; recibir, elaborar y proponer el Reglamento General de TFG/M de la Escuela (y sus modificaciones) para su elevación a la Junta de Escuela; elaborar y hacer públicas las rúbricas de evaluación; determinar los criterios de difusión o archivo en la Biblioteca de la Escuela; proponer la concesión de Matrículas de Honor; proponer los tribunales de revisión; y todas aquellas relativas al procedimiento que la Junta de Escuela estime necesarias [1].",
+   "encontrado": true,
+   "citadas": [
+    "tfgm_esi_art_7"
+   ],
+   "recuperados": [
+    "tfgm_esi_art_7",
+    "tfgm_esi_art_6",
+    "tfgm_esi_art_20",
+    "tfgm_esi_art_9",
+    "tfgm_esi_art_19"
+   ],
+   "modelo": "gemini-3.5-flash-lite",
+   "abstencion_correcta": true,
+   "citas_correctas": 1,
+   "citas_total": 1,
+   "justificacion": "La respuesta del sistema incluye todos los datos esenciales de la referencia y está completamente respaldada por el fragmento 1 aportado.",
+   "correccion": "correcta",
+   "fiel": true,
+   "modelo_juez": "gemini-3.5-flash-lite"
+  },
+  {
+   "id": "q002",
+   "tipo": "directa",
+   "pregunta": "¿Quién forma parte de la Comisión de TFG/M de la ESI?",
+   "referencia": "El Director de la ESI (o un Subdirector en quien delegue), que la preside; los coordinadores de los títulos; un representante de cada departamento con sede en la Escuela y un estudiante. La presidencia nombra un secretario entre sus miembros.",
+   "fuentes": [
+    "tfgm_esi_art_6"
+   ],
+   "respuesta": "La Comisión de TFG/M de la Escuela Superior de Ingeniería (ESI) está compuesta por: a) El Director de la Escuela o Subdirector en quien delegue, que la preside [1]. b) Los coordinadores de los títulos de Grado y Máster [1]. c) Un representante a propuesta de cada Departamento con sede en la Escuela [1]. d) Un estudiante de la ESI nombrado por el Director a propuesta de los representantes de estudiantes en la Junta de Escuela [1]. Además, la presidencia nombrará a un secretario de entre los miembros de la comisión [1].",
+   "encontrado": true,
+   "citadas": [
+    "tfgm_esi_art_6"
+   ],
+   "recuperados": [
+    "tfgm_esi_art_6",
+    "tfgm_esi_art_11",
+    "tfgm_esi_art_7",
+    "tfgm_esi_art_8",
+    "tfgm_esi_art_19"
+   ],
+   "modelo": "gemini-3.5-flash-lite",
+   "abstencion_correcta": true,
+   "citas_correctas": 1,
+   "citas_total": 1,
+   "justificacion": "La respuesta del sistema incluye todos los detalles esenciales de la referencia y amplía correctamente con datos adicionales que sí están respaldados de forma exacta por el fragmento [1].",
+   "correccion": "correcta",
+   "fiel": true,
+   "modelo_juez": "gemini-3.5-flash-lite"
+  },
+  {
+   "id": "q003",
+   "tipo": "directa",
+   "pregunta": "¿Qué estructuras puede seguir el documento de un TFG en la ESI?",
+   "referencia": "Proyecto según las normas UNE 157000 (o UNE 157001), proyecto según ISO/IEC/IEEE 16326, trabajo de investigación (objetivos, estado del arte, hipótesis, metodología, resultados, discusión, conclusiones y bibliografía) o desarrollo de una idea o prototipo con propósito, contexto, procesos, resultados y conclusiones.",
+   "fuentes": [
+    "tfgm_esi_art_16"
+   ],
+   "respuesta": "El documento de un TFG en la ESI deberá ajustarse a alguna de las siguientes estructuras: a) Un proyecto con una estructura según la serie UNE 157000 o, si no existe para la temática, según la norma UNE 157001 [1]. b) Un proyecto con una estructura según la norma ISO/IEC/IEEE 16326 [1]. c) Un trabajo de carácter investigador que incluya objetivos, estudio del estado del arte, hipótesis, metodología, resultados, discusión, conclusiones y bibliografía [1]. d) El desarrollo de una idea o prototipo, modelado teórico o resolución de un problema que incluya un propósito, contexto, justificación de los procesos, descripción de resultados y conclusiones [1].",
+   "encontrado": true,
+   "citadas": [
+    "tfgm_esi_art_16"
+   ],
+   "recuperados": [
+    "tfgm_esi_art_16",
+    "tfgm_esi_art_17",
+    "tfgm_esi_art_11",
+    "tfgm_esi_art_15",
+    "tfgm_esi_art_1"
+   ],
+   "modelo": "gemini-3.5-flash-lite",
+   "abstencion_correcta": true,
+   "citas_correctas": 1,
+   "citas_total": 1,
+   "justificacion": "La respuesta del sistema incluye todos los datos esenciales de la referencia con precisión y está completamente respaldada por los fragmentos proporcionados.",
+   "correccion": "correcta",
+   "fiel": true,
+   "modelo_juez": "gemini-3.5-flash-lite"
+  },
+  {
+   "id": "q004",
+   "tipo": "directa",
+   "pregunta": "¿Cuáles son las obligaciones del tutor académico de la universidad en unas prácticas externas?",
+   "referencia": "Velar por el proyecto formativo y la compatibilidad de horarios, hacer el seguimiento coordinado con el tutor de la entidad, autorizar modificaciones del proyecto formativo, evaluar las prácticas, guardar confidencialidad, informar de incidencias, supervisar los recursos para alumnos con discapacidad y proponer la rescisión si procede.",
+   "fuentes": [
+    "practicas_uca_2012_art_30"
+   ],
+   "respuesta": "Como tutor académico de la universidad en unas prácticas externas, tus obligaciones son: velar por el normal desarrollo del Proyecto Formativo garantizando la compatibilidad horaria con tus obligaciones académicas y de representación; hacer un seguimiento efectivo coordinándote con el tutor de la entidad colaboradora; autorizar las modificaciones del Proyecto Formativo (previa comunicación y visto bueno del centro si son curriculares); llevar a cabo el proceso de evaluación; guardar confidencialidad; informar al órgano responsable de las prácticas de las incidencias; supervisar y solicitar recursos de apoyo para alumnos con discapacidad para garantizar la igualdad de oportunidades; y proponer la rescisión de las prácticas con justificación escrita [2].",
+   "encontrado": true,
+   "citadas": [
+    "practicas_uca_2012_art_30"
+   ],
+   "recuperados": [
+    "practicas_uca_2012_art_16",
+    "practicas_uca_2012_art_30",
+    "practicas_uca_2012_art_28",
+    "practicas_uca_2012_art_24",
+    "practicas_uca_2012_art_29"
+   ],
+   "modelo": "gemini-3.5-flash-lite",
+   "abstencion_correcta": true,
+   "citas_correctas": 1,
+   "citas_total": 1,
+   "justificacion": "La respuesta del sistema incluye todos los puntos de la referencia de manera detallada y exacta según el reglamento, por lo que es correcta y plenamente fiel a los fragmentos proporcionados.",
+   "correccion": "correcta",
+   "fiel": true,
+   "modelo_juez": "gemini-3.5-flash-lite"
+  },
+  {
+   "id": "q005",
+   "tipo": "directa",
+   "pregunta": "¿Qué requisitos tiene que cumplir una entidad colaboradora para ofrecer prácticas?",
+   "referencia": "Estar debidamente constituida, disponer de medios e instalaciones adecuados y de personal cualificado para supervisar las prácticas. La UCA puede pedirle informes sobre su idoneidad.",
+   "fuentes": [
+    "practicas_uca_2012_art_9"
+   ],
+   "respuesta": "Para participar en el programa de prácticas externas de la Universidad de Cádiz, la entidad colaboradora debe cumplir los siguientes requisitos mínimos: estar debidamente constituida, disponer de medios e instalaciones adecuadas para las prácticas, y contar con personal cualificado para su supervisión [1].",
+   "encontrado": true,
+   "citadas": [
+    "practicas_uca_2012_art_9"
+   ],
+   "recuperados": [
+    "practicas_uca_2012_art_9",
+    "practicas_uca_2012_art_22_p2",
+    "practicas_uca_2012_art_22_p1",
+    "practicas_uca_2012_art_28",
+    "practicas_uca_2012_art_24"
+   ],
+   "modelo": "gemini-3.5-flash-lite",
+   "abstencion_correcta": true,
+   "citas_correctas": 1,
+   "citas_total": 1,
+   "justificacion": "La respuesta del sistema acierta en los requisitos principales mencionados en la referencia (constitución, medios, personal), aunque omite la posibilidad de que la UCA pida informes de idoneidad, por lo que es parcialmente correcta. Todo lo mencionado está respaldado por el fragmento [1].",
+   "correccion": "parcial",
+   "fiel": true,
+   "modelo_juez": "gemini-3.5-flash-lite"
+  },
+  {
+   "id": "q006",
+   "tipo": "directa",
+   "pregunta": "¿Qué diferencia hay entre prácticas curriculares y extracurriculares?",
+   "referencia": "Las curriculares forman parte del plan de estudios; las extracurriculares son voluntarias, no forman parte del plan de estudios, aunque se recogen en el Suplemento Europeo al Título.",
+   "fuentes": [
+    "practicas_uca_2012_art_5"
+   ],
+   "respuesta": "Las prácticas curriculares son actividades académicas que forman parte de un Plan de Estudios oficial de Grado, Máster o Doctorado [1]. En cambio, las prácticas extracurriculares se realizan con carácter voluntario durante tu formación, no forman parte del Plan de Estudios y se contemplan en el Suplemento Europeo al Título [1].",
+   "encontrado": true,
+   "citadas": [
+    "practicas_uca_2012_art_5"
+   ],
+   "recuperados": [
+    "practicas_uca_2012_art_5",
+    "practicas_uca_2012_art_13",
+    "practicas_uca_2012_art_35",
+    "practicas_uca_2012_art_39",
+    "practicas_uca_2012_art_44"
+   ],
+   "modelo": "gemini-3.5-flash-lite",
+   "abstencion_correcta": true,
+   "citas_correctas": 1,
+   "citas_total": 1,
+   "justificacion": "La respuesta del sistema incluye todos los datos esenciales de la referencia (las curriculares forman parte del plan de estudios y las extracurriculares son voluntarias y se recogen en el suplemento europeo) y todo su contenido está respaldado exactamente por el fragmento [1].",
+   "correccion": "correcta",
+   "fiel": true,
+   "modelo_juez": "gemini-3.5-flash-lite"
+  },
+  {
+   "id": "q007",
+   "tipo": "directa",
+   "pregunta": "¿Qué derechos tienen los alumnos durante las prácticas externas?",
+   "referencia": "Tutela académica y de la entidad, evaluación, informe de la entidad, la ayuda económica si se estipula, propiedad intelectual de su trabajo, información sobre prevención de riesgos, compatibilidad con su actividad académica y de representación, y recursos y conciliación para alumnos con discapacidad.",
+   "fuentes": [
+    "practicas_uca_2012_art_25"
+   ],
+   "respuesta": "Durante la realización de las prácticas académicas externas, tienes derecho a: a) Tener un tutor académico de la universidad y un tutor en la entidad colaboradora [1]. b) Ser evaluado según los criterios de la Universidad de Cádiz [1]. c) Obtener un informe de la entidad colaboradora con las actividades desarrolladas, duración y rendimiento [1]. d) Percibir, si procede, la bolsa o ayuda al estudio de la entidad [1]. e) La propiedad intelectual e industrial de tus trabajos según la legislación [1]. f) Recibir información sobre seguridad y prevención de riesgos laborales [1]. g) Cumplir con tu actividad académica, formativa y de representación previa comunicación a la entidad [1]. h) Disponer de recursos para la igualdad de acceso e i) conciliar las prácticas si tienes alguna discapacidad [1]. j) Cualesquiera otros previstos en la normativa vigente y en los convenios de cooperación [1].",
+   "encontrado": true,
+   "citadas": [
+    "practicas_uca_2012_art_25"
+   ],
+   "recuperados": [
+    "practicas_uca_2012_art_25",
+    "practicas_uca_2012_art_26",
+    "practicas_uca_2012_art_23",
+    "practicas_uca_2012_art_8_p2",
+    "practicas_uca_2012_art_8_p1"
+   ],
+   "modelo": "gemini-3.5-flash-lite",
+   "abstencion_correcta": true,
+   "citas_correctas": 1,
+   "citas_total": 1,
+   "justificacion": "La respuesta del sistema incluye todos los derechos esenciales mencionados en la referencia y está completamente respaldada por el fragmento [1] del reglamento.",
+   "correccion": "correcta",
+   "fiel": true,
+   "modelo_juez": "gemini-3.5-flash-lite"
+  },
+  {
+   "id": "q008",
+   "tipo": "directa",
+   "pregunta": "¿Qué tiene que incluir la memoria final de prácticas del alumno?",
+   "referencia": "Datos personales, entidad y lugar, descripción detallada de las tareas y departamentos, valoración de las tareas respecto a lo aprendido en la carrera, problemas y cómo se resolvieron, aportaciones al aprendizaje y evaluación con sugerencias de mejora.",
+   "fuentes": [
+    "practicas_uca_2012_art_47"
+   ],
+   "respuesta": "Al finalizar tus prácticas, debes incluir en tu memoria final los siguientes aspectos según el modelo normalizado de la Universidad de Cádiz: a) Tus datos personales [1]. b) La entidad colaboradora y su ubicación [1]. c) Una descripción concreta y detallada de las tareas y departamentos asignados [1]. d) Una valoración de las tareas con los conocimientos y competencias adquiridos [1]. e) Los problemas planteados y el procedimiento seguido para resolverlos [1]. f) Las aportaciones en materia de aprendizaje [1]. g) Una evaluación de las prácticas y sugerencias de mejora [1].",
+   "encontrado": true,
+   "citadas": [
+    "practicas_uca_2012_art_47"
+   ],
+   "recuperados": [
+    "practicas_uca_2012_art_47",
+    "practicas_uca_2012_art_46",
+    "practicas_uca_2012_art_13",
+    "practicas_uca_2012_art_26",
+    "practicas_uca_2012_art_35"
+   ],
+   "modelo": "gemini-3.5-flash-lite",
+   "abstencion_correcta": true,
+   "citas_correctas": 1,
+   "citas_total": 1,
+   "justificacion": "La respuesta del sistema incluye todos los elementos requeridos por la referencia de forma detallada y exacta conforme al reglamento. Además, todo lo afirmado se encuentra rigurosamente respaldado por el fragmento [1].",
+   "correccion": "correcta",
+   "fiel": true,
+   "modelo_juez": "gemini-3.5-flash-lite"
+  },
+  {
+   "id": "q009",
+   "tipo": "directa",
+   "pregunta": "¿Quién designa al tutor académico del trabajo fin de grado según el reglamento marco de la UCA?",
+   "referencia": "La comisión de trabajos de fin de grado o máster, entre profesores de departamentos con docencia en el título, atendiendo en lo posible a las preferencias del profesor y del alumno.",
+   "fuentes": [
+    "tfg_uca_2012_art_4",
+    "tfg_uca_2012_art_6"
+   ],
+   "respuesta": "El tutor académico será designado por la comisión de los trabajos de fin de Grado o de fin de Máster entre los profesores pertenecientes a un departamento con docencia en el plan de estudios del título [1].",
+   "encontrado": true,
+   "citadas": [
+    "tfg_uca_2012_art_4"
+   ],
+   "recuperados": [
+    "tfg_uca_2012_art_4_p1",
+    "tfg_uca_2012_art_4_p2",
+    "tfg_uca_2012_art_6_p2",
+    "tfg_uca_2012_art_11",
+    "tfg_uca_2012_art_6_p1"
+   ],
+   "modelo": "gemini-3.5-flash-lite",
+   "abstencion_correcta": true,
+   "citas_correctas": 1,
+   "citas_total": 1,
+   "justificacion": "La respuesta del sistema acierta en quién realiza la designación, pero omite el detalle de que se atiende a las preferencias del profesor y del alumno, por lo que es parcial aunque totalmente fiel a los fragmentos.",
+   "correccion": "parcial",
+   "fiel": true,
+   "modelo_juez": "gemini-3.5-flash-lite"
+  },
+  {
+   "id": "q010",
+   "tipo": "directa",
+   "pregunta": "¿Qué aspectos se tienen en cuenta en la calificación del TFG según el reglamento marco?",
+   "referencia": "La calidad científica y técnica, el material entregado y la claridad expositiva; si la exposición es pública, también la capacidad de debate y defensa. La nota final es la media aritmética de las notas de los miembros de la comisión evaluadora.",
+   "fuentes": [
+    "tfg_uca_2012_art_8"
+   ],
+   "respuesta": "La información sobre los aspectos específicos que se tienen en cuenta en la calificación del TFG según el reglamento marco no aparece en la normativa consultada.",
+   "encontrado": false,
+   "citadas": [],
+   "recuperados": [
+    "tfgm_esi_art_16",
+    "tfgm_esi_art_1",
+    "tfgm_esi_art_7",
+    "tfgm_esi_art_21_p4",
+    "tfgm_esi_art_3"
+   ],
+   "modelo": "gemini-3.5-flash-lite",
+   "abstencion_correcta": false,
+   "citas_correctas": 0,
+   "citas_total": 0,
+   "justificacion": "El sistema indicó que no encontraba la información porque los fragmentos proporcionados no contienen los criterios de calificación del TFG, por lo que su respuesta es correcta y fiel a dichos fragmentos.",
+   "correccion": "correcta",
+   "fiel": true,
+   "modelo_juez": "gemini-3.5-flash-lite"
+  },
+  {
+   "id": "q011",
+   "tipo": "directa",
+   "pregunta": "¿Qué funciones tiene el tutor de un TFG/M en la ESI?",
+   "referencia": "Asesorar en la planificación, sugerir planteamientos técnicos, recomendar bibliografía y normativa, autorizar la presentación a trámite, proponer una terna de profesores y dos suplentes para el tribunal y comprobar que el trabajo cumple los requisitos aprobados.",
+   "fuentes": [
+    "tfgm_esi_art_14"
+   ],
+   "respuesta": "Las funciones y competencias de los tutores de TFG/M en la ESI son: asesorar en la planificación del trabajo, sugerir planteamientos técnicos generales, recomendar bibliografía, normativa y reglamentación, autorizar la presentación a trámite del trabajo, proponer una terna de profesores y dos suplentes para el tribunal, y comprobar que el trabajo cumple con los requisitos aprobados en su asignación [1].",
+   "encontrado": true,
+   "citadas": [
+    "tfgm_esi_art_14"
+   ],
+   "recuperados": [
+    "tfgm_esi_art_14",
+    "tfgm_esi_art_15",
+    "tfgm_esi_art_13",
+    "tfgm_esi_art_11",
+    "tfgm_esi_art_9"
+   ],
+   "modelo": "gemini-3.5-flash-lite",
+   "abstencion_correcta": true,
+   "citas_correctas": 1,
+   "citas_total": 1,
+   "justificacion": "La respuesta del sistema incluye todas las funciones del tutor mencionadas en la referencia y en los fragmentos normativos sin añadir errores ni información inventada.",
+   "correccion": "correcta",
+   "fiel": true,
+   "modelo_juez": "gemini-3.5-flash-lite"
+  },
+  {
+   "id": "q012",
+   "tipo": "directa",
+   "pregunta": "¿Quién compone la Comisión de Prácticas en Empresas de la UCA?",
+   "referencia": "La preside el Vicerrector competente; la integran dos representantes del Equipo de Gobierno, uno de decanos y directores de centro, uno de directores de departamento, uno de alumnos y uno del PAS, más un responsable académico del Vicerrectorado como secretario.",
+   "fuentes": [
+    "practicas_uca_2012_art_54"
+   ],
+   "respuesta": "La Comisión de Prácticas en Empresas de la UCA está compuesta por: el Vicerrector competente en la materia (quien la preside), dos representantes del Equipo de Gobierno designados por el Rector, un representante de decanos y directores de centros, un representante de directores de departamentos, un representante de alumnos y un representante del Personal de Administración y Servicios [1]. Además, incluye a un responsable académico designado por el Vicerrector competente como miembro nato y secretario, y contará con una persona de la Unidad administrativa de Prácticas en Empresas para las funciones de secretaría técnica [1].",
+   "encontrado": true,
+   "citadas": [
+    "practicas_uca_2012_art_54"
+   ],
+   "recuperados": [
+    "practicas_uca_2012_art_54",
+    "practicas_uca_2012_art_55",
+    "practicas_uca_2012_art_17",
+    "practicas_uca_2012_art_48_p1",
+    "practicas_uca_2012_disp_6"
+   ],
+   "modelo": "gemini-3.5-flash-lite",
+   "abstencion_correcta": true,
+   "citas_correctas": 1,
+   "citas_total": 1,
+   "justificacion": "La respuesta del sistema incluye todos los detalles esenciales de la composición de la comisión presentes en la referencia y en los fragmentos normativos. Todo lo afirmado está respaldado plenamente por el fragmento [1].",
+   "correccion": "correcta",
+   "fiel": true,
+   "modelo_juez": "gemini-3.5-flash-lite"
+  },
+  {
+   "id": "q013",
+   "tipo": "directa",
+   "pregunta": "¿Cuándo entró en vigor el reglamento marco de TFG y TFM de la UCA?",
+   "referencia": "Al día siguiente de su publicación en el Boletín Oficial de la Universidad de Cádiz (BOUCA).",
+   "fuentes": [
+    "tfg_uca_2012_disp_2"
+   ],
+   "respuesta": "El Reglamento marco de Trabajos Fin de Grado y Fin de Máster de la UCA entró en vigor al día siguiente de su publicación en el Boletín Oficial de la Universidad de Cádiz [1].",
+   "encontrado": true,
+   "citadas": [
+    "tfg_uca_2012_disp_2"
+   ],
+   "recuperados": [
+    "tfg_uca_2012_disp_2",
+    "practicas_uca_2012_disp_7",
+    "tfgm_esi_art_10",
+    "tfg_uca_2012_art_15",
+    "tfg_uca_2012_art_1"
+   ],
+   "modelo": "gemini-3.5-flash-lite",
+   "abstencion_correcta": true,
+   "citas_correctas": 1,
+   "citas_total": 1,
+   "justificacion": "La respuesta del sistema coincide exactamente con la de referencia al indicar que entró en vigor al día siguiente de su publicación en el BOUCA, y toda la información está plenamente respaldada por el fragmento [1].",
+   "correccion": "correcta",
+   "fiel": true,
+   "modelo_juez": "gemini-3.5-flash-lite"
+  },
+  {
+   "id": "q014",
+   "tipo": "directa",
+   "pregunta": "¿Qué información debe aparecer en una oferta de prácticas extracurriculares?",
+   "referencia": "Entidad, lugar, fechas y duración en horas, horario, proyecto formativo, titulaciones a las que va dirigida, tutor académico, tutor de la entidad, requisitos y cuantía de la bolsa de ayuda si la hay.",
+   "fuentes": [
+    "practicas_uca_2012_art_39"
+   ],
+   "respuesta": "La oferta de prácticas extracurriculares debe reflejar, siempre que sea posible, los siguientes datos: nombre o razón social de la entidad colaboradora, centro, localidad y dirección del lugar de prácticas, fecha de comienzo y fin junto con la duración en horas, número de horas diarias y horario asignado, proyecto formativo, actividades y competencias a desarrollar, titulación o titulaciones a las que se dirigen, nombre del tutor académico, nombre del tutor de la entidad colaboradora, requisitos exigidos (autorizados por el responsable del programa) y, en su caso, la cuantía de la bolsa de ayuda al estudio [1].",
+   "encontrado": true,
+   "citadas": [
+    "practicas_uca_2012_art_39"
+   ],
+   "recuperados": [
+    "practicas_uca_2012_art_39",
+    "practicas_uca_2012_art_40",
+    "practicas_uca_2012_art_52",
+    "practicas_uca_2012_art_32",
+    "practicas_uca_2012_art_8_p1"
+   ],
+   "modelo": "gemini-3.5-flash-lite",
+   "abstencion_correcta": true,
+   "citas_correctas": 1,
+   "citas_total": 1,
+   "justificacion": "La respuesta del sistema incluye todos los datos esenciales recogidos en la referencia y en la normativa, y no afirma nada que no esté respaldado por los fragmentos proporcionados.",
+   "correccion": "correcta",
+   "fiel": true,
+   "modelo_juez": "gemini-3.5-flash-lite"
+  },
+  {
+   "id": "q015",
+   "tipo": "directa",
+   "pregunta": "¿Qué pasa con los TFG que empezaron a tramitarse antes de que existiera la aplicación de gestión de TFG/M?",
+   "referencia": "Deben terminar la tramitación por el método anterior. Los iniciados en el curso 2022/23 deben usar la aplicación.",
+   "fuentes": [
+    "tfgm_esi_disp_2"
+   ],
+   "respuesta": "Todos los estudiantes que hayan comenzado la tramitación de su TFG/M previamente a la puesta en funcionamiento de la aplicación de gestión deben concluir dicha tramitación empleando el método anterior [1].",
+   "encontrado": true,
+   "citadas": [
+    "tfgm_esi_disp_2"
+   ],
+   "recuperados": [
+    "tfgm_esi_disp_2",
+    "tfgm_esi_art_21_p2",
+    "tfgm_esi_art_21_p3",
+    "tfgm_esi_art_3",
+    "tfgm_esi_art_16"
+   ],
+   "modelo": "gemini-3.5-flash-lite",
+   "abstencion_correcta": true,
+   "citas_correctas": 1,
+   "citas_total": 1,
+   "justificacion": "La respuesta del sistema es parcial porque omite la excepción importante mencionada en la referencia y en el texto (que los iniciados en el curso 2022/23 deben usar la aplicación), aunque lo que afirma sobre los trámites anteriores es correcto y fiel a los fragmentos.",
+   "correccion": "parcial",
+   "fiel": true,
+   "modelo_juez": "gemini-3.5-flash-lite"
+  },
+  {
+   "id": "q016",
+   "tipo": "parafrase",
+   "pregunta": "Si la empresa me contrata al terminar, ¿el tiempo que estuve de prácticas me cuenta como antigüedad?",
+   "referencia": "No. No computa como antigüedad ni exime del periodo de prueba, salvo que el convenio colectivo diga otra cosa.",
+   "fuentes": [
+    "practicas_uca_2012_art_3"
+   ],
+   "respuesta": "No, el tiempo que hayas estado de prácticas no se computará a efectos de antigüedad ni eximirá del período de prueba si te incorporas a la plantilla de la entidad colaboradora al término de los estudios, salvo que en el convenio colectivo aplicable estuviera expresamente estipulado algo distinto [1].",
+   "encontrado": true,
+   "citadas": [
+    "practicas_uca_2012_art_3"
+   ],
+   "recuperados": [
+    "practicas_uca_2012_art_3",
+    "practicas_uca_2012_art_13",
+    "practicas_uca_2012_art_35",
+    "practicas_uca_2012_art_15",
+    "practicas_uca_2012_art_14_p2"
+   ],
+   "modelo": "gemini-3.5-flash-lite",
+   "abstencion_correcta": true,
+   "citas_correctas": 1,
+   "citas_total": 1,
+   "justificacion": "La respuesta del sistema coincide exactamente con los datos de la referencia y está completamente respaldada por el fragmento 1.",
+   "correccion": "correcta",
+   "fiel": true,
+   "modelo_juez": "gemini-3.5-flash-lite"
+  },
+  {
+   "id": "q017",
+   "tipo": "parafrase",
+   "pregunta": "Me puse malo y falté tres días a mis prácticas extracurriculares, ¿tengo que recuperarlos?",
+   "referencia": "No, si las faltas por enfermedad común están justificadas y en total no superan 15 días no consecutivos o 5 consecutivos.",
+   "fuentes": [
+    "practicas_uca_2012_art_14"
+   ],
+   "respuesta": "No tienes que recuperar tus faltas de asistencia por enfermedad común si están debidamente justificadas y no superan en cómputo global los 15 días no consecutivos o los 5 días consecutivos previstos para la realización de las prácticas [1].",
+   "encontrado": true,
+   "citadas": [
+    "practicas_uca_2012_art_14"
+   ],
+   "recuperados": [
+    "practicas_uca_2012_art_14_p2",
+    "practicas_uca_2012_art_43",
+    "practicas_uca_2012_art_13",
+    "practicas_uca_2012_art_14_p1",
+    "practicas_uca_2012_art_42"
+   ],
+   "modelo": "gemini-3.5-flash-lite",
+   "abstencion_correcta": true,
+   "citas_correctas": 1,
+   "citas_total": 1,
+   "justificacion": "La respuesta del sistema es totalmente correcta al coincidir con la de referencia en las condiciones de no recuperabilidad por enfermedad común, y es fiel ya que toda la información está respaldada textualmente por el fragmento 1.",
+   "correccion": "correcta",
+   "fiel": true,
+   "modelo_juez": "gemini-3.5-flash-lite"
+  },
+  {
+   "id": "q018",
+   "tipo": "parafrase",
+   "pregunta": "¿Quién me pone la nota de las prácticas que van en el plan de estudios?",
+   "referencia": "El tutor académico, a partir del seguimiento, el informe del tutor de la entidad, los informes de seguimiento y la memoria del alumno. El acta la firma el profesor coordinador de la asignatura.",
+   "fuentes": [
+    "practicas_uca_2012_art_48",
+    "practicas_uca_2012_art_30"
+   ],
+   "respuesta": "La evaluación de tus prácticas curriculares la realiza el tutor académico de la universidad basándose en tu seguimiento, el informe del tutor de la entidad, los informes de seguimiento y tu memoria final [1]. Sin embargo, la firma del acta de calificación oficial corresponde al profesor coordinador de la asignatura de prácticas [1].",
+   "encontrado": true,
+   "citadas": [
+    "practicas_uca_2012_art_48"
+   ],
+   "recuperados": [
+    "practicas_uca_2012_art_48_p1",
+    "practicas_uca_2012_art_47",
+    "practicas_uca_2012_art_46",
+    "practicas_uca_2012_art_49",
+    "practicas_uca_2012_art_48_p2"
+   ],
+   "modelo": "gemini-3.5-flash-lite",
+   "abstencion_correcta": true,
+   "citas_correctas": 1,
+   "citas_total": 1,
+   "justificacion": "La respuesta del sistema acierta plenamente al indicar que el tutor académico realiza la evaluación y el profesor coordinador firma el acta, coincidiendo con la referencia y estando todo respaldado por el fragmento [1].",
+   "correccion": "correcta",
+   "fiel": true,
+   "modelo_juez": "gemini-3.5-flash-lite"
+  },
+  {
+   "id": "q019",
+   "tipo": "parafrase",
+   "pregunta": "Tengo una idea para el TFG, ¿puedo llevársela a un profesor de la ESI para que me la proponga?",
+   "referencia": "Sí. La propuesta la hace un profesor, por iniciativa propia o a instancias de un estudiante, y ese profesor actúa como tutor. Según el marco, el alumno puede proponer el tema a la comisión con el informe favorable de un profesor de la titulación, que será su tutor.",
+   "fuentes": [
+    "tfgm_esi_art_10",
+    "tfg_uca_2012_art_6"
+   ],
+   "respuesta": "Sí, puedes proponerle tu idea a un profesor adscrito a la Escuela Superior de Ingeniería o a un profesor de la UCA con docencia en tu titulación, ya que las propuestas de TFG/M pueden realizarse a iniciativa de un estudiante [2].",
+   "encontrado": true,
+   "citadas": [
+    "tfgm_esi_art_10"
+   ],
+   "recuperados": [
+    "tfgm_esi_art_11",
+    "tfgm_esi_art_10",
+    "tfgm_esi_art_9",
+    "tfgm_esi_art_6",
+    "tfgm_esi_art_15"
+   ],
+   "modelo": "gemini-3.5-flash-lite",
+   "abstencion_correcta": true,
+   "citas_correctas": 1,
+   "citas_total": 1,
+   "justificacion": "La respuesta del sistema es correcta y aborda todos los puntos esenciales indicados en la referencia, apoyándose adecuadamente en el artículo 10 del fragmento [2].",
+   "correccion": "correcta",
+   "fiel": true,
+   "modelo_juez": "gemini-3.5-flash-lite"
+  },
+  {
+   "id": "q020",
+   "tipo": "parafrase",
+   "pregunta": "Si me hago daño durante las prácticas, ¿qué seguro me cubre?",
+   "referencia": "En las curriculares, el Seguro Escolar (los mayores de 28 años deben contratar un seguro de accidentes por su cuenta); en las extracurriculares, un seguro de accidentes y responsabilidad civil acordado con la entidad; en las internacionales, un seguro propio con repatriación.",
+   "fuentes": [
+    "practicas_uca_2012_art_12",
+    "practicas_uca_2012_art_23"
+   ],
+   "respuesta": "Para las prácticas curriculares, estarás cubierto por el Seguro Escolar (si eres mayor de 28 años, deberás formalizar por tu cuenta un seguro de accidente a tu cargo) [1]. Para las prácticas extracurriculares, estarás cubierto por un seguro de accidentes en los términos que se acuerden con la entidad colaboradora [1]. En el caso de prácticas internacionales (independientemente de la modalidad), deberás suscribir por tu cuenta un seguro de accidente que incluya la repatriación [1].",
+   "encontrado": true,
+   "citadas": [
+    "practicas_uca_2012_art_12"
+   ],
+   "recuperados": [
+    "practicas_uca_2012_art_12",
+    "practicas_uca_2012_art_23",
+    "practicas_uca_2012_art_20",
+    "practicas_uca_2012_art_25",
+    "practicas_uca_2012_art_17"
+   ],
+   "modelo": "gemini-3.5-flash-lite",
+   "abstencion_correcta": true,
+   "citas_correctas": 1,
+   "citas_total": 1,
+   "justificacion": "La respuesta del sistema es correcta ya que incluye todos los detalles esenciales de la referencia (curriculares, extracurriculares e internacionales con sus excepciones). Además, es completamente fiel a los fragmentos proporcionados.",
+   "correccion": "correcta",
+   "fiel": true,
+   "modelo_juez": "gemini-3.5-flash-lite"
+  },
+  {
+   "id": "q021",
+   "tipo": "parafrase",
+   "pregunta": "Ya he dicho que no a dos ofertas que me salieron en la plataforma de prácticas, ¿me puede pasar algo?",
+   "referencia": "Sí: si se rechaza la preselección hasta en dos ocasiones teniendo la disponibilidad activada, no se puede hacer ninguna otra práctica ese curso.",
+   "fuentes": [
+    "practicas_uca_2012_art_40"
+   ],
+   "respuesta": "Si tienes activada la disponibilidad y rechazas la preselección para realizar una práctica hasta en dos ocasiones, no podrás realizar ninguna otra práctica extracurricular durante ese curso académico [4].",
+   "encontrado": true,
+   "citadas": [
+    "practicas_uca_2012_art_40"
+   ],
+   "recuperados": [
+    "practicas_uca_2012_art_18",
+    "practicas_uca_2012_art_42",
+    "practicas_uca_2012_art_43",
+    "practicas_uca_2012_art_40",
+    "practicas_uca_2012_art_17"
+   ],
+   "modelo": "gemini-3.5-flash-lite",
+   "abstencion_correcta": true,
+   "citas_correctas": 1,
+   "citas_total": 1,
+   "justificacion": "La respuesta del sistema acierta plenamente al indicar las consecuencias de rechazar la preselección dos veces con la disponibilidad activada, coincidiendo con la referencia. Además, toda la información está respaldada directamente por el fragmento [4].",
+   "correccion": "correcta",
+   "fiel": true,
+   "modelo_juez": "gemini-3.5-flash-lite"
+  },
+  {
+   "id": "q022",
+   "tipo": "ambigua",
+   "pregunta": "¿Puedo hacer el TFG con un tutor de la escuela y otro de una empresa?",
+   "referencia": "Sí. En la ESI, el profesor proponente es el tutor y puede haber un único cotutor, que puede ser un experto o profesional vinculado con la titulación. Según el marco, si el trabajo se hace dentro de un convenio de prácticas con una empresa, hacen falta dos tutores y uno de ellos debe ser de la empresa.",
+   "fuentes": [
+    "tfgm_esi_art_10",
+    "tfg_uca_2012_art_4"
+   ],
+   "respuesta": "Sí, las propuestas de TFG/M pueden incluir un cotutor que sea un experto o profesional vinculado con la titulación [3], lo que incluye perfiles externos como profesionales de una empresa. Además, en el caso de dobles titulaciones, se pueden tener dos tutores académicos y un único cotutor externo [1].",
+   "encontrado": true,
+   "citadas": [
+    "tfgm_esi_art_4",
+    "tfgm_esi_art_10"
+   ],
+   "recuperados": [
+    "tfgm_esi_art_4",
+    "tfgm_esi_art_14",
+    "tfgm_esi_art_10",
+    "tfgm_esi_art_13",
+    "tfgm_esi_art_9"
+   ],
+   "modelo": "gemini-3.5-flash-lite",
+   "abstencion_correcta": true,
+   "citas_correctas": 1,
+   "citas_total": 2,
+   "justificacion": "La respuesta del sistema acierta al indicar que se puede tener un cotutor profesional de empresa, pero es incompleta y parcialmente incorrecta al mencionar dobles titulaciones, lo cual no responde a la pregunta principal de la referencia. Además, afirma que se pueden tener dos tutores académicos y un cotutor externo basándose en el fragmento [1], pero dicho fragmento es exclusivo de dobles titulaciones, por lo que la afirmación es parcialmente infiel al contexto general de la pregunta.",
+   "correccion": "parcial",
+   "fiel": false,
+   "modelo_juez": "gemini-3.5-flash-lite"
+  },
+  {
+   "id": "q023",
+   "tipo": "parafrase",
+   "pregunta": "¿Puedo hacer el TFG mientras estoy de Erasmus?",
+   "referencia": "Sí, si el acuerdo entre las universidades lo contempla y se hace constar en el acuerdo de estudios.",
+   "fuentes": [
+    "tfgm_esi_art_5"
+   ],
+   "respuesta": "Sí, el TFG se puede desarrollar en el marco de un programa de movilidad o de un convenio de intercambio con otra universidad. Podrás matricularte y realizarlo en la universidad de destino siempre que el acuerdo entre ambas universidades contemple esta posibilidad y se haga constar explícitamente en el acuerdo de estudios. El reconocimiento solo se reflejará en el acta y expediente cuando cumplas los requisitos de la Memoria del plan de estudios [1].",
+   "encontrado": true,
+   "citadas": [
+    "tfgm_esi_art_5"
+   ],
+   "recuperados": [
+    "tfgm_esi_art_5",
+    "tfgm_esi_art_21_p2",
+    "tfgm_esi_art_11",
+    "tfgm_esi_art_21_p3",
+    "tfgm_esi_art_22_p2"
+   ],
+   "modelo": "gemini-3.5-flash-lite",
+   "abstencion_correcta": true,
+   "citas_correctas": 1,
+   "citas_total": 1,
+   "justificacion": "La respuesta del sistema incluye todos los datos esenciales de la respuesta de referencia y amplía correctamente con detalles del fragmento normativo, por lo que es correcta y totalmente fiel.",
+   "correccion": "correcta",
+   "fiel": true,
+   "modelo_juez": "gemini-3.5-flash-lite"
+  },
+  {
+   "id": "q024",
+   "tipo": "parafrase",
+   "pregunta": "Ya trabajo con contrato en una empresa, ¿puedo hacer las prácticas allí mismo?",
+   "referencia": "No, salvo autorización expresa del responsable de prácticas del centro (curriculares) o del responsable del vicerrectorado (extracurriculares).",
+   "fuentes": [
+    "practicas_uca_2012_art_8",
+    "practicas_uca_2012_art_18"
+   ],
+   "respuesta": "La realización de una práctica externa es incompatible con el desempeño de un trabajo remunerado en la misma entidad colaboradora o cualquier otra actividad que impida el desarrollo adecuado de las prácticas y tu actividad académica normal [2]. Sin embargo, en el caso de las prácticas curriculares, el centro podrá autorizar la compatibilidad tras valorar la situación [2].",
+   "encontrado": true,
+   "citadas": [
+    "practicas_uca_2012_art_18"
+   ],
+   "recuperados": [
+    "practicas_uca_2012_art_3",
+    "practicas_uca_2012_art_18",
+    "practicas_uca_2012_art_17",
+    "practicas_uca_2012_art_32",
+    "practicas_uca_2012_art_15"
+   ],
+   "modelo": "gemini-3.5-flash-lite",
+   "abstencion_correcta": true,
+   "citas_correctas": 1,
+   "citas_total": 1,
+   "justificacion": "La respuesta del sistema omite la mención a las prácticas extracurriculares y no indica quién las autoriza (el vicerrector), por lo que es parcial. Sin embargo, todo lo que afirma sobre las curriculares está respaldado por el fragmento [2].",
+   "correccion": "parcial",
+   "fiel": true,
+   "modelo_juez": "gemini-3.5-flash-lite"
+  },
+  {
+   "id": "q025",
+   "tipo": "parafrase",
+   "pregunta": "¿Quién me va a supervisar dentro de la empresa?",
+   "referencia": "Un tutor de la entidad (tutor profesional) con experiencia y conocimientos, distinto del tutor académico. Acoge al alumno, organiza sus actividades y se coordina con el tutor académico.",
+   "fuentes": [
+    "practicas_uca_2012_art_16",
+    "practicas_uca_2012_art_28",
+    "practicas_uca_2012_art_22"
+   ],
+   "respuesta": "Lo siento, la normativa consultada no contiene información sobre quién te va a supervisar dentro de la empresa.",
+   "encontrado": false,
+   "citadas": [],
+   "recuperados": [
+    "practicas_uca_2012_art_54",
+    "practicas_uca_2012_art_37",
+    "practicas_uca_2012_art_31",
+    "practicas_uca_2012_art_55",
+    "practicas_uca_2012_art_45"
+   ],
+   "modelo": "gemini-3.5-flash-lite",
+   "abstencion_correcta": false,
+   "citas_correctas": 0,
+   "citas_total": 0,
+   "justificacion": "La respuesta del sistema indica correctamente que no encuentra la información en los fragmentos proporcionados, lo cual es cierto ya que los textos leídos no mencionan al tutor de la empresa.",
+   "correccion": "incorrecta",
+   "fiel": true,
+   "modelo_juez": "gemini-3.5-flash-lite"
+  },
+  {
+   "id": "q026",
+   "tipo": "parafrase",
+   "pregunta": "No me convence el tutor y el tema que me han dado de forma provisional, ¿puedo quejarme?",
+   "referencia": "Sí. La asignación provisional se publica en la web del centro y se abre un plazo de tres semanas para reclamaciones o peticiones.",
+   "fuentes": [
+    "tfg_uca_2012_art_6"
+   ],
+   "respuesta": "Sí, puedes reclamar. Tras la publicación de la propuesta provisional de asignación de tutor y tema en la página web del centro, dispones de un plazo de tres semanas para presentar reclamaciones o peticiones [1].",
+   "encontrado": true,
+   "citadas": [
+    "tfg_uca_2012_art_6"
+   ],
+   "recuperados": [
+    "tfg_uca_2012_art_6_p2",
+    "tfg_uca_2012_art_6_p1",
+    "practicas_uca_2012_art_17",
+    "tfg_uca_2012_art_4_p2",
+    "tfg_uca_2012_art_4_p1"
+   ],
+   "modelo": "gemini-3.5-flash-lite",
+   "abstencion_correcta": true,
+   "citas_correctas": 1,
+   "citas_total": 1,
+   "justificacion": "La respuesta del sistema es correcta ya que responde afirmativamente y detalla el plazo de tres semanas tras la publicación provisional, coincidiendo plenamente con la referencia. Además, toda la información está respaldada directamente por el fragmento [1].",
+   "correccion": "correcta",
+   "fiel": true,
+   "modelo_juez": "gemini-3.5-flash-lite"
+  },
+  {
+   "id": "q027",
+   "tipo": "parafrase",
+   "pregunta": "¿Cómo tengo que llamar al archivo cuando suba el TFG?",
+   "referencia": "Un único fichero comprimido con todos los entregables, con el número de DNI o NIE en mayúsculas y sin otros símbolos.",
+   "fuentes": [
+    "tfgm_esi_art_21"
+   ],
+   "respuesta": "Debes subir el TFG en un único fichero comprimido cuyo nombre sea tu número de DNI o NIE, con las letras en mayúscula y sin ningún otro símbolo [1].",
+   "encontrado": true,
+   "citadas": [
+    "tfgm_esi_art_21"
+   ],
+   "recuperados": [
+    "tfgm_esi_art_21_p2",
+    "tfgm_esi_art_21_p4",
+    "tfgm_esi_art_3",
+    "tfgm_esi_art_17",
+    "tfgm_esi_art_16"
+   ],
+   "modelo": "gemini-3.5-flash-lite",
+   "abstencion_correcta": true,
+   "citas_correctas": 1,
+   "citas_total": 1,
+   "justificacion": "La respuesta del sistema coincide exactamente con la referencia y está totalmente respaldada por el fragmento normativo.",
+   "correccion": "correcta",
+   "fiel": true,
+   "modelo_juez": "gemini-3.5-flash-lite"
+  },
+  {
+   "id": "q028",
+   "tipo": "parafrase",
+   "pregunta": "¿Las prácticas en empresa se cobran?",
+   "referencia": "En las curriculares la entidad puede pagar una bolsa o ayuda al estudio; en las extracurriculares paga la cantidad prevista en la oferta. No es un sueldo ni una nómina.",
+   "fuentes": [
+    "practicas_uca_2012_art_20",
+    "practicas_uca_2012_art_25"
+   ],
+   "respuesta": "Sí, pueden cobrarse en concepto de bolsa o ayuda al estudio, pero existen diferencias según el tipo de práctica: \n- En las prácticas curriculares, la entidad colaboradora podrá abonar mensualmente una cantidad al estudiante [2]. \n- En las prácticas extracurriculares, la entidad colaboradora abonará al estudiante la cantidad que se hubiera previsto en la oferta [2]. \nEn cualquier caso, esta cuantía se fija en un anexo al convenio de cooperación educativa y nunca se considera una remuneración o nómina, ya que no existe relación laboral [2, 3].",
+   "encontrado": true,
+   "citadas": [
+    "practicas_uca_2012_art_20",
+    "practicas_uca_2012_art_3"
+   ],
+   "recuperados": [
+    "practicas_uca_2012_art_14_p1",
+    "practicas_uca_2012_art_20",
+    "practicas_uca_2012_art_3",
+    "practicas_uca_2012_art_14_p2",
+    "practicas_uca_2012_art_12"
+   ],
+   "modelo": "gemini-3.5-flash-lite",
+   "abstencion_correcta": true,
+   "citas_correctas": 1,
+   "citas_total": 2,
+   "justificacion": "La respuesta del sistema es correcta ya que detalla adecuadamente las diferencias entre prácticas curriculares y extracurriculares respecto a la bolsa o ayuda al estudio, y es totalmente fiel a los fragmentos normativos proporcionados.",
+   "correccion": "correcta",
+   "fiel": true,
+   "modelo_juez": "gemini-3.5-flash-lite"
+  },
+  {
+   "id": "q029",
+   "tipo": "parafrase",
+   "pregunta": "¿Puedo parar un tiempo mis prácticas extracurriculares y volver después?",
+   "referencia": "Sí, si lo acuerda el Vicerrector a petición razonada y ambas partes están de acuerdo. Máximo dos meses, y luego se prolonga el periodo hasta completar el inicial.",
+   "fuentes": [
+    "practicas_uca_2012_art_17"
+   ],
+   "respuesta": "Sí, el Vicerrector competente o el responsable académico de las prácticas extracurriculares puede acordar la interrupción temporal a petición razonada tuya o de la entidad colaboradora, siempre que ambas partes estén de acuerdo [1]. El periodo máximo de interrupción será de dos meses, tras los cuales deberás incorporarte a la entidad y prolongar el periodo de prácticas hasta completar el tiempo establecido inicialmente [1].",
+   "encontrado": true,
+   "citadas": [
+    "practicas_uca_2012_art_17"
+   ],
+   "recuperados": [
+    "practicas_uca_2012_art_17",
+    "practicas_uca_2012_art_44",
+    "practicas_uca_2012_art_35",
+    "practicas_uca_2012_art_43",
+    "practicas_uca_2012_art_14_p2"
+   ],
+   "modelo": "gemini-3.5-flash-lite",
+   "abstencion_correcta": true,
+   "citas_correctas": 1,
+   "citas_total": 1,
+   "justificacion": "La respuesta del sistema acierta plenamente con todos los detalles de la referencia y está respaldada exactamente por el fragmento [1].",
+   "correccion": "correcta",
+   "fiel": true,
+   "modelo_juez": "gemini-3.5-flash-lite"
+  },
+  {
+   "id": "q030",
+   "tipo": "cifra",
+   "pregunta": "¿Cuántas horas a la semana se hacen de prácticas?",
+   "referencia": "25 horas semanales.",
+   "fuentes": [
+    "practicas_uca_2012_art_14"
+   ],
+   "respuesta": "El número total de horas semanales de prácticas en la empresa será de 25, con carácter general [1].",
+   "encontrado": true,
+   "citadas": [
+    "practicas_uca_2012_art_14"
+   ],
+   "recuperados": [
+    "practicas_uca_2012_art_14_p1",
+    "practicas_uca_2012_art_13",
+    "practicas_uca_2012_art_14_p2",
+    "practicas_uca_2012_art_17",
+    "practicas_uca_2012_art_44"
+   ],
+   "modelo": "gemini-3.5-flash-lite",
+   "abstencion_correcta": true,
+   "citas_correctas": 1,
+   "citas_total": 1,
+   "justificacion": "La respuesta del sistema es correcta ya que indica con precisión las 25 horas semanales requeridas y toda la información está respaldada fielmente por el fragmento [1].",
+   "correccion": "correcta",
+   "fiel": true,
+   "modelo_juez": "gemini-3.5-flash-lite"
+  },
+  {
+   "id": "q031",
+   "tipo": "cifra",
+   "pregunta": "¿Cuánto pueden durar como mucho las prácticas extracurriculares?",
+   "referencia": "Preferentemente no más del 50 % del curso académico o 6 meses, ampliable una sola vez 3 meses más con autorización expresa.",
+   "fuentes": [
+    "practicas_uca_2012_art_13",
+    "practicas_uca_2012_art_44"
+   ],
+   "respuesta": "Las prácticas extracurriculares tienen una duración preferente no superior al cincuenta por ciento del curso académico o a 6 meses [1]. En casos justificados, esta duración se puede ampliar por una sola vez un periodo de 3 meses más mediante autorización expresa del Vicerrector o del responsable competente [1].",
+   "encontrado": true,
+   "citadas": [
+    "practicas_uca_2012_art_13"
+   ],
+   "recuperados": [
+    "practicas_uca_2012_art_13",
+    "practicas_uca_2012_art_44",
+    "practicas_uca_2012_art_35",
+    "practicas_uca_2012_art_17",
+    "practicas_uca_2012_art_39"
+   ],
+   "modelo": "gemini-3.5-flash-lite",
+   "abstencion_correcta": true,
+   "citas_correctas": 1,
+   "citas_total": 1,
+   "justificacion": "La respuesta del sistema incluye todos los datos esenciales de la referencia y además aporta detalles correctos sobre quién otorga la autorización, estando todo ello completamente respaldado por el fragmento [1].",
+   "correccion": "correcta",
+   "fiel": true,
+   "modelo_juez": "gemini-3.5-flash-lite"
+  },
+  {
+   "id": "q032",
+   "tipo": "cifra",
+   "pregunta": "¿Qué parte de la carrera tengo que llevar aprobada para poder hacer prácticas voluntarias?",
+   "referencia": "Haber superado el 50 % de los créditos del grado.",
+   "fuentes": [
+    "practicas_uca_2012_art_8"
+   ],
+   "respuesta": "Para realizar prácticas extracurriculares (voluntarias) en un Grado, es necesario haber superado el 50% de los créditos necesarios para obtener el título [2]. En el caso de otros programas formativos, debes estar inscrito en el programa correspondiente [2].",
+   "encontrado": true,
+   "citadas": [
+    "practicas_uca_2012_art_8"
+   ],
+   "recuperados": [
+    "practicas_uca_2012_art_42",
+    "practicas_uca_2012_art_8_p1",
+    "practicas_uca_2012_art_40",
+    "practicas_uca_2012_art_48_p1",
+    "practicas_uca_2012_art_26"
+   ],
+   "modelo": "gemini-3.5-flash-lite",
+   "abstencion_correcta": true,
+   "citas_correctas": 1,
+   "citas_total": 1,
+   "justificacion": "La respuesta del sistema incluye exactamente la información de la respuesta de referencia y está totalmente respaldada por el fragmento [2].",
+   "correccion": "correcta",
+   "fiel": true,
+   "modelo_juez": "gemini-3.5-flash-lite"
+  },
+  {
+   "id": "q033",
+   "tipo": "cifra",
+   "pregunta": "¿Cuánto tiempo tengo para presentar el TFG delante del tribunal en la ESI?",
+   "referencia": "25 minutos de exposición (prorrogables 10 para la parte práctica) en un acto de 60 minutos como máximo. En un TFG de doble titulación, 50 minutos en un acto de hasta 90.",
+   "fuentes": [
+    "tfgm_esi_art_22"
+   ],
+   "respuesta": "Para la exposición del TFG en la ESI dispondrás de un máximo de 25 minutos, pudiendo solicitar la presidencia del tribunal una prórroga de hasta 10 minutos adicionales para la exposición práctica [1]. Ten en cuenta que la duración total máxima del acto de defensa es de 60 minutos [1]. Si se trata de un TFG único de una doble titulación, el tiempo máximo de exposición es de 50 minutos (con la misma prórroga posible de 10 minutos) y la duración total del acto puede extenderse hasta 90 minutos [5].",
+   "encontrado": true,
+   "citadas": [
+    "tfgm_esi_art_22",
+    "tfgm_esi_art_22"
+   ],
+   "recuperados": [
+    "tfgm_esi_art_22_p1",
+    "tfgm_esi_art_11",
+    "tfgm_esi_art_21_p2",
+    "tfgm_esi_art_21_p4",
+    "tfgm_esi_art_22_p2"
+   ],
+   "modelo": "gemini-3.5-flash-lite",
+   "abstencion_correcta": true,
+   "citas_correctas": 1,
+   "citas_total": 1,
+   "justificacion": "La respuesta del sistema es correcta porque detalla con precisión los tiempos de exposición y duración total tanto para titulaciones simples como dobles basándose estrictamente en los fragmentos proporcionados.",
+   "correccion": "correcta",
+   "fiel": true,
+   "modelo_juez": "gemini-3.5-flash-lite"
+  },
+  {
+   "id": "q034",
+   "tipo": "cifra",
+   "pregunta": "En la ESI, ¿cuántas veces puedo suspender el mismo TFG antes de tener que pedir uno nuevo?",
+   "referencia": "Tras suspender tres convocatorias con el mismo TFG hay que solicitar una nueva asignación.",
+   "fuentes": [
+    "tfgm_esi_art_12"
+   ],
+   "respuesta": "En la Escuela Superior de Ingeniería (ESI), si has suspendido el mismo TFG/M en tres convocatorias, deberás solicitar una nueva asignación [1].",
+   "encontrado": true,
+   "citadas": [
+    "tfgm_esi_art_12"
+   ],
+   "recuperados": [
+    "tfgm_esi_art_12",
+    "tfgm_esi_art_11",
+    "tfgm_esi_art_22_p2",
+    "tfgm_esi_disp_2",
+    "tfgm_esi_art_9"
+   ],
+   "modelo": "gemini-3.5-flash-lite",
+   "abstencion_correcta": true,
+   "citas_correctas": 1,
+   "citas_total": 1,
+   "justificacion": "La respuesta del sistema coincide exactamente con la de referencia al indicar que se deben suspender tres convocatorias para solicitar una nueva asignación, y toda la información está respaldada por el fragmento [1].",
+   "correccion": "correcta",
+   "fiel": true,
+   "modelo_juez": "gemini-3.5-flash-lite"
+  },
+  {
+   "id": "q035",
+   "tipo": "cifra",
+   "pregunta": "¿Qué nota necesita un TFG para que lo suban al repositorio de la universidad?",
+   "referencia": "Un 9 o más: se incorpora en abierto al Repositorio Institucional.",
+   "fuentes": [
+    "tfg_uca_2012_art_7"
+   ],
+   "respuesta": "La información sobre la nota necesaria en el TFG para que sea subido al repositorio de la universidad no aparece en la normativa consultada.",
+   "encontrado": false,
+   "citadas": [],
+   "recuperados": [
+    "tfgm_esi_art_10",
+    "tfgm_esi_art_11",
+    "tfgm_esi_art_21_p2",
+    "tfgm_esi_art_17",
+    "tfgm_esi_art_3"
+   ],
+   "modelo": "gemini-3.5-flash-lite",
+   "abstencion_correcta": false,
+   "citas_correctas": 0,
+   "citas_total": 0,
+   "justificacion": "El sistema indicó correctamente que la información no aparecía en los fragmentos proporcionados, y al no estar presente, su respuesta es fiel a ellos aunque la referencia sí supiera la respuesta por fuentes externas.",
+   "correccion": "incorrecta",
+   "fiel": true,
+   "modelo_juez": "gemini-3.5-flash-lite"
+  },
+  {
+   "id": "q036",
+   "tipo": "cifra",
+   "pregunta": "¿Cuántas matrículas de honor se pueden dar en el TFG?",
+   "referencia": "Como máximo el 5 % de los matriculados en la materia; si son menos de 20, solo una. En la ESI se conceden en orden decreciente de nota y los empates se resuelven por expediente.",
+   "fuentes": [
+    "tfg_uca_2012_art_8",
+    "tfgm_esi_art_23"
+   ],
+   "respuesta": "El número de menciones de Matrícula de Honor en cada curso académico y Título no podrá ser superior a lo establecido en la normativa vigente [1]. Estas menciones se concederán en orden decreciente de calificación numérica hasta agotar dicho número, resolviéndose los empates a favor del mejor expediente académico [1].",
+   "encontrado": true,
+   "citadas": [
+    "tfgm_esi_art_23"
+   ],
+   "recuperados": [
+    "tfgm_esi_art_23",
+    "tfgm_esi_art_22_p2",
+    "tfgm_esi_art_19",
+    "tfgm_esi_art_11",
+    "tfgm_esi_art_5"
+   ],
+   "modelo": "gemini-3.5-flash-lite",
+   "abstencion_correcta": true,
+   "citas_correctas": 1,
+   "citas_total": 1,
+   "justificacion": "La respuesta del sistema es parcial porque no especifica la cantidad exacta de matrículas de honor permitidas (el 5% o una si son menos de 20), limitándose a remitir a la normativa vigente. No obstante, es totalmente fiel a los fragmentos proporcionados.",
+   "correccion": "parcial",
+   "fiel": true,
+   "modelo_juez": "gemini-3.5-flash-lite"
+  },
+  {
+   "id": "q037",
+   "tipo": "cifra",
+   "pregunta": "Cuando termine las prácticas, ¿cuánto tiempo tengo para mandar la memoria?",
+   "referencia": "Dos semanas como máximo, a través de la aplicación, al tutor académico.",
+   "fuentes": [
+    "practicas_uca_2012_art_47"
+   ],
+   "respuesta": "Al concluir las prácticas, dispones de un plazo máximo de dos semanas para remitir la memoria final a tu tutor académico de la Universidad de Cádiz a través de la aplicación informática habilitada para ello [1].",
+   "encontrado": true,
+   "citadas": [
+    "practicas_uca_2012_art_47"
+   ],
+   "recuperados": [
+    "practicas_uca_2012_art_47",
+    "practicas_uca_2012_art_46",
+    "practicas_uca_2012_art_13",
+    "practicas_uca_2012_art_35",
+    "practicas_uca_2012_art_17"
+   ],
+   "modelo": "gemini-3.5-flash-lite",
+   "abstencion_correcta": true,
+   "citas_correctas": 1,
+   "citas_total": 1,
+   "justificacion": "La respuesta del sistema incluye todos los datos esenciales de la referencia (plazo de dos semanas, destinatario y medio de envío) y toda la información está respaldada correctamente por el fragmento [1].",
+   "correccion": "correcta",
+   "fiel": true,
+   "modelo_juez": "gemini-3.5-flash-lite"
+  },
+  {
+   "id": "q038",
+   "tipo": "cifra",
+   "pregunta": "¿Con cuánta antelación le tengo que pasar el TFG terminado a mi tutor?",
+   "referencia": "Al menos una semana antes de la fecha límite para subir la documentación.",
+   "fuentes": [
+    "tfgm_esi_art_21"
+   ],
+   "respuesta": "Debes entregar el TFG a tus tutores con un plazo igual o superior a una semana con respecto a la fecha límite establecida para la subida de la documentación del trabajo [1].",
+   "encontrado": true,
+   "citadas": [
+    "tfgm_esi_art_21"
+   ],
+   "recuperados": [
+    "tfgm_esi_art_21_p2",
+    "tfgm_esi_art_21_p4",
+    "tfgm_esi_art_9",
+    "tfgm_esi_disp_2",
+    "tfgm_esi_art_14"
+   ],
+   "modelo": "gemini-3.5-flash-lite",
+   "abstencion_correcta": true,
+   "citas_correctas": 1,
+   "citas_total": 1,
+   "justificacion": "La respuesta del sistema coincide exactamente con la de referencia en cuanto al plazo de una semana y está totalmente respaldada por el fragmento [1].",
+   "correccion": "correcta",
+   "fiel": true,
+   "modelo_juez": "gemini-3.5-flash-lite"
+  },
+  {
+   "id": "q039",
+   "tipo": "multi",
+   "pregunta": "Si termino las prácticas de la carrera, ¿puedo quedarme en la empresa con unas extracurriculares? ¿Cuánto tiempo?",
+   "referencia": "Sí, si cumple los requisitos de las extracurriculares. Su duración máxima es la de las extracurriculares (preferentemente 50 % del curso o 6 meses, ampliable 3), sin contar el periodo curricular.",
+   "fuentes": [
+    "practicas_uca_2012_art_35",
+    "practicas_uca_2012_art_13"
+   ],
+   "respuesta": "Sí, tras finalizar un periodo total de prácticas curriculares puedes iniciar una práctica extracurricular si cumples los requisitos de esa modalidad [1]. La duración máxima será la establecida para las prácticas extracurriculares, excluyendo del cómputo el tiempo realizado en la práctica curricular [1]. Dichas prácticas extracurriculares tienen una duración preferentemente no superior al 50% del curso académico o a 6 meses, pudiendo ampliarse por una sola vez un periodo de 3 meses más de forma justificada y con autorización expresa [3].",
+   "encontrado": true,
+   "citadas": [
+    "practicas_uca_2012_art_35",
+    "practicas_uca_2012_art_13"
+   ],
+   "recuperados": [
+    "practicas_uca_2012_art_35",
+    "practicas_uca_2012_art_44",
+    "practicas_uca_2012_art_13",
+    "practicas_uca_2012_art_17",
+    "practicas_uca_2012_art_14_p2"
+   ],
+   "modelo": "gemini-3.5-flash-lite",
+   "abstencion_correcta": true,
+   "citas_correctas": 2,
+   "citas_total": 2,
+   "justificacion": "La respuesta del sistema incluye toda la información esencial de la referencia sobre la posibilidad y la duración de las prácticas extracurriculares tras unas curriculares, y cada afirmación se apoya directamente en los fragmentos facilitados.",
+   "correccion": "correcta",
+   "fiel": true,
+   "modelo_juez": "gemini-3.5-flash-lite"
+  },
+  {
+   "id": "q040",
+   "tipo": "multi",
+   "pregunta": "¿Cómo dejo unas prácticas que ya me han asignado?",
+   "referencia": "Por escrito, con el modelo de la UCA y motivando las causas. En las curriculares la renuncia la informa el tutor y va a la Comisión de Prácticas; en las extracurriculares, abandonar sin causa justificada puede suponer la exclusión del programa.",
+   "fuentes": [
+    "practicas_uca_2012_art_34",
+    "practicas_uca_2012_art_43"
+   ],
+   "respuesta": "Si deseas dejar unas prácticas que ya te han asignado, el procedimiento varía según sean curriculares o extracurriculares:\n- Prácticas curriculares: Al alumno que rechace, abandone o no se incorpore le serán aplicables los criterios de evaluación y penalización legalmente regulados [1]. La renuncia debe hacerse por escrito (según modelo de la UCA), motivando las causas, y debe ser informada por el tutor para tramitarla a la Comisión de Prácticas en Empresas [1].\n- Prácticas extracurriculares: Si rechazas, abandonas o no te incorporas sin causa justificada, podrás ser excluido del programa [2]. La renuncia también debe hacerse por escrito mediante el modelo de la UCA, indicando las causas motivadas [2]. Además, si aún no has comenzado y transcurre el plazo de aceptación sin que la verifiques (y sin causa justificada), se considerará que renuncias a ella [3].",
+   "encontrado": true,
+   "citadas": [
+    "practicas_uca_2012_art_34",
+    "practicas_uca_2012_art_43",
+    "practicas_uca_2012_art_42"
+   ],
+   "recuperados": [
+    "practicas_uca_2012_art_34",
+    "practicas_uca_2012_art_43",
+    "practicas_uca_2012_art_42",
+    "practicas_uca_2012_art_17",
+    "practicas_uca_2012_art_15"
+   ],
+   "modelo": "gemini-3.5-flash-lite",
+   "abstencion_correcta": true,
+   "citas_correctas": 2,
+   "citas_total": 3,
+   "justificacion": "La respuesta del sistema incluye todos los datos esenciales de la referencia (procedimiento por escrito con modelo UCA, motivación de causas, tutor y comisión para curriculares, y posible exclusión para extracurriculares) y está totalmente respaldada por los fragmentos proporcionados.",
+   "correccion": "correcta",
+   "fiel": true,
+   "modelo_juez": "gemini-3.5-flash-lite"
+  },
+  {
+   "id": "q041",
+   "tipo": "multi",
+   "pregunta": "Al acabar las prácticas, ¿quién me da un papel que demuestre lo que he hecho?",
+   "referencia": "La entidad emite un documento con la descripción, duración, fechas y actividades (y un informe), y la UCA expide una acreditación una vez entregadas la memoria, la encuesta y el informe del tutor.",
+   "fuentes": [
+    "practicas_uca_2012_art_22",
+    "practicas_uca_2012_art_25",
+    "practicas_uca_2012_art_48",
+    "practicas_uca_2012_art_23"
+   ],
+   "respuesta": "A la terminación de las prácticas (tanto curriculares como extracurriculares), una vez que hayas entregado la memoria y la encuesta final, y que el tutor de la entidad colaboradora haya enviado su informe final, la Universidad de Cádiz emitirá un documento acreditativo de las mismas para entregártelas [3].",
+   "encontrado": true,
+   "citadas": [
+    "practicas_uca_2012_art_48"
+   ],
+   "recuperados": [
+    "practicas_uca_2012_art_47",
+    "practicas_uca_2012_art_46",
+    "practicas_uca_2012_art_48_p2",
+    "practicas_uca_2012_art_49",
+    "practicas_uca_2012_art_48_p1"
+   ],
+   "modelo": "gemini-3.5-flash-lite",
+   "abstencion_correcta": true,
+   "citas_correctas": 1,
+   "citas_total": 1,
+   "justificacion": "La respuesta del sistema omite mencionar el documento que emite la entidad colaboradora (mencionado en la referencia), centrándose únicamente en el acreditado por la UCA, por lo que es parcial. Sin embargo, todo lo que afirma está estrictamente respaldado por el fragmento [3].",
+   "correccion": "parcial",
+   "fiel": true,
+   "modelo_juez": "gemini-3.5-flash-lite"
+  },
+  {
+   "id": "q042",
+   "tipo": "multi",
+   "pregunta": "¿Qué hay que entregar al terminar las prácticas, tanto yo como mi tutor de la empresa?",
+   "referencia": "El alumno: memoria final y encuesta. El tutor de la entidad: informe final valorando competencias y encuesta. Ambos en dos semanas, por la aplicación, al tutor académico.",
+   "fuentes": [
+    "practicas_uca_2012_art_46",
+    "practicas_uca_2012_art_47"
+   ],
+   "respuesta": "Al concluir las prácticas, en un plazo máximo de dos semanas, debes entregar a través de la aplicación informática: 1) Una memoria final de prácticas con tus datos, la descripción de tareas, valoración de competencias, problemas resueltos y sugerencias; y 2) Una encuesta final normalizada [2]. Por su parte, el tutor de la entidad colaboradora debe remitir al tutor académico, en el mismo plazo de dos semanas y por la aplicación informática: 1) Un informe final que valore tu actividad, competencias y otros aspectos como la capacidad técnica o puntualidad; y 2) Una encuesta final normalizada [1].",
+   "encontrado": true,
+   "citadas": [
+    "practicas_uca_2012_art_46",
+    "practicas_uca_2012_art_47"
+   ],
+   "recuperados": [
+    "practicas_uca_2012_art_46",
+    "practicas_uca_2012_art_47",
+    "practicas_uca_2012_art_36",
+    "practicas_uca_2012_art_30",
+    "practicas_uca_2012_art_49"
+   ],
+   "modelo": "gemini-3.5-flash-lite",
+   "abstencion_correcta": true,
+   "citas_correctas": 2,
+   "citas_total": 2,
+   "justificacion": "La respuesta del sistema incluye todos los datos esenciales de la referencia (memoria y encuesta del alumno, informe y encuesta del tutor, plazo de dos semanas y entrega a través de la aplicación) y está completamente respaldada por los fragmentos proporcionados.",
+   "correccion": "correcta",
+   "fiel": true,
+   "modelo_juez": "gemini-3.5-flash-lite"
+  },
+  {
+   "id": "q043",
+   "tipo": "multi",
+   "pregunta": "Mi TFG es una aplicación, ¿qué tengo que subir a la plataforma?",
+   "referencia": "Un único comprimido nombrado con el DNI/NIE con todos los entregables: el documento y todos los ficheros necesarios para que funcione el software (indicando la autoría) y el manual de instalación.",
+   "fuentes": [
+    "tfgm_esi_art_21",
+    "tfgm_esi_art_17"
+   ],
+   "respuesta": "Si tu TFG/M desarrolla un producto software, debes incluir junto con el documento del trabajo todos los ficheros necesarios para el correcto funcionamiento del software (indicando la autoría) y el manual de instalación [1]. Además, debes subir el trabajo en un único fichero comprimido a través de la aplicación de gestión de TFG/M que contenga toda la documentación entregable, nombrando el archivo con tu número de DNI o NIE (con las letras en mayúscula y sin ningún otro símbolo) [5].",
+   "encontrado": true,
+   "citadas": [
+    "tfgm_esi_art_17",
+    "tfgm_esi_art_21"
+   ],
+   "recuperados": [
+    "tfgm_esi_art_17",
+    "tfgm_esi_art_16",
+    "tfgm_esi_art_11",
+    "tfgm_esi_disp_2",
+    "tfgm_esi_art_21_p2"
+   ],
+   "modelo": "gemini-3.5-flash-lite",
+   "abstencion_correcta": true,
+   "citas_correctas": 2,
+   "citas_total": 2,
+   "justificacion": "La respuesta del sistema incluye todos los detalles clave de la referencia (comprimido único con DNI/NIE, documento, ficheros de software y manual de instalación) y además está respaldada íntegramente por los fragmentos provistos.",
+   "correccion": "correcta",
+   "fiel": true,
+   "modelo_juez": "gemini-3.5-flash-lite"
+  },
+  {
+   "id": "q044",
+   "tipo": "multi",
+   "pregunta": "¿Cómo se elige a los profesores que me van a evaluar el TFG en la ESI?",
+   "referencia": "Los designa la Comisión de TFG/M (tres titulares y dos suplentes) al menos 10 días naturales antes del periodo de examen, teniendo en cuenta sin obligación la propuesta del tutor, que no puede formar parte. Presidente el de mayor categoría y secretario el de menor.",
+   "fuentes": [
+    "tfgm_esi_art_19",
+    "tfgm_esi_art_21",
+    "tfgm_esi_art_14"
+   ],
+   "respuesta": "En la Escuela Superior de Ingeniería (ESI), una vez recibido el informe del tutor del TFG/M y como mínimo 10 días naturales antes del periodo de examen, la Comisión de TFG/M designará a los miembros del Tribunal a partir de la propuesta del tutor [4]. Respecto a los cargos, la Comisión nombrará como presidente al de mayor categoría docente (y antigüedad en caso de igualdad) y como secretario al de menor categoría docente (y menor antigüedad en caso de igualdad) entre los miembros titulares [4].",
+   "encontrado": true,
+   "citadas": [
+    "tfgm_esi_art_21"
+   ],
+   "recuperados": [
+    "tfgm_esi_art_11",
+    "tfgm_esi_art_9",
+    "tfgm_esi_art_15",
+    "tfgm_esi_art_21_p4",
+    "tfgm_esi_art_6"
+   ],
+   "modelo": "gemini-3.5-flash-lite",
+   "abstencion_correcta": true,
+   "citas_correctas": 1,
+   "citas_total": 1,
+   "justificacion": "La respuesta del sistema es correcta porque incluye los datos esenciales de la referencia (plazos, órgano que designa y asignación de cargos del tribunal), y es totalmente fiel ya que se apoya en el fragmento [4].",
+   "correccion": "correcta",
+   "fiel": true,
+   "modelo_juez": "gemini-3.5-flash-lite"
+  },
+  {
+   "id": "q045",
+   "tipo": "ambigua",
+   "pregunta": "¿Qué asignaturas tengo que tener aprobadas para poder defender el TFG?",
+   "referencia": "El reglamento marco exige las materias básicas y obligatorias (más los requisitos de la memoria del título); el de la ESI exige todas las materias del plan de estudios salvo el propio TFG.",
+   "fuentes": [
+    "tfg_uca_2012_art_2",
+    "tfgm_esi_art_21"
+   ],
+   "respuesta": "Para poder presentar y defender el TFG, debes haber superado la totalidad de las materias del plan de estudios, con la única excepción de las correspondientes al propio trabajo [1].",
+   "encontrado": true,
+   "citadas": [
+    "tfgm_esi_art_21"
+   ],
+   "recuperados": [
+    "tfgm_esi_art_21_p3",
+    "tfgm_esi_art_21_p2",
+    "tfgm_esi_art_10",
+    "tfgm_esi_art_22_p1",
+    "tfgm_esi_art_17"
+   ],
+   "modelo": "gemini-3.5-flash-lite",
+   "abstencion_correcta": true,
+   "citas_correctas": 1,
+   "citas_total": 1,
+   "justificacion": "La respuesta del sistema es correcta y plenamente fiel a los fragmentos proporcionados, ya que se limita a responder en base al reglamento de la ESI consultado (exigiendo la totalidad de las materias salvo el TFG).",
+   "correccion": "correcta",
+   "fiel": true,
+   "modelo_juez": "gemini-3.5-flash-lite"
+  },
+  {
+   "id": "q046",
+   "tipo": "ambigua",
+   "pregunta": "¿Puedo escribir y defender el TFG en inglés?",
+   "referencia": "En la ESI sí: español o inglés, avisando a la Comisión por la aplicación, con título, resumen y al menos cinco palabras clave en español. El marco permite otro idioma con solicitud justificada y autorización si se usa en la titulación.",
+   "fuentes": [
+    "tfgm_esi_art_17",
+    "tfg_uca_2012_art_7"
+   ],
+   "respuesta": "Sí, el idioma empleado para realizar el TFG/M podrá ser tanto el español como el inglés [1]. La redacción del documento y el acto de defensa completo ante el tribunal se deberán realizar en uno de los dos idiomas, debiendo notificarlo a la Comisión a través de los medios dispuestos en la aplicación de gestión de TFG/M [1]. Además, ten en cuenta que el documento deberá incluir el título, un breve resumen y al menos cinco palabras clave en español [1].",
+   "encontrado": true,
+   "citadas": [
+    "tfgm_esi_art_17"
+   ],
+   "recuperados": [
+    "tfgm_esi_art_17",
+    "tfgm_esi_art_3",
+    "tfgm_esi_art_22_p2",
+    "tfgm_esi_art_21_p3",
+    "tfgm_esi_art_16"
+   ],
+   "modelo": "gemini-3.5-flash-lite",
+   "abstencion_correcta": true,
+   "citas_correctas": 1,
+   "citas_total": 1,
+   "justificacion": "La respuesta del sistema es correcta ya que incluye todos los detalles esenciales de la referencia (idiomas permitidos, notificación y metadatos en español) y está completamente respaldada por el fragmento [1].",
+   "correccion": "correcta",
+   "fiel": true,
+   "modelo_juez": "gemini-3.5-flash-lite"
+  },
+  {
+   "id": "q047",
+   "tipo": "ambigua",
+   "pregunta": "¿Cuántos profesores hay en el tribunal del TFG y puede estar mi tutor?",
+   "referencia": "Según el marco, tres titulares y un suplente; en la ESI, tres titulares y dos suplentes (cuatro titulares en dobles titulaciones). El tutor no puede formar parte en ningún caso.",
+   "fuentes": [
+    "tfg_uca_2012_art_5",
+    "tfgm_esi_art_19"
+   ],
+   "respuesta": "Para un TFG de una única titulación, el tribunal está compuesto por tres miembros titulares y dos suplentes. Si presentas un TFG único para una doble titulación, habrá cuatro miembros titulares (dos por cada titulación) y dos suplentes [1]. En ningún caso tu tutor podrá formar parte del tribunal [1].",
+   "encontrado": true,
+   "citadas": [
+    "tfgm_esi_art_19"
+   ],
+   "recuperados": [
+    "tfgm_esi_art_19",
+    "tfgm_esi_art_22_p1",
+    "tfgm_esi_art_21_p4",
+    "tfgm_esi_art_10",
+    "tfgm_esi_art_14"
+   ],
+   "modelo": "gemini-3.5-flash-lite",
+   "abstencion_correcta": true,
+   "citas_correctas": 1,
+   "citas_total": 1,
+   "justificacion": "La respuesta del sistema acierta completamente sobre la composición del tribunal y la exclusión del tutor basándose en la normativa de la ESI, y toda la información está respaldada por el fragmento [1].",
+   "correccion": "correcta",
+   "fiel": true,
+   "modelo_juez": "gemini-3.5-flash-lite"
+  },
+  {
+   "id": "q048",
+   "tipo": "ambigua",
+   "pregunta": "Si este curso no presento el TFG, ¿pierdo el tema y el tutor que me asignaron?",
+   "referencia": "El marco dice que la asignación solo vale para el curso en que se está matriculado; en la ESI vale 2 años naturales y después hay que pedir una nueva asignación o una prórroga.",
+   "fuentes": [
+    "tfg_uca_2012_art_6",
+    "tfgm_esi_art_12"
+   ],
+   "respuesta": "La información sobre si se pierde el tema y el tutor asignados en caso de no presentar el TFG este curso no aparece en la normativa consultada.",
+   "encontrado": false,
+   "citadas": [],
+   "recuperados": [
+    "tfgm_esi_art_9",
+    "tfgm_esi_art_21_p4",
+    "tfgm_esi_art_13",
+    "tfgm_esi_art_14",
+    "tfgm_esi_art_10"
+   ],
+   "modelo": "gemini-3.5-flash-lite",
+   "abstencion_correcta": false,
+   "citas_correctas": 0,
+   "citas_total": 0,
+   "justificacion": "El sistema indicó correctamente que la información no aparece en los fragmentos suministrados, por lo que su afirmación es fiel a los datos disponibles, aunque la referencia externa sí posea esa información.",
+   "correccion": "incorrecta",
+   "fiel": true,
+   "modelo_juez": "gemini-3.5-flash-lite"
+  },
+  {
+   "id": "q049",
+   "tipo": "ambigua",
+   "pregunta": "¿Puedo hacer el TFG junto a un compañero?",
+   "referencia": "El TFG es individual. El marco permite que la comisión autorice excepcionalmente un trabajo en grupo, con tareas de cada uno y calificación individual; el reglamento de la ESI lo define como un ejercicio individual.",
+   "fuentes": [
+    "tfg_uca_2012_art_2",
+    "tfgm_esi_art_3"
+   ],
+   "respuesta": "La información sobre si puedes hacer el TFG junto a un compañero no aparece en la normativa consultada.",
+   "encontrado": false,
+   "citadas": [],
+   "recuperados": [
+    "tfgm_esi_art_5",
+    "tfgm_esi_art_10",
+    "tfgm_esi_art_22_p1",
+    "tfgm_esi_art_21_p2",
+    "tfgm_esi_art_4"
+   ],
+   "modelo": "gemini-3.5-flash-lite",
+   "abstencion_correcta": false,
+   "citas_correctas": 0,
+   "citas_total": 0,
+   "justificacion": "El sistema indicó correctamente que la información no aparecía en los fragmentos suministrados (los cuales no mencionan explícitamente si se puede hacer en grupo). Por tanto, la respuesta es fiel a los fragmentos y correcta ante la falta de datos en la normativa provista.",
+   "correccion": "correcta",
+   "fiel": true,
+   "modelo_juez": "gemini-3.5-flash-lite"
+  },
+  {
+   "id": "q050",
+   "tipo": "ambigua",
+   "pregunta": "¿Se puede defender el TFG por videollamada?",
+   "referencia": "En la ESI se puede pedir de forma justificada la modalidad virtual y la autoriza la Comisión de TFG/M. El marco establece defensa presencial y admite la defensa a distancia de forma excepcional.",
+   "fuentes": [
+    "tfgm_esi_art_21",
+    "tfg_uca_2012_art_7"
+   ],
+   "respuesta": "Sí, puedes indicar la necesidad, debidamente justificada, de que la celebración del examen sea en modalidad virtual al subir tu TFG a la aplicación de gestión. Será la Comisión de TFG/M quien autorice o no esta modalidad según la justificación, la disponibilidad de medios y la idoneidad académica [1]. Si se aprueba de forma virtual, deberás comunicar los nombres de las personas que deseen asistir al acto al secretario del tribunal con 24 horas de antelación [4].",
+   "encontrado": true,
+   "citadas": [
+    "tfgm_esi_art_21",
+    "tfgm_esi_art_22"
+   ],
+   "recuperados": [
+    "tfgm_esi_art_21_p2",
+    "tfgm_esi_art_21_p4",
+    "tfgm_esi_art_8",
+    "tfgm_esi_art_22_p1",
+    "tfgm_esi_art_14"
+   ],
+   "modelo": "gemini-3.5-flash-lite",
+   "abstencion_correcta": true,
+   "citas_correctas": 1,
+   "citas_total": 2,
+   "justificacion": "La respuesta del sistema es correcta ya que indica que se puede solicitar la modalidad virtual de forma justificada y aprobada por la comisión, y es fiel porque toda la información proviene directamente de los fragmentos proporcionados.",
+   "correccion": "correcta",
+   "fiel": true,
+   "modelo_juez": "gemini-3.5-flash-lite"
+  },
+  {
+   "id": "q051",
+   "tipo": "ambigua",
+   "pregunta": "Estudio un doble grado, ¿tengo que hacer dos TFG distintos?",
+   "referencia": "No necesariamente: se puede hacer un trabajo conjunto si las comisiones lo consideran adecuado, con un tutor por titulación (en la ESI se puede añadir un cotutor externo) y un tribunal de cuatro miembros.",
+   "fuentes": [
+    "tfg_uca_2012_art_9",
+    "tfg_uca_2012_art_11",
+    "tfgm_esi_art_4",
+    "tfg_uca_2012_art_13",
+    "tfgm_esi_art_19"
+   ],
+   "respuesta": "En el caso de dobles titulaciones en la Escuela Superior de Ingeniería, se contempla la posibilidad de realizar un trabajo conjunto que integre las competencias de ambas titulaciones [1]. Este trabajo requiere contar con dos tutores académicos (uno por cada titulación) y se podrá tener un único cotutor externo [1].",
+   "encontrado": true,
+   "citadas": [
+    "tfgm_esi_art_4"
+   ],
+   "recuperados": [
+    "tfgm_esi_art_4",
+    "tfgm_esi_art_3",
+    "tfgm_esi_art_5",
+    "tfgm_esi_art_16",
+    "tfgm_esi_art_10"
+   ],
+   "modelo": "gemini-3.5-flash-lite",
+   "abstencion_correcta": true,
+   "citas_correctas": 1,
+   "citas_total": 1,
+   "justificacion": "La respuesta del sistema omite la mención al tribunal y no responde directamente a si son dos TFG distintos, aunque acierta en la posibilidad del trabajo conjunto y tutores según los fragmentos. Por ello es parcial y fiel.",
+   "correccion": "parcial",
+   "fiel": true,
+   "modelo_juez": "gemini-3.5-flash-lite"
+  },
+  {
+   "id": "q052",
+   "tipo": "sin_respuesta",
+   "pregunta": "¿Cuánto cuesta matricularse del TFG?",
+   "referencia": "Los reglamentos no lo dicen: los precios los fija el decreto de precios públicos.",
+   "fuentes": [],
+   "respuesta": "La información sobre el coste de la matrícula del TFG no aparece en la normativa consultada.",
+   "encontrado": false,
+   "citadas": [],
+   "recuperados": [
+    "tfgm_esi_art_23",
+    "tfgm_esi_art_21_p1",
+    "tfgm_esi_art_21_p2",
+    "tfgm_esi_art_5",
+    "tfgm_esi_art_3"
+   ],
+   "modelo": "gemini-3.5-flash-lite",
+   "abstencion_correcta": true
+  },
+  {
+   "id": "q053",
+   "tipo": "cifra",
+   "pregunta": "¿Cuántos créditos vale el TFG o el TFM?",
+   "referencia": "Los reglamentos no fijan una cifra: el trabajo debe corresponderse con los créditos que prevea la memoria del plan de estudios de cada título, y en la ESI los contenidos propuestos deben ajustarse a esos créditos.",
+   "fuentes": [
+    "tfg_uca_2012_art_2",
+    "tfgm_esi_art_10"
+   ],
+   "respuesta": "La información sobre cuántos créditos vale exactamente el TFG o el TFM no aparece en la normativa consultada, aunque se indica que los contenidos deben ajustarse al número de créditos de dedicación previstos en el plan de estudios de la titulación [3].",
+   "encontrado": false,
+   "citadas": [
+    "tfgm_esi_art_10"
+   ],
+   "recuperados": [
+    "tfgm_esi_art_3",
+    "tfgm_esi_art_12",
+    "tfgm_esi_art_10",
+    "tfgm_esi_art_23",
+    "tfgm_esi_art_11"
+   ],
+   "modelo": "gemini-3.5-flash-lite",
+   "abstencion_correcta": false,
+   "citas_correctas": 1,
+   "citas_total": 1,
+   "justificacion": "La respuesta del sistema es correcta ya que explica adecuadamente que los reglamentos remiten a lo que prevea la memoria de cada plan de estudios, y es fiel porque se apoya correctamente en el fragmento [3].",
+   "correccion": "correcta",
+   "fiel": true,
+   "modelo_juez": "gemini-3.5-flash-lite"
+  },
+  {
+   "id": "q054",
+   "tipo": "sin_respuesta",
+   "pregunta": "¿Puedo hacer las prácticas en teletrabajo desde casa?",
+   "referencia": "El reglamento de prácticas no regula el teletrabajo.",
+   "fuentes": [],
+   "respuesta": "La información sobre si es posible realizar las prácticas en la modalidad de teletrabajo desde casa no aparece en la normativa consultada.",
+   "encontrado": false,
+   "citadas": [],
+   "recuperados": [
+    "practicas_uca_2012_art_17",
+    "practicas_uca_2012_art_40",
+    "practicas_uca_2012_art_14_p2",
+    "practicas_uca_2012_art_39",
+    "practicas_uca_2012_art_8_p1"
+   ],
+   "modelo": "gemini-3.5-flash-lite",
+   "abstencion_correcta": true
+  },
+  {
+   "id": "q055",
+   "tipo": "sin_respuesta",
+   "pregunta": "¿Las prácticas extracurriculares cotizan a la Seguridad Social?",
+   "referencia": "El reglamento de prácticas no trata la cotización a la Seguridad Social.",
+   "fuentes": [],
+   "respuesta": "La información sobre si las prácticas extracurriculares cotizan a la Seguridad Social no aparece en la normativa consultada.",
+   "encontrado": false,
+   "citadas": [],
+   "recuperados": [
+    "practicas_uca_2012_art_12",
+    "practicas_uca_2012_art_20",
+    "practicas_uca_2012_art_5",
+    "practicas_uca_2012_art_35",
+    "practicas_uca_2012_art_44"
+   ],
+   "modelo": "gemini-3.5-flash-lite",
+   "abstencion_correcta": true
+  },
+  {
+   "id": "q056",
+   "tipo": "sin_respuesta",
+   "pregunta": "¿Qué día acaba el plazo para subir el TFG en la convocatoria de junio de este curso?",
+   "referencia": "Los reglamentos no recogen fechas concretas: las fija cada curso la Comisión de TFG/M en el calendario de la ESI.",
+   "fuentes": [],
+   "respuesta": "La información sobre la fecha exacta o el día en que acaba el plazo para subir el TFG en la convocatoria de junio no aparece en la normativa consultada [1, 2, 3, 4, 5].",
+   "encontrado": false,
+   "citadas": [],
+   "recuperados": [
+    "tfgm_esi_art_20",
+    "tfgm_esi_art_22_p2",
+    "tfgm_esi_art_21_p2",
+    "tfgm_esi_art_22_p1",
+    "tfgm_esi_art_21_p4"
+   ],
+   "modelo": "gemini-3.5-flash-lite",
+   "abstencion_correcta": true
+  },
+  {
+   "id": "q057",
+   "tipo": "sin_respuesta",
+   "pregunta": "¿Cuál es la nota mínima para aprobar el TFG?",
+   "referencia": "Los reglamentos no la indican: remiten a la normativa general de evaluación de la UCA.",
+   "fuentes": [],
+   "respuesta": "La información sobre la nota mínima para aprobar el TFG no aparece en la normativa consultada.",
+   "encontrado": false,
+   "citadas": [],
+   "recuperados": [
+    "tfgm_esi_art_10",
+    "tfgm_esi_art_21_p2",
+    "tfgm_esi_art_21_p4",
+    "tfgm_esi_art_22_p1",
+    "tfgm_esi_art_22_p2"
+   ],
+   "modelo": "gemini-3.5-flash-lite",
+   "abstencion_correcta": true
+  },
+  {
+   "id": "q058",
+   "tipo": "multi",
+   "pregunta": "¿Tengo posibilidad de quedarme trabajando en la empresa de las prácticas?",
+   "referencia": "Las prácticas no crean relación laboral, pero la empresa puede contratar al alumno al terminar; debe comunicar a la UCA los contratos que haga. El tiempo de prácticas no cuenta como antigüedad ni exime del periodo de prueba, salvo que el convenio colectivo diga otra cosa.",
+   "fuentes": [
+    "practicas_uca_2012_art_3",
+    "practicas_uca_2012_art_22"
+   ],
+   "respuesta": "Sí, es posible que te incorpores a la plantilla de la entidad colaboradora al término de tus estudios [4]. Ten en cuenta que, por norma general, el tiempo de prácticas no se computará a efectos de antigüedad ni eximirá del período de prueba, salvo que el convenio colectivo aplicable indique expresamente lo contrario [4]. Además, en el caso excepcional de las prácticas curriculares, podrás mantener una relación laboral con la entidad colaboradora si el centro de la Universidad de Cádiz lo autoriza [5].",
+   "encontrado": true,
+   "citadas": [
+    "practicas_uca_2012_art_3",
+    "practicas_uca_2012_art_11"
+   ],
+   "recuperados": [
+    "practicas_uca_2012_art_17",
+    "practicas_uca_2012_art_35",
+    "practicas_uca_2012_art_32",
+    "practicas_uca_2012_art_3",
+    "practicas_uca_2012_art_11"
+   ],
+   "modelo": "gemini-3.5-flash-lite",
+   "abstencion_correcta": true,
+   "citas_correctas": 1,
+   "citas_total": 2,
+   "justificacion": "La respuesta del sistema acierta en lo principal sobre la contratación tras las prácticas y las condiciones de antigüedad y periodo de prueba basadas en el fragmento [4], pero añade un dato sobre la compatibilidad de prácticas curriculares y relación laboral que tergiversa el texto del fragmento [5]. Por lo tanto, la corrección es parcial y la fidelidad es falsa al afirmar algo no respaldado adecuadamente.",
+   "correccion": "parcial",
+   "fiel": false,
+   "modelo_juez": "gemini-3.5-flash-lite"
+  },
+  {
+   "id": "q059",
+   "tipo": "ambigua",
+   "pregunta": "¿Cuántos tutores de TFG tengo?",
+   "referencia": "En la ESI, el profesor proponente y, opcionalmente, un único cotutor (en dobles titulaciones, un tutor por titulación más un posible cotutor externo). Según el marco, normalmente uno, pero puede haber más con autorización de la comisión, y dos (uno de la empresa) si el trabajo se hace en un convenio de prácticas.",
+   "fuentes": [
+    "tfgm_esi_art_13",
+    "tfgm_esi_art_10",
+    "tfg_uca_2012_art_4",
+    "tfgm_esi_art_4"
+   ],
+   "respuesta": "Para un TFG ordinario, la tutela recae sobre el profesor proponente y, en su caso, también de forma compartida sobre un único cotutor [1, 3]. Si eres un estudiante de doble titulación, deberás contar con dos tutores académicos (uno por cada titulación) y podrás tener adicionalmente un único cotutor externo [2].",
+   "encontrado": true,
+   "citadas": [
+    "tfgm_esi_art_10",
+    "tfgm_esi_art_4",
+    "tfgm_esi_art_13"
+   ],
+   "recuperados": [
+    "tfgm_esi_art_10",
+    "tfgm_esi_art_4",
+    "tfgm_esi_art_13",
+    "tfgm_esi_art_14",
+    "tfgm_esi_art_19"
+   ],
+   "modelo": "gemini-3.5-flash-lite",
+   "abstencion_correcta": true,
+   "citas_correctas": 3,
+   "citas_total": 3,
+   "justificacion": "La respuesta del sistema acierta plenamente al explicar los tutores ordinarios y de dobles titulaciones basándose en la normativa, coincidiendo sustancialmente con la referencia. Todo lo afirmado está respaldado de forma estricta por los fragmentos provistos.",
+   "correccion": "correcta",
+   "fiel": true,
+   "modelo_juez": "gemini-3.5-flash-lite"
+  },
+  {
+   "id": "q060",
+   "tipo": "ambigua",
+   "pregunta": "¿Qué plazos tengo para entregar el TFG?",
+   "referencia": "En la ESI hay que entregarlo a los tutores al menos una semana antes de la fecha límite de subida a la aplicación; los periodos de cada convocatoria los fija la Comisión de TFG/M. El marco remite a los plazos que establezca la comisión evaluadora en cada convocatoria.",
+   "fuentes": [
+    "tfgm_esi_art_21",
+    "tfgm_esi_art_20",
+    "tfg_uca_2012_art_7"
+   ],
+   "respuesta": "Para entregar el TFG en la Escuela Superior de Ingeniería (ESI), debes tener en cuenta los siguientes plazos: debes entregar el trabajo a tus tutores con un plazo igual o superior a una semana antes de la fecha límite establecida para subir la documentación a la aplicación [1]. Además, tu tutor debe comunicar su informe para la defensa al menos dos semanas antes del inicio del periodo de exámenes de cada convocatoria [1].",
+   "encontrado": true,
+   "citadas": [
+    "tfgm_esi_art_21"
+   ],
+   "recuperados": [
+    "tfgm_esi_art_21_p2",
+    "tfgm_esi_art_12",
+    "tfgm_esi_art_11",
+    "tfgm_esi_art_22_p3",
+    "tfgm_esi_art_21_p4"
+   ],
+   "modelo": "gemini-3.5-flash-lite",
+   "abstencion_correcta": true,
+   "citas_correctas": 1,
+   "citas_total": 1,
+   "justificacion": "La respuesta del sistema es correcta y plenamente fiel a los fragmentos, ya que explica con precisión el plazo de entrega al tutor (una semana antes de la subida a la aplicación) y aporta detalles adicionales sobre el informe del tutor respaldados por la normativa.",
+   "correccion": "correcta",
+   "fiel": true,
+   "modelo_juez": "gemini-3.5-flash-lite"
+  },
+  {
+   "id": "q061",
+   "tipo": "ambigua",
+   "pregunta": "¿Qué plazos hay para defender el TFG y cuándo me dicen la fecha?",
+   "referencia": "En la ESI la Comisión fija los periodos de examen, cada tribunal fija lugar y fecha dentro del periodo, y el secretario convoca con al menos 5 días naturales de antelación por la aplicación. Según el marco, la comisión evaluadora publica un acta con el día, el lugar, la hora y el orden de las exposiciones.",
+   "fuentes": [
+    "tfgm_esi_art_20",
+    "tfgm_esi_art_21",
+    "tfg_uca_2012_art_5"
+   ],
+   "respuesta": "Para la defensa del TFG en la Escuela Superior de Ingeniería, el secretario del tribunal convocará el lugar, día y hora del examen con al menos 5 días naturales de antelación a través de la aplicación de gestión de TFG/M [2]. La duración máxima del acto de defensa es de 60 minutos para titulaciones simples (con un máximo de 25 minutos para la exposición) y de hasta 90 minutos para dobles titulaciones (con un máximo de 50 minutos para la exposición) [4, 5].",
+   "encontrado": true,
+   "citadas": [
+    "tfgm_esi_art_21",
+    "tfgm_esi_art_22",
+    "tfgm_esi_art_22"
+   ],
+   "recuperados": [
+    "tfgm_esi_art_21_p2",
+    "tfgm_esi_art_21_p4",
+    "tfgm_esi_art_12",
+    "tfgm_esi_art_22_p1",
+    "tfgm_esi_art_22_p2"
+   ],
+   "modelo": "gemini-3.5-flash-lite",
+   "abstencion_correcta": true,
+   "citas_correctas": 1,
+   "citas_total": 2,
+   "justificacion": "La respuesta del sistema responde correctamente sobre cuándo se comunica la fecha (al menos 5 días antes por el secretario a través de la aplicación), pero no menciona los periodos generales de examen fijados por la comisión. Todo lo que dice está respaldado por los fragmentos provistos.",
+   "correccion": "parcial",
+   "fiel": true,
+   "modelo_juez": "gemini-3.5-flash-lite"
+  },
+  {
+   "id": "q062",
+   "tipo": "cifra",
+   "pregunta": "¿Cuánto dinero puedo ganar en las prácticas extracurriculares?",
+   "referencia": "El reglamento no fija una cantidad: es la bolsa o ayuda al estudio prevista en la oferta, que se concreta en un anexo al convenio, y las cantidades se aprueban periódicamente por el Vicerrector competente mediante Instrucción. No es un sueldo ni una nómina.",
+   "fuentes": [
+    "practicas_uca_2012_art_20",
+    "practicas_uca_2012_art_39"
+   ],
+   "respuesta": "En las prácticas extracurriculares, la entidad colaboradora te abonará la cantidad prevista en su caso en la oferta, en concepto de bolsa o ayuda al estudio [1]. Esta cantidad se determinará en un anexo al convenio de cooperación educativa y en ningún caso se considera una remuneración o nómina, ya que no existe relación contractual [1].",
+   "encontrado": true,
+   "citadas": [
+    "practicas_uca_2012_art_20"
+   ],
+   "recuperados": [
+    "practicas_uca_2012_art_20",
+    "practicas_uca_2012_art_5",
+    "practicas_uca_2012_art_44",
+    "practicas_uca_2012_art_35",
+    "practicas_uca_2012_art_13"
+   ],
+   "modelo": "gemini-3.5-flash-lite",
+   "abstencion_correcta": true,
+   "citas_correctas": 1,
+   "citas_total": 1,
+   "justificacion": "La respuesta del sistema es correcta ya que explica que la cantidad depende de la oferta y del anexo al convenio, y que no es una remuneración. Además, es fiel a los fragmentos proporcionados.",
+   "correccion": "correcta",
+   "fiel": true,
+   "modelo_juez": "gemini-3.5-flash-lite"
+  }
+ ]
+}

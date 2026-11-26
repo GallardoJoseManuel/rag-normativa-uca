@@ -81,6 +81,7 @@ data/raw/*.pdf
 src/retrieve.py          pregunta → los k chunks más parecidos
 src/generate.py          pregunta → chunks → LLM → respuesta con citas
 src/evaluate.py          métricas de recuperación con eval/questions.json → eval/resultados/
+src/evaluate_generation.py  calidad de las respuestas (código + LLM como juez) → eval/resultados/
 ```
 
 | Script | Qué hace |
@@ -109,6 +110,9 @@ python src/index.py                    # embeddings de los chunks -> base vector
 python src/retrieve.py "¿Las prácticas se cobran?"   # busca los chunks más parecidos a una pregunta
 python src/evaluate.py                 # mide el buscador con eval/questions.json -> eval/resultados/
 python src/generate.py "¿Las prácticas se cobran?"   # respuesta con citas (necesita GEMINI_API_KEY en .env)
+python src/evaluate_generation.py      # evalúa las respuestas con un LLM como juez -> eval/resultados/
+python src/evaluate_generation.py --calibracion   # muestra para corregir a mano -> eval/calibracion.csv
+python src/evaluate_generation.py --acuerdo       # acuerdo entre el juez y la corrección humana
 
 # Solo si se añade una modificación nueva de la normativa:
 python scripts/borrador_parches.py     # borrador de los parches (revisarlo y pasarlo a data/parches.json)

@@ -79,20 +79,24 @@ def contexto(resultados: list[dict]) -> str:
     return "\n\n".join(bloques)
 
 
-def llamar(cliente: genai.Client, modelos: list[str], prompt: str) -> tuple[Respuesta, str]:
-    """Pide la respuesta al primer modelo que funcione, con reintentos. Devuelve (respuesta, modelo)."""
+def llamar(cliente: genai.Client, modelos: list[str], prompt: str,
+           instrucciones: str = INSTRUCCIONES, esquema: type[BaseModel] = Respuesta) -> tuple[BaseModel, str]:
+    """Pide al primer modelo que funcione una salida con el esquema dado, con reintentos.
+
+    Devuelve (salida, modelo usado). La reutiliza también el juez de evaluate_generation.py.
+    """
     config = types.GenerateContentConfig(
-        system_instruction=INSTRUCCIONES,
+        system_instruction=instrucciones,
         temperature=0,  # lo más estable posible: misma pregunta, misma respuesta
         response_mime_type="application/json",
-        response_schema=Respuesta,
+        response_schema=esquema,
     )
     ultimo_error = None
     for modelo in modelos:
         for intento in range(REINTENTOS):
             try:
                 r = cliente.models.generate_content(model=modelo, contents=prompt, config=config)
-                return Respuesta.model_validate_json(r.text), modelo
+                return esquema.model_validate_json(r.text), modelo
             except (errors.ServerError, errors.ClientError) as error:
                 # 503 = saturado, 429 = límite gratuito: merece la pena esperar y reintentar.
                 if getattr(error, "code", None) not in (429, 503):
@@ -106,8 +110,8 @@ def responder(pregunta: str, buscador: Buscador, cliente: genai.Client,
               modelo: str = MODELO_LLM, k: int = K) -> dict:
     """Busca los chunks, pregunta al LLM y devuelve la respuesta con sus fuentes."""
     resultados = buscador.buscar(pregunta, k=k)
-    prompt = (f"Fragmentos de normativa:\n\n{contexto(resultados)}\n\n"
-              f"Pregunta del estudiante: {pregunta}")
+    fragmentos = contexto(resultados)
+    prompt = f"Fragmentos de normativa:\n\n{fragmentos}\n\nPregunta del estudiante: {pregunta}"
     salida, modelo_usado = llamar(cliente, [modelo] + [m for m in MODELOS_RESERVA if m != modelo], prompt)
 
     # Solo se aceptan números de fragmento que existan (el LLM podría inventarse un [7]).
@@ -117,7 +121,8 @@ def responder(pregunta: str, buscador: Buscador, cliente: genai.Client,
             "fuentes": [{"n": n, "id": resultados[n - 1]["id"], "unidad": resultados[n - 1]["unidad"],
                          "cita": cita(resultados[n - 1]), "url": resultados[n - 1]["url"]}
                         for n in usadas],
-            "recuperados": [r["id"] for r in resultados]}
+            "recuperados": [r["id"] for r in resultados],
+            "contexto": fragmentos}  # lo que leyó el LLM (lo necesita el juez para medir la fidelidad)
 
 
 def main() -> None:
