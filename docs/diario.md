@@ -5,6 +5,46 @@ y los problemas que encuentro.
 
 ---
 
+## Apuntes generales: qué es un RAG
+
+**RAG** (*Retrieval-Augmented Generation*, generación aumentada con recuperación): en lugar
+de pedirle a un LLM que responda de memoria, primero se **buscan** los fragmentos de los
+documentos relacionados con la pregunta y se le pasan junto a ella. El LLM responde
+**leyendo** esos fragmentos, no recordando.
+
+Por qué no basta con preguntarle al LLM directamente:
+- No conoce la normativa de la UCA, o la conoce a medias o desactualizada (las
+  modificaciones de 2014 y 2015).
+- Cuando no sabe algo, puede inventarse una respuesta que suena convincente
+  (*alucinación*). Con los fragmentos delante, se le puede exigir que responda solo con
+  ellos, que cite el artículo y que diga "no lo sé" si no está.
+- Reentrenar un modelo con los documentos (*fine-tuning*) es caro, hay que repetirlo cada
+  vez que cambia la norma y no permite citar la fuente. Con un RAG basta con reindexar.
+
+Tiene dos fases:
+
+```
+INDEXACIÓN (una vez, o cuando cambian los documentos)
+PDFs → texto limpio → artículos → versión vigente → chunks → embeddings → base vectorial
+        (paso 2)                                    (paso 3)  (paso 5)
+
+CONSULTA (cada pregunta)
+pregunta → embedding → k chunks más parecidos → prompt (pregunta + chunks) → LLM → respuesta con citas
+                       (paso 6: recuperación)                              (paso 7: generación)
+```
+
+Hay **dos modelos distintos**: el de embeddings (pequeño, local, solo convierte texto en
+vectores, sirve para buscar) y el LLM (grande, genera el texto de la respuesta). El LLM
+puede ser local (por ejemplo con Ollama) o por API (por ejemplo Claude); el proyecto lo
+dejará intercambiable.
+
+La calidad del RAG depende sobre todo de la **recuperación**: si el artículo correcto no
+llega al LLM, no hay respuesta buena posible. Por eso los pasos 3 a 6 (troceado,
+evaluación, indexación, recuperación) son el núcleo del proyecto, y por eso cada decisión
+se mide con el conjunto de evaluación.
+
+---
+
 ## 2026-11-24 · Sesión 1: configuración del proyecto
 
 ### Qué he hecho
@@ -882,6 +922,100 @@ Lo que enseñan:
 - **Umbral de "no lo sé"**: la pregunta sin respuesta tiene una similitud máxima más baja
   (0,495), pero la respuesta correcta de "¿se cobran?" estaba en 0,549. Un umbral fijo
   sería frágil: la decisión de abstenerse tendrá que tomarla el LLM (paso 7).
+
+### Apuntes: similitud coseno, distancia y normalización
+La **similitud coseno** mide el ángulo entre dos vectores: vale 1 si apuntan en la misma
+dirección (mismo significado), 0 si son perpendiculares (sin relación) y -1 si son
+opuestos. Solo importa la dirección, no la longitud.
+
+```
+coseno(a, b) = (a · b) / (|a| · |b|)          a · b = a1·b1 + a2·b2 + ... + a1024·b1024
+```
+
+Ejemplo en 2 dimensiones: a = (0,6; 0,8) y b = (0,8; 0,6), los dos de longitud 1.
+a · b = 0,6·0,8 + 0,8·0,6 = 0,96 → muy parecidos.
+
+Si los vectores se **normalizan** (longitud 1) al guardarlos, el denominador vale 1 y el
+coseno es solo el producto escalar: una multiplicación y una suma, muy rápido.
+
+Chroma devuelve la **distancia** coseno = 1 − similitud: 0 es idéntico y cuanto más alta,
+más lejos. Por eso para ordenar resultados se busca la distancia **más baja**. Con bge-m3
+las similitudes salen apretadas (0,5-0,7): su valor absoluto no significa mucho, lo que
+importa es el **orden**.
+
+### Apuntes: búsqueda exacta y búsqueda aproximada (HNSW)
+- **Búsqueda exacta** (fuerza bruta): comparar el vector de la pregunta con todos los
+  vectores guardados y quedarse con los k mejores. Con 122 chunks son 122 productos
+  escalares: instantáneo. Con millones sería lento.
+- **Búsqueda aproximada** (*ANN, approximate nearest neighbours*): un índice que encuentra
+  casi siempre los vecinos correctos sin compararlos todos. **HNSW** (*Hierarchical
+  Navigable Small World*) organiza los vectores en un grafo por capas: las de arriba
+  tienen pocos puntos y conexiones "largas", las de abajo todos los puntos y conexiones
+  "cortas". La búsqueda entra por arriba y va bajando, saltando cada vez al vecino más
+  cercano a la pregunta, como buscar una calle: primero el país, luego la ciudad, luego el
+  barrio.
+- Es lo que usa Chroma por defecto. Con nuestro corpus el resultado es el mismo que la
+  búsqueda exacta; la ventaja aparecería con un corpus mucho mayor.
+
+### Apuntes: cómo funciona `src/index.py`
+- **`PREFIJOS`**: solo los e5 necesitan `passage: `/`query: `; para el resto, `.get` da
+  prefijo vacío. Así el mismo script sirve para comparar modelos en el paso 8.
+- **`nombre_coleccion`**: `"BAAI/bge-m3"` → `"normativa_bge-m3"` (una colección por modelo).
+- **`metadatos`**: copia los campos simples, convierte `modificado_por` (lista) en texto y
+  omite `numero` en las disposiciones. Se omite en vez de poner un valor falso como -1,
+  que podría confundirse con un número real al filtrar.
+- **`contar_tokens`**: tokeniza sin cortar (`truncation=False`) para saber la longitud
+  real de cada chunk, contando los tokens especiales de inicio y fin.
+- **`indexar`**:
+  1. Comprueba los tokens **antes** de calcular nada: si algo se fuera a cortar, falla
+     pronto.
+  2. `encode(..., normalize_embeddings=True, batch_size=8)` devuelve una matriz de
+     122 × 1024. Los textos se procesan de 8 en 8: más lotes grandes van más rápido pero
+     gastan más memoria.
+  3. `PersistentClient` guarda la base en disco (`data/index/`, un SQLite y los ficheros
+     del índice).
+  4. Borra la colección si existe y la crea de nuevo: ejecutar el script dos veces da el
+     mismo resultado (idempotencia).
+  5. `configuration={"hnsw": {"space": "cosine"}}`: HNSW es el índice que usa Chroma para
+     buscar vecinos rápido sin comparar con todos (un grafo por capas). Con 122 vectores
+     no hace falta, pero es lo que escala. Chroma devuelve la **distancia** coseno
+     (1 − similitud).
+  6. Los metadatos de la colección guardan el modelo y las dimensiones: al buscar se
+     podrá comprobar que la pregunta usa el mismo modelo que los chunks.
+  7. `add` guarda ids, vectores, `documents` (el `texto` de la norma, que es lo que verá
+     el LLM, no el `texto_embedding` con el encabezado) y metadatos.
+- **`comprobar`**: `get(include=[])` devuelve solo los ids; deben coincidir exactamente
+  con los de `chunks.json`.
+
+### Apuntes: qué es Chroma y qué guarda
+**Chroma** es una base de datos vectorial **embebida**: una librería que funciona dentro
+del propio proceso de Python (sin servidor), como SQLite pero pensada para vectores. Tiene
+tres partes: almacenamiento en disco, un índice para buscar vecinos rápido (HNSW) y una
+API (`add`, `get`, `query`, `delete`).
+
+Jerarquía:
+```
+PersistentClient (data/index/)            ← la base de datos
+└── colección "normativa_bge-m3"          ← como una tabla; una por modelo
+    ├── metadata: {modelo: BAAI/bge-m3, dimensiones: 1024}
+    ├── configuration: {space: cosine, max_neighbors: 16, ...}   ← ajustes del índice HNSW
+    └── 122 registros, cada uno con:
+        ├── id          "practicas_uca_2012_art_14_p2"
+        ├── embedding   [-0.0297, 0.0143, -0.0394, ...]  (1024 números, longitud 1)
+        ├── document    "3. En el caso de prácticas extracurriculares, ..."  (el texto de la norma)
+        └── metadata    {documento, titulo, numero: 14, parte: 2, apartados: "3", url, ...}
+```
+
+En disco: `chroma.sqlite3` guarda las colecciones, ids, textos, metadatos y el registro de
+los vectores; la carpeta con nombre UUID guarda el índice HNSW (los vectores organizados
+en un grafo para buscar sin compararlos todos).
+
+**`vectores.tolist()`**: `encode` devuelve una matriz de **numpy** (`ndarray`, números
+`float32` de 4 bytes en un bloque contiguo de memoria, 122 × 1024). `.tolist()` la
+convierte en listas normales de Python (122 listas de 1024 `float`), el formato que
+acepta la API de Chroma sin ambigüedad. Al convertir, cada `float32` pasa a `float` de
+Python (64 bits): por eso 0.1234567 aparece como 0.12345670163631439, que es el valor
+exacto que podía guardar el `float32`.
 
 ### Pendiente
 - Paso 6: `src/retrieve.py` (buscar los k chunks de una pregunta) y `src/evaluate.py`

@@ -25,8 +25,8 @@ import json
 import sys
 from pathlib import Path
 
-import chromadb
-from sentence_transformers import SentenceTransformer
+import chromadb # Base vectorial
+from sentence_transformers import SentenceTransformer   # Modelo de embeddings que calcula los vectores
 
 RAIZ = Path(__file__).resolve().parent.parent
 CHUNKS = RAIZ / "data" / "processed" / "chunks.json"
@@ -77,8 +77,11 @@ def indexar(chunks: list[dict], nombre_modelo: str) -> chromadb.Collection:
         sys.exit(f"✗ {len(cortados)} chunks superan el límite y se cortarían: {cortados}")
 
     print(f"Calculando {len(textos)} embeddings...")
+    
+    # Vectores = matriz numpy de chunks x dimensiones, normalizados (longitud 1) para usar distancia coseno
     vectores = modelo.encode(textos, normalize_embeddings=True, batch_size=8,
                              show_progress_bar=True)
+
 
     cliente = chromadb.PersistentClient(path=str(INDICE))
     nombre = nombre_coleccion(nombre_modelo)
